@@ -13,7 +13,6 @@ namespace Backend.DataContext
         public DbSet<DetallePedido> DetallesPedidos { get; set; }
         public DbSet<Pago> Pagos { get; set; }
         public DbSet<Pedido> Pedidos { get; set; }
-        public DbSet<Turno> Turnos { get; set; }
         public DbSet<Presupuesto> Presupuestos { get; set; }
         public SistemaGestionContext(){ }
 
@@ -232,33 +231,7 @@ namespace Backend.DataContext
                     IsDeleted = false
                 }
             );
-            //Cargamos los datos iniciales de los turnos
-            modelBuilder.Entity<Turno>().HasData(
-                new Turno
-                {
-                    Id = 1,
-                    FechaHora = new DateTime(2025, 8, 27, 10, 0, 0),
-                    Estado = "Reunión para discutir el nuevo proyecto",
-                    ClienteId = 1,
-                    IsDeleted = false
-                },
-                new Turno
-                {
-                    Id = 2,
-                    FechaHora = new DateTime(2025, 8, 28, 14, 0, 0),
-                    Estado = "Consulta sobre productos y servicios",
-                    ClienteId = 2,
-                    IsDeleted = false
-                },
-                new Turno
-                {
-                    Id = 3,
-                    FechaHora = new DateTime(2025, 8, 29, 16, 0, 0),
-                    Estado = "Seguimiento de pedido y entrega",
-                    ClienteId = 3,
-                    IsDeleted = false
-                }
-            );
+            
             //Cargamos los datos iniciales de los presupuestos
             modelBuilder.Entity<Presupuesto>().HasData(
                 new Presupuesto
@@ -299,7 +272,6 @@ namespace Backend.DataContext
             modelBuilder.Entity<DetallePedido>().HasQueryFilter(c => !c.IsDeleted);
             modelBuilder.Entity<Pago>().HasQueryFilter(c => !c.IsDeleted);
             modelBuilder.Entity<Pedido>().HasQueryFilter(c => !c.IsDeleted);
-            modelBuilder.Entity<Turno>().HasQueryFilter(c => !c.IsDeleted);
             modelBuilder.Entity<Presupuesto>().HasQueryFilter(c => !c.IsDeleted);
 
         }

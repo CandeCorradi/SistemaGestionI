@@ -12,7 +12,6 @@ namespace Service.Models
         public DateTime Fecha { get; set; } = DateTime.Now;
         public string Estado { get; set; } = string.Empty;
         public int ClienteId { get; set; }
-        //agregamos delete
         public bool IsDeleted { get; set; } = false;
         public override string ToString()
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Service.Models
 {
-    public class Producto
+    public class ProductoPresupuesto
     {
         public int Id { get; set; }
         public string Nombre { get; set; } = string.Empty;
@@ -18,8 +18,8 @@ namespace Service.Models
         public bool IsDeleted { get; set; } = false;
 
         public override string ToString()
-        //que me devuelva nombre, descripcion, precio si hay stock, de lo contrario un message de sin stock
         {
+            //que me devuelva nombre, descripcion, precio si hay stock, de lo contrario un message de sin stock
             return Stock > 0 
                 ? $"{Nombre} - {Descripcion} - Precio: {Precio:C}" 
                 : $"{Nombre} - Sin stock disponible";

@@ -4,7 +4,7 @@ using Service.Models;
 
 namespace Backend.DataContext
 {
-    public class SistemaGestionContext: DbContext
+    public class SistemaGestionContext : DbContext
     {
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Mayorista> Mayoristas { get; set; }
@@ -14,6 +14,8 @@ namespace Backend.DataContext
         public DbSet<Pago> Pagos { get; set; }
         public DbSet<Pedido> Pedidos { get; set; }
         public DbSet<Presupuesto> Presupuestos { get; set; }
+        public DbSet<ProductoPresupuesto> ProductoPresupuestos { get; set; }
+        public DbSet<DetallePresupuesto> DetallesPresupuestos { get; set; }
         public SistemaGestionContext(){ }
 
         public SistemaGestionContext(DbContextOptions<SistemaGestionContext> options) : base(options)
@@ -31,7 +33,6 @@ namespace Backend.DataContext
                     Nombre = "Juan",
                     Apellido = "Perez",
                     Telefono = "3498657842",
-                    Email = "juanpe@gmail.com",
                     Direccion = "Praderas 4590",
                     IsDeleted = false
                 },
@@ -41,7 +42,6 @@ namespace Backend.DataContext
                     Nombre = "Mario",
                     Apellido = "Borges",
                     Telefono = "3498412987",
-                    Email = "marito@gmail.com",
                     Direccion = "Rivadavia 3486",
                     IsDeleted = false
                 },
@@ -51,7 +51,6 @@ namespace Backend.DataContext
                     Nombre = "Analia",
                     Apellido = "Morales",
                     Telefono = "3498475986",
-                    Email = "animo@gmail.com",
                     Direccion = "Santa Fe 3961",
                     IsDeleted = false
                 }
@@ -125,6 +124,7 @@ namespace Backend.DataContext
                 {
                     Id = 1,
                     Nombre = "admin",
+                    Email = "administrador123@gmail.com",
                     Password = "admin123",
                     TipoUsuario = Service.Enums.TipoUsuarioEnum.Administrador,
                     IsDeleted = false
@@ -133,6 +133,7 @@ namespace Backend.DataContext
                 {
                     Id = 2,
                     Nombre = "sergio cliente",
+                    Email = "sergio2024@gmail.com",
                     Password = "cliente123",
                     TipoUsuario = Service.Enums.TipoUsuarioEnum.Cliente,
                     IsDeleted = false
@@ -141,6 +142,7 @@ namespace Backend.DataContext
                 {
                     Id = 3,
                     Nombre = "franco cliente",
+                    Email = "franquito59@gmail.com",
                     Password = "cliente124",
                     TipoUsuario = Service.Enums.TipoUsuarioEnum.Cliente,
                     IsDeleted = false
@@ -262,6 +264,69 @@ namespace Backend.DataContext
                     IsDeleted = false
                 }
             );
+            //Cargamos los datos iniciales de detalles de presupuestos
+            modelBuilder.Entity<DetallePresupuesto>().HasData(
+                new DetallePresupuesto
+                {
+                    IdDetalle = 1,
+                    PresupuestoId = 1,
+                    ProductoId = 1,
+                    Cantidad = 10,
+                    IsDeleted = false
+                },
+                new DetallePresupuesto
+                {
+                    IdDetalle = 2,
+                    PresupuestoId = 2,
+                    ProductoId = 2,
+                    Cantidad = 5,
+                    IsDeleted = false
+                },
+                new DetallePresupuesto
+                {
+                    IdDetalle = 3,
+                    PresupuestoId = 3,
+                    ProductoId = 3,
+                    Cantidad = 8,
+                    IsDeleted = false
+                }
+            );
+            //Cargamos los datos iniciales de productos de presupuestos
+            modelBuilder.Entity<ProductoPresupuesto>().HasData(
+                new ProductoPresupuesto
+                {
+                    Id = 1,
+                    Nombre = "Melamina Blanca",
+                    Descripcion = "Melamina de alta calidad color blanco",
+                    Medida = 21 * 12,
+                    Stock = 50,
+                    Categoria = "Melamina",
+                    Precio = 2500,
+                    IsDeleted = false
+                },
+                new ProductoPresupuesto
+                {
+                    Id = 2,
+                    Nombre = "Melamina Caoba",
+                    Descripcion = "Melamina de alta calidad, textura granulada",
+                    Medida = 21 * 12,
+                    Stock = 15,
+                    Categoria = "Melamina",
+                    Precio = 3650,
+                    IsDeleted = false
+                },
+                new ProductoPresupuesto
+                {
+                    Id = 3,
+                    Nombre = "Melamina Negra",
+                    Descripcion = "Melamina de alta calidad, textura mate",
+                    Medida = 21 * 12,
+                    Stock = 43,
+                    Categoria = "Melamina",
+                    Precio = 4230,
+                    IsDeleted = false
+                }
+            );
 
 
             //Configuramos las querys para que no devuelvan entidades con estado "Eliminado"
@@ -273,6 +338,8 @@ namespace Backend.DataContext
             modelBuilder.Entity<Pago>().HasQueryFilter(c => !c.IsDeleted);
             modelBuilder.Entity<Pedido>().HasQueryFilter(c => !c.IsDeleted);
             modelBuilder.Entity<Presupuesto>().HasQueryFilter(c => !c.IsDeleted);
+            modelBuilder.Entity<DetallePresupuesto>().HasQueryFilter(c => !c.IsDeleted);
+            modelBuilder.Entity<ProductoPresupuesto>().HasQueryFilter(c => !c.IsDeleted);
 
         }
     }

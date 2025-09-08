@@ -8,12 +8,11 @@ namespace Service.Models
 {
     public class Presupuesto
     {
-        public int Id { get; set; }
+        public int Id { get; set; } //relacion con tabla detallePresupuesto
         public int ClientId { get; set; }
         public DateTime FechaEmision { get; set; } = DateTime.Now;
         public DateTime FechaVencimiento { get; set; }  
         public decimal MontoEstimado { get; set; }
-        //agregamos delete
         public bool IsDeleted { get; set; } = false;
 
         public override string ToString()

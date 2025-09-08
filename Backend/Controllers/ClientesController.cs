@@ -42,6 +42,13 @@ namespace Backend.Controllers
             return cliente;
         }
 
+        // GET: api/Clientes
+        [HttpGet("deleteds/")]
+        public async Task<ActionResult<IEnumerable<Cliente>>> GetClientesDeleteds()
+        {
+            return await _context.Clientes.IgnoreQueryFilters().Where(c => c.IsDeleted).ToListAsync();
+        }
+
         // PUT: api/Clientes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -115,7 +122,6 @@ namespace Backend.Controllers
 
             return NoContent();
         }
-
         private bool ClienteExists(int id)
         {
             return _context.Clientes.Any(e => e.Id == id);

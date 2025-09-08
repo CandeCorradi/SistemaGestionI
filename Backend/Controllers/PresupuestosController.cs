@@ -41,6 +41,12 @@ namespace Backend.Controllers
 
             return presupuesto;
         }
+        // GET: api/Presupuestos/deleteds/
+        [HttpGet("deleteds/")]
+        public async Task<ActionResult<IEnumerable<Presupuesto>>> GetPresupuestosDeleteds()
+        {
+            return await _context.Presupuestos.IgnoreQueryFilters().Where(c => c.IsDeleted).ToListAsync();
+        }
 
         // PUT: api/Presupuestos/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -100,6 +106,21 @@ namespace Backend.Controllers
             return NoContent();
         }
 
+        // PUT: api/Presupuestos/restore/5
+        [HttpPut("restore/{id}")]
+        public async Task<IActionResult> RestorePresupuesto(int id)
+        {
+            var presupuesto = await _context.Presupuestos.IgnoreQueryFilters().FirstOrDefaultAsync(c => c.Id.Equals(id));
+            if (presupuesto == null)
+            {
+                return NotFound();
+            }
+            presupuesto.IsDeleted = false; // Soft restore
+            _context.Presupuestos.Update(presupuesto);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
         private bool PresupuestoExists(int id)
         {
             return _context.Presupuestos.Any(e => e.Id == id);

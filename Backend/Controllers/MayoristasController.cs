@@ -42,6 +42,13 @@ namespace Backend.Controllers
             return mayorista;
         }
 
+        // GET: api/Mayoristas/deleteds/
+        [HttpGet("deleteds/")]
+        public async Task<ActionResult<IEnumerable<Mayorista>>> GetMayoristasDeleteds()
+        {
+            return await _context.Mayoristas.IgnoreQueryFilters().Where(c => c.IsDeleted).ToListAsync();
+        }
+
         // PUT: api/Mayoristas/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -94,6 +101,22 @@ namespace Backend.Controllers
                 return NotFound();
             }
             mayorista.IsDeleted = true; //soft delete
+            _context.Mayoristas.Update(mayorista);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        // PUT: api/Usuarios/restore/5
+        [HttpPut("restore/{id}")]
+        public async Task<IActionResult> RestoreMayorista(int id)
+        {
+            var mayorista = await _context.Mayoristas.IgnoreQueryFilters().FirstOrDefaultAsync(c => c.Id.Equals(id));
+            if (mayorista == null)
+            {
+                return NotFound();
+            }
+            mayorista.IsDeleted = false; // Soft restore
             _context.Mayoristas.Update(mayorista);
             await _context.SaveChangesAsync();
 

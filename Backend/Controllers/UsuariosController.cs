@@ -41,6 +41,12 @@ namespace Backend.Controllers
 
             return usuario;
         }
+        // GET: api/Usuarios
+        [HttpGet("deleteds/")]
+        public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuariosDeleteds()
+        {
+            return await _context.Usuarios.IgnoreQueryFilters().Where(c => c.IsDeleted).ToListAsync();
+        }
 
         // PUT: api/Usuarios/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -100,6 +106,21 @@ namespace Backend.Controllers
             return NoContent();
         }
 
+        // PUT: api/Usuarios/restore/5
+        [HttpPut("restore/{id}")]
+        public async Task<IActionResult> RestoreUsuario(int id)
+        {
+            var usuario = await _context.Usuarios.IgnoreQueryFilters().FirstOrDefaultAsync(c => c.Id.Equals(id));
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+            usuario.IsDeleted = false; // Soft restore
+            _context.Usuarios.Update(usuario);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
         private bool UsuarioExists(int id)
         {
             return _context.Usuarios.Any(e => e.Id == id);

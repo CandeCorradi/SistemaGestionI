@@ -41,6 +41,12 @@ namespace Backend.Controllers
 
             return producto;
         }
+        // GET: api/Productos
+        [HttpGet("deleteds/")]
+        public async Task<ActionResult<IEnumerable<Producto>>> GetProductosDeleteds()
+        {
+            return await _context.Productos.IgnoreQueryFilters().Where(c => c.IsDeleted).ToListAsync();
+        }
 
         // PUT: api/Productos/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -100,6 +106,21 @@ namespace Backend.Controllers
             return NoContent();
         }
 
+        // PUT: api/Productos/restore/5
+        [HttpPut("restore/{id}")]
+        public async Task<IActionResult> RestoreProducto(int id)
+        {
+            var producto = await _context.Productos.IgnoreQueryFilters().FirstOrDefaultAsync(c => c.Id.Equals(id));
+            if (producto == null)
+            {
+                return NotFound();
+            }
+            producto.IsDeleted = false; // Soft restore
+            _context.Productos.Update(producto);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
         private bool ProductoExists(int id)
         {
             return _context.Productos.Any(e => e.Id == id);

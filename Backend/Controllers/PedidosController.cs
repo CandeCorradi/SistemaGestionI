@@ -42,6 +42,13 @@ namespace Backend.Controllers
             return pedido;
         }
 
+        // GET: api/Pedidos
+        [HttpGet("deleteds/")]
+        public async Task<ActionResult<IEnumerable<Pedido>>> GetPedidosDeleteds()
+        {
+            return await _context.Pedidos.IgnoreQueryFilters().Where(c => c.IsDeleted).ToListAsync();
+        }
+
         // PUT: api/Pedidos/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -100,6 +107,21 @@ namespace Backend.Controllers
             return NoContent();
         }
 
+        // PUT: api/Usuarios/restore/5
+        [HttpPut("restore/{id}")]
+        public async Task<IActionResult> RestorePedidos(int id)
+        {
+            var pedidos = await _context.Pedidos.IgnoreQueryFilters().FirstOrDefaultAsync(c => c.Id.Equals(id));
+            if (pedidos == null)
+            {
+                return NotFound();
+            }
+            pedidos.IsDeleted = false; // Soft restore
+            _context.Pedidos.Update(pedidos);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
         private bool PedidoExists(int id)
         {
             return _context.Pedidos.Any(e => e.Id == id);

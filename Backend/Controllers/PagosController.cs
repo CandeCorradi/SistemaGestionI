@@ -42,6 +42,13 @@ namespace Backend.Controllers
             return pago;
         }
 
+        // GET: api/Pagos/deleteds/
+        [HttpGet("deleteds/")]
+        public async Task<ActionResult<IEnumerable<Pago>>> GetPagosDeleteds()
+        {
+            return await _context.Pagos.IgnoreQueryFilters().Where(c => c.IsDeleted).ToListAsync();
+        }
+
         // PUT: api/Pagos/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -94,6 +101,22 @@ namespace Backend.Controllers
                 return NotFound();
             }
             pago.IsDeleted = true; //soft delete
+            _context.Pagos.Update(pago);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        // PUT: api/Usuarios/restore/5
+        [HttpPut("restore/{id}")]
+        public async Task<IActionResult> RestorePago(int id)
+        {
+            var pago = await _context.Pagos.IgnoreQueryFilters().FirstOrDefaultAsync(c => c.Id.Equals(id));
+            if (pago == null)
+            {
+                return NotFound();
+            }
+            pago.IsDeleted = false; // Soft restore
             _context.Pagos.Update(pago);
             await _context.SaveChangesAsync();
 

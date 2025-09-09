@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 var configuration = new ConfigurationBuilder()
                     .AddJsonFile("appsettings.json")
                     .Build();
-string? cadenaConexion = configuration.GetConnectionString("mysqlLocal");
+string? cadenaConexion = configuration.GetConnectionString("mysqlRemote");
 
 //Configuramos la inyeccion de dependencias del DbContext
 builder.Services.AddDbContext<SistemaGestionContext>(

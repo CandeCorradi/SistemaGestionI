@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace Service.Models
 {
     public class DetallePresupuesto
     {
+        [Key]
         public int IdDetalle { get; set; }
         public int PresupuestoId { get; set; }
         public int ProductoId { get; set; }

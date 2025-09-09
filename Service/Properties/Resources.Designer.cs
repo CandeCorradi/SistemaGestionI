@@ -22,7 +22,7 @@ namespace Service.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Service.Properties {
         ///   Devuelve la instancia de ResourceManager almacenada en caché utilizada por esta clase.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Service.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace Service.Properties {
         ///   búsquedas de recursos mediante esta clase de recurso fuertemente tipado.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace Service.Properties {
         /// <summary>
         ///   Busca una cadena traducida similar a AIzaSyDP1bqlG4giUq5H9uL9zOan1tADEFfupZQ.
         /// </summary>
-        internal static string ApiKeyFirebase {
+        public static string ApiKeyFirebase {
             get {
                 return ResourceManager.GetString("ApiKeyFirebase", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace Service.Properties {
         /// <summary>
         ///   Busca una cadena traducida similar a sistema-de-gestion-ba1e7.firebaseapp.com.
         /// </summary>
-        internal static string AuthDomainFirebase {
+        public static string AuthDomainFirebase {
             get {
                 return ResourceManager.GetString("AuthDomainFirebase", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace Service.Properties {
         /// <summary>
         ///   Busca una cadena traducida similar a https://sistemadegestion.azurewebsites.net/.
         /// </summary>
-        internal static string UrlApiAzure {
+        public static string UrlApiAzure {
             get {
                 return ResourceManager.GetString("UrlApiAzure", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace Service.Properties {
         /// <summary>
         ///   Busca una cadena traducida similar a https://localhost:7000/api/.
         /// </summary>
-        internal static string UrlApiLocal {
+        public static string UrlApiLocal {
             get {
                 return ResourceManager.GetString("UrlApiLocal", resourceCulture);
             }

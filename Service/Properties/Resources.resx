@@ -129,4 +129,10 @@
   <data name="UrlApiLocal" xml:space="preserve">
     <value>https://localhost:7000/api/</value>
   </data>
+  <data name="ClientePut" xml:space="preserve">
+    <value>[HttpPut(&quot;{id}&quot;)]&#10;public IActionResult PutCliente(int id, Cliente cliente) { ... }</value>
+  </data>
+  <data name="ClienteRestore" xml:space="preserve">
+    <value>[HttpPut(&quot;restore/{id}&quot;)]&#10;public IActionResult RestoreCliente(int id) { ... }</value>
+  </data>
 </root>

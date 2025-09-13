@@ -79,6 +79,26 @@ namespace Service.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a [HttpPut(&quot;{id}&quot;)]
+        ///public IActionResult PutCliente(int id, Cliente cliente) { ... }.
+        /// </summary>
+        public static string ClientePut {
+            get {
+                return ResourceManager.GetString("ClientePut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a [HttpPut(&quot;restore/{id}&quot;)]
+        ///public IActionResult RestoreCliente(int id) { ... }.
+        /// </summary>
+        public static string ClienteRestore {
+            get {
+                return ResourceManager.GetString("ClienteRestore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a https://sistemadegestion.azurewebsites.net/.
         /// </summary>
         public static string UrlApiAzure {

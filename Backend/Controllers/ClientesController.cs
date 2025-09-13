@@ -42,7 +42,7 @@ namespace Backend.Controllers
             return cliente;
         }
 
-        // GET: api/Clientes
+        // GET: api/Clientes/deleteds/
         [HttpGet("deleteds/")]
         public async Task<ActionResult<IEnumerable<Cliente>>> GetClientesDeleteds()
         {
@@ -50,7 +50,6 @@ namespace Backend.Controllers
         }
 
         // PUT: api/Clientes/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCliente(int id, Cliente cliente)
         {
@@ -81,7 +80,6 @@ namespace Backend.Controllers
         }
 
         // POST: api/Clientes
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Cliente>> PostCliente(Cliente cliente)
         {
@@ -106,12 +104,12 @@ namespace Backend.Controllers
 
             return NoContent();
         }
-        //RESTORE
-        [HttpPut("{id}")]
+
+        // RESTORE: api/Clientes/restore/5
+        [HttpPut("restore/{id}")]
         public async Task<IActionResult> RestoreCliente(int id)
         {
-            var cliente = await _context.Clientes.IgnoreQueryFilters
-                ().FirstOrDefaultAsync(c=>c.Id.Equals(id));
+            var cliente = await _context.Clientes.IgnoreQueryFilters().FirstOrDefaultAsync(c => c.Id.Equals(id));
             if (cliente == null)
             {
                 return NotFound();
@@ -122,6 +120,7 @@ namespace Backend.Controllers
 
             return NoContent();
         }
+
         private bool ClienteExists(int id)
         {
             return _context.Clientes.Any(e => e.Id == id);

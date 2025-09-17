@@ -28,7 +28,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigins",
         builder => builder
-            .WithOrigins("https://localhost:7222", "https://sistemadegestion.azurewebsites.net")
+            .WithOrigins("https://localhost:7179", "https://sistemadegestion.azurewebsites.net")
             .AllowAnyHeader()
             .AllowAnyMethod());
 });

@@ -1,7 +1,52 @@
-﻿@page "/mayoristass"
+﻿@page "/mayoristas"
+@inject IGenericService<Mayorista> _serviceMayoristas
 
 <PageTitle>Mayoristas</PageTitle>
 
 <h1>Mayoristas</h1>
+
+@if 
+(
+    mayoristas == null)
+{
+    <p><em>Cargando la lista de mayoristas...</em></p>
+}
+else if (!mayoristas.Any())
+{
+    <p><em>No hay mayoristas registrados.</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Telefono</th>
+                <th>Email</th>
+                <th>Direccion</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var may in mayoristas)
+            {
+                <tr>
+                    <td>@may.Nombre</td>
+                    <td>@may.Telefono</td>
+                    <td>@may.Email</td>
+                    <td>@may.Direccion</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+)
+@code 
+{
+    private List<Mayorista>? mayoristas;
+    protected override async Task OnInitializedAsync()
+    {
+        mayoristas = (await _serviceMayoristas.GetAllAsync(null))?.ToList();
+    }
+}
 
 

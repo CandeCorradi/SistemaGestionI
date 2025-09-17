@@ -20,5 +20,19 @@ namespace Desktop
             usuariosView.MdiParent = this;
             usuariosView.Show();
         }
+
+        private void subMenuClientes_Click(object sender, EventArgs e)
+        {
+            var clientesView = new ClientesView();
+            clientesView.MdiParent = this;
+            clientesView.Show();
+        }
+
+        private void subMenuMayoristas_Click(object sender, EventArgs e)
+        {
+            var mayoristasView = new MayoristasView();
+            mayoristasView.MdiParent = this;
+            mayoristasView.Show();
+        }
     }
 }

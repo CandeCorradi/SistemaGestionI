@@ -30,11 +30,20 @@
         {
             MenuPrincipal = new MenuStrip();
             SubMenuPrincipal = new FontAwesome.Sharp.IconMenuItem();
+            SubMenuUsuarios = new ToolStripMenuItem();
+            subMenuClientes = new ToolStripMenuItem();
+            detalleDePedidosToolStripMenuItem = new ToolStripMenuItem();
+            detalleDePresupuestosToolStripMenuItem = new ToolStripMenuItem();
+            subMenuMayoristas = new ToolStripMenuItem();
+            pagosToolStripMenuItem = new ToolStripMenuItem();
+            pedidosToolStripMenuItem = new ToolStripMenuItem();
+            presupuestosToolStripMenuItem = new ToolStripMenuItem();
+            productosToolStripMenuItem = new ToolStripMenuItem();
+            presupuestoDeProductosToolStripMenuItem = new ToolStripMenuItem();
             SubMenuSalir = new ToolStripMenuItem();
             SubMenuSalirDelSistema = new ToolStripMenuItem();
             toolStrip = new ToolStrip();
             iconToolStripButton1 = new FontAwesome.Sharp.IconToolStripButton();
-            SubMenuUsuarios = new ToolStripMenuItem();
             MenuPrincipal.SuspendLayout();
             toolStrip.SuspendLayout();
             SuspendLayout();
@@ -50,13 +59,76 @@
             // 
             // SubMenuPrincipal
             // 
-            SubMenuPrincipal.DropDownItems.AddRange(new ToolStripItem[] { SubMenuUsuarios });
+            SubMenuPrincipal.DropDownItems.AddRange(new ToolStripItem[] { SubMenuUsuarios, subMenuClientes, detalleDePedidosToolStripMenuItem, detalleDePresupuestosToolStripMenuItem, subMenuMayoristas, pagosToolStripMenuItem, pedidosToolStripMenuItem, presupuestosToolStripMenuItem, productosToolStripMenuItem, presupuestoDeProductosToolStripMenuItem });
             SubMenuPrincipal.IconChar = FontAwesome.Sharp.IconChar.House;
             SubMenuPrincipal.IconColor = Color.Black;
             SubMenuPrincipal.IconFont = FontAwesome.Sharp.IconFont.Auto;
             SubMenuPrincipal.Name = "SubMenuPrincipal";
             SubMenuPrincipal.Size = new Size(81, 20);
             SubMenuPrincipal.Text = "Principal";
+            // 
+            // SubMenuUsuarios
+            // 
+            SubMenuUsuarios.Name = "SubMenuUsuarios";
+            SubMenuUsuarios.Size = new Size(212, 22);
+            SubMenuUsuarios.Text = "Usuarios";
+            SubMenuUsuarios.Click += SubMenuUsuarios_Click;
+            // 
+            // subMenuClientes
+            // 
+            subMenuClientes.Name = "subMenuClientes";
+            subMenuClientes.Size = new Size(212, 22);
+            subMenuClientes.Text = "Clientes";
+            subMenuClientes.Click += subMenuClientes_Click;
+            // 
+            // detalleDePedidosToolStripMenuItem
+            // 
+            detalleDePedidosToolStripMenuItem.Name = "detalleDePedidosToolStripMenuItem";
+            detalleDePedidosToolStripMenuItem.Size = new Size(212, 22);
+            detalleDePedidosToolStripMenuItem.Text = "Detalle de pedidos";
+            // 
+            // detalleDePresupuestosToolStripMenuItem
+            // 
+            detalleDePresupuestosToolStripMenuItem.Name = "detalleDePresupuestosToolStripMenuItem";
+            detalleDePresupuestosToolStripMenuItem.Size = new Size(212, 22);
+            detalleDePresupuestosToolStripMenuItem.Text = "Detalle de presupuestos";
+            // 
+            // subMenuMayoristas
+            // 
+            subMenuMayoristas.Name = "subMenuMayoristas";
+            subMenuMayoristas.Size = new Size(212, 22);
+            subMenuMayoristas.Text = "Mayoristas";
+            subMenuMayoristas.Click += subMenuMayoristas_Click;
+            // 
+            // pagosToolStripMenuItem
+            // 
+            pagosToolStripMenuItem.Name = "pagosToolStripMenuItem";
+            pagosToolStripMenuItem.Size = new Size(212, 22);
+            pagosToolStripMenuItem.Text = "Pagos";
+            // 
+            // pedidosToolStripMenuItem
+            // 
+            pedidosToolStripMenuItem.Name = "pedidosToolStripMenuItem";
+            pedidosToolStripMenuItem.Size = new Size(212, 22);
+            pedidosToolStripMenuItem.Text = "Pedidos";
+            // 
+            // presupuestosToolStripMenuItem
+            // 
+            presupuestosToolStripMenuItem.Name = "presupuestosToolStripMenuItem";
+            presupuestosToolStripMenuItem.Size = new Size(212, 22);
+            presupuestosToolStripMenuItem.Text = "Presupuestos";
+            // 
+            // productosToolStripMenuItem
+            // 
+            productosToolStripMenuItem.Name = "productosToolStripMenuItem";
+            productosToolStripMenuItem.Size = new Size(212, 22);
+            productosToolStripMenuItem.Text = "Productos";
+            // 
+            // presupuestoDeProductosToolStripMenuItem
+            // 
+            presupuestoDeProductosToolStripMenuItem.Name = "presupuestoDeProductosToolStripMenuItem";
+            presupuestoDeProductosToolStripMenuItem.Size = new Size(212, 22);
+            presupuestoDeProductosToolStripMenuItem.Text = "Presupuesto de productos";
             // 
             // SubMenuSalir
             // 
@@ -69,7 +141,7 @@
             // SubMenuSalirDelSistema
             // 
             SubMenuSalirDelSistema.Name = "SubMenuSalirDelSistema";
-            SubMenuSalirDelSistema.Size = new Size(180, 22);
+            SubMenuSalirDelSistema.Size = new Size(158, 22);
             SubMenuSalirDelSistema.Text = "Salir del sistema";
             // 
             // toolStrip
@@ -91,13 +163,6 @@
             iconToolStripButton1.Name = "iconToolStripButton1";
             iconToolStripButton1.Size = new Size(23, 22);
             iconToolStripButton1.Text = "iconToolStripButton1";
-            // 
-            // SubMenuUsuarios
-            // 
-            SubMenuUsuarios.Name = "SubMenuUsuarios";
-            SubMenuUsuarios.Size = new Size(180, 22);
-            SubMenuUsuarios.Text = "Usuarios";
-            SubMenuUsuarios.Click += SubMenuUsuarios_Click;
             // 
             // MenuPrincipalView
             // 
@@ -128,5 +193,14 @@
         private ToolStrip toolStrip;
         private FontAwesome.Sharp.IconToolStripButton iconToolStripButton1;
         private ToolStripMenuItem SubMenuUsuarios;
+        private ToolStripMenuItem subMenuClientes;
+        private ToolStripMenuItem detalleDePedidosToolStripMenuItem;
+        private ToolStripMenuItem detalleDePresupuestosToolStripMenuItem;
+        private ToolStripMenuItem subMenuMayoristas;
+        private ToolStripMenuItem pagosToolStripMenuItem;
+        private ToolStripMenuItem pedidosToolStripMenuItem;
+        private ToolStripMenuItem presupuestosToolStripMenuItem;
+        private ToolStripMenuItem productosToolStripMenuItem;
+        private ToolStripMenuItem presupuestoDeProductosToolStripMenuItem;
     }
 }

@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elementos de la solución",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desktop", "Desktop\Desktop.csproj", "{A63385DD-324E-421D-A893-ACADC8CA17AA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBlazor", "WebBlazor\WebBlazor.csproj", "{F04147C9-8D64-4B93-AE8B-702B2492350B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{A63385DD-324E-421D-A893-ACADC8CA17AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A63385DD-324E-421D-A893-ACADC8CA17AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A63385DD-324E-421D-A893-ACADC8CA17AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F04147C9-8D64-4B93-AE8B-702B2492350B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F04147C9-8D64-4B93-AE8B-702B2492350B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F04147C9-8D64-4B93-AE8B-702B2492350B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F04147C9-8D64-4B93-AE8B-702B2492350B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

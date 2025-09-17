@@ -17,7 +17,7 @@ namespace Service.Services
             _httpClient = new HttpClient();
             _options = new JsonSerializerOptions() { PropertyNameCaseInsensitive = true };
             _endpoint = Properties.Resources.UrlApiAzure + ApiEndPoints.GetEndpoint(typeof(T).Name);
-            //_endpoint = Properties.Resources.UrlApiLocal + ApiEndpoints.GetEndpoint(typeof(T).Name);
+            //_endpoint = Properties.Resources.UrlApiLocal + ApiEndPoints.GetEndpoint(typeof(T).Name);
 
         }
         public async Task<T?> AddAsync(T? entity)
@@ -42,7 +42,7 @@ namespace Service.Services
 
         }
 
-        public async Task<List<T>?> GetAllAsync(string? filtro)
+        public async Task<List<T>?> GetAllAsync(string? filtro="")
         {
             var response = await _httpClient.GetAsync(_endpoint);
             var content = await response.Content.ReadAsStringAsync();

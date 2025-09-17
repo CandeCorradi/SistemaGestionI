@@ -23,7 +23,19 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer(); //puntos de respuestas que tiene la API
 builder.Services.AddSwaggerGen(); //para generar la documentacion de la API
 
+// Configurar una política de CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigins",
+        builder => builder
+            .WithOrigins("https://localhost:7222", "https://sistemadegestion.azurewebsites.net")
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+});
+
 var app = builder.Build();
+
+app.UseCors("AllowSpecificOrigins");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -23,7 +23,7 @@ namespace Service.Utils
         {
             return typeName switch
             {
-                nameof(Service.Models.Cliente) => Cliente,
+                nameof(Cliente) => Cliente,
                 nameof(Service.Models.DetallePedido) => DetallePedido,
                 nameof(Service.Models.Mayorista) => Mayorista,
                 nameof(Service.Models.DetallePresupuesto) => DetallePresupuesto,

@@ -54,6 +54,7 @@
             // 
             // Timer
             // 
+            Timer.Enabled = true;
             Timer.Tick += timer_Tick;
             // 
             // SplashView

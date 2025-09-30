@@ -1,0 +1,81 @@
+﻿@page "/mayoristas"
+@inject IGenericService<Mayorista> _serviceMayoristas
+@inject NavigationManager _navigationManager
+@inject SweetAlertService _swall
+<PageTitle>Mayoristas</PageTitle>
+
+<h1>Mayoristas</h1>
+
+@if 
+(
+    mayoristas == null)
+{
+    <p><em>Cargando la lista de mayoristas...</em></p>
+}
+else if (!mayoristas.Any())
+{
+    <p><em>No hay mayoristas registrados.</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Telefono</th>
+                <th>Email</th>
+                <th>Direccion</th>
+                <th colspan="2">Acciones</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var may in mayoristas)
+            {
+                <tr>
+                    <td>@may.Nombre</td>
+                    <td>@may.Telefono</td>
+                    <td>@may.Email</td>
+                    <td>@may.Direccion</td>
+                    <td><button class="btn btn-danger" @onclick="async () => DeleteMayorista (may)">Eliminar</button></td>
+                    <td><NavLink class="btn btn-info" href=@($"NuevoEditarMayorista?idMayorista={may.Id}")>Editar</NavLink></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code 
+{
+    private List<Mayorista>? mayoristas;
+
+    protected override async Task OnInitializedAsync()
+    {
+        mayoristas = (await _serviceMayoristas.GetAllAsync(null))?.ToList();
+    }
+    private async Task DeleteMayorista(Mayorista mayorista)
+    {
+        var response = await _swall.FireAsync(new SweetAlertOptions
+        {
+            Title = "¿Estás seguro?",
+            Text = $"¿Realmente deseas eliminar al mayorista {mayorista.Nombre}?",
+            Icon = SweetAlertIcon.Warning,
+            ShowCancelButton = true,
+            ConfirmButtonText = "Sí, eliminar",
+            CancelButtonText = "Cancelar"
+        });
+        if (response.IsConfirmed)
+        {
+            if (await _serviceMayoristas.DeleteAsync(mayorista.Id))
+            {
+                mayoristas?.Remove(mayorista);
+                StateHasChanged();
+            } else
+            {
+                await _swall.FireAsync("Error", "No se pudo eliminar el mayorista.", SweetAlertIcon.Error);
+            }           
+        }
+    }
+}
+
+

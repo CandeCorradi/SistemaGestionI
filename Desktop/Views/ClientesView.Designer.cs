@@ -28,32 +28,39 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             tabControlClientes = new TabControl();
             tabPageLista = new TabPage();
+            btnRestore = new Button();
+            checkVerEliminados = new CheckBox();
             btnSalir = new Button();
             btnEliminar = new Button();
             btnModificar = new Button();
             btnAgregar = new Button();
-            txtClientes = new TextBox();
+            txtBuscar = new TextBox();
             btnBuscar = new Button();
             label1 = new Label();
-            dataGridClientes = new DataGridView();
+            GridClientes = new DataGridView();
             tabPageAgregarEditar = new TabPage();
-            textBox4 = new TextBox();
+            TxtDir = new TextBox();
             label6 = new Label();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
+            TxtTel = new TextBox();
+            TxtApellido = new TextBox();
+            TxtNombre = new TextBox();
             btnCancelar = new Button();
             btnGuardar = new Button();
             label5 = new Label();
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
+            TimerStatusBar = new System.Windows.Forms.Timer(components);
+            statusBar = new StatusStrip();
+            LabelStatusMessage = new ToolStripStatusLabel();
             tabControlClientes.SuspendLayout();
             tabPageLista.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridClientes).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)GridClientes).BeginInit();
             tabPageAgregarEditar.SuspendLayout();
+            statusBar.SuspendLayout();
             SuspendLayout();
             // 
             // tabControlClientes
@@ -68,14 +75,16 @@
             // 
             // tabPageLista
             // 
+            tabPageLista.Controls.Add(btnRestore);
+            tabPageLista.Controls.Add(checkVerEliminados);
             tabPageLista.Controls.Add(btnSalir);
             tabPageLista.Controls.Add(btnEliminar);
             tabPageLista.Controls.Add(btnModificar);
             tabPageLista.Controls.Add(btnAgregar);
-            tabPageLista.Controls.Add(txtClientes);
+            tabPageLista.Controls.Add(txtBuscar);
             tabPageLista.Controls.Add(btnBuscar);
             tabPageLista.Controls.Add(label1);
-            tabPageLista.Controls.Add(dataGridClientes);
+            tabPageLista.Controls.Add(GridClientes);
             tabPageLista.Location = new Point(4, 24);
             tabPageLista.Name = "tabPageLista";
             tabPageLista.Padding = new Padding(3);
@@ -83,6 +92,27 @@
             tabPageLista.TabIndex = 0;
             tabPageLista.Text = "Lista";
             tabPageLista.UseVisualStyleBackColor = true;
+            // 
+            // btnRestore
+            // 
+            btnRestore.Location = new Point(296, 351);
+            btnRestore.Name = "btnRestore";
+            btnRestore.Size = new Size(75, 23);
+            btnRestore.TabIndex = 17;
+            btnRestore.Text = "Restaurar";
+            btnRestore.UseVisualStyleBackColor = true;
+            btnRestore.Click += btnRestore_Click;
+            // 
+            // checkVerEliminados
+            // 
+            checkVerEliminados.AutoSize = true;
+            checkVerEliminados.Location = new Point(367, 18);
+            checkVerEliminados.Name = "checkVerEliminados";
+            checkVerEliminados.Size = new Size(103, 19);
+            checkVerEliminados.TabIndex = 16;
+            checkVerEliminados.Text = "Ver aliminados";
+            checkVerEliminados.UseVisualStyleBackColor = true;
+            checkVerEliminados.CheckedChanged += checkVerEliminados_CheckedChanged;
             // 
             // btnSalir
             // 
@@ -92,40 +122,45 @@
             btnSalir.TabIndex = 15;
             btnSalir.Text = "Salir";
             btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Click += btnSalir_Click;
             // 
             // btnEliminar
             // 
-            btnEliminar.Location = new Point(260, 351);
+            btnEliminar.Location = new Point(199, 351);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(75, 23);
             btnEliminar.TabIndex = 14;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnModificar
             // 
-            btnModificar.Location = new Point(163, 351);
+            btnModificar.Location = new Point(104, 351);
             btnModificar.Name = "btnModificar";
             btnModificar.Size = new Size(75, 23);
             btnModificar.TabIndex = 13;
             btnModificar.Text = "Modificar";
             btnModificar.UseVisualStyleBackColor = true;
+            btnModificar.Click += btnModificar_Click;
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(63, 351);
+            btnAgregar.Location = new Point(10, 351);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(75, 23);
             btnAgregar.TabIndex = 12;
             btnAgregar.Text = "Agregar";
             btnAgregar.UseVisualStyleBackColor = true;
+            btnAgregar.Click += btnAgregar_Click;
             // 
-            // txtClientes
+            // txtBuscar
             // 
-            txtClientes.Location = new Point(91, 15);
-            txtClientes.Name = "txtClientes";
-            txtClientes.Size = new Size(377, 23);
-            txtClientes.TabIndex = 11;
+            txtBuscar.Location = new Point(91, 15);
+            txtBuscar.Name = "txtBuscar";
+            txtBuscar.Size = new Size(270, 23);
+            txtBuscar.TabIndex = 11;
+            txtBuscar.TextChanged += txtBuscar_TextChanged;
             // 
             // btnBuscar
             // 
@@ -135,6 +170,7 @@
             btnBuscar.TabIndex = 10;
             btnBuscar.Text = "Buscar";
             btnBuscar.UseVisualStyleBackColor = true;
+            btnBuscar.Click += btnBuscar_Click;
             // 
             // label1
             // 
@@ -146,22 +182,23 @@
             label1.TabIndex = 9;
             label1.Text = "Agenda de Clientes";
             // 
-            // dataGridClientes
+            // GridClientes
             // 
-            dataGridClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridClientes.Location = new Point(10, 44);
-            dataGridClientes.Name = "dataGridClientes";
-            dataGridClientes.Size = new Size(458, 301);
-            dataGridClientes.TabIndex = 8;
-            dataGridClientes.CellContentClick += dataGridClientes_CellContentClick;
+            GridClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            GridClientes.Location = new Point(10, 44);
+            GridClientes.Name = "GridClientes";
+            GridClientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            GridClientes.Size = new Size(458, 301);
+            GridClientes.TabIndex = 8;
+            GridClientes.CellContentClick += GridClientes_CellContentClick;
             // 
             // tabPageAgregarEditar
             // 
-            tabPageAgregarEditar.Controls.Add(textBox4);
+            tabPageAgregarEditar.Controls.Add(TxtDir);
             tabPageAgregarEditar.Controls.Add(label6);
-            tabPageAgregarEditar.Controls.Add(textBox3);
-            tabPageAgregarEditar.Controls.Add(textBox2);
-            tabPageAgregarEditar.Controls.Add(textBox1);
+            tabPageAgregarEditar.Controls.Add(TxtTel);
+            tabPageAgregarEditar.Controls.Add(TxtApellido);
+            tabPageAgregarEditar.Controls.Add(TxtNombre);
             tabPageAgregarEditar.Controls.Add(btnCancelar);
             tabPageAgregarEditar.Controls.Add(btnGuardar);
             tabPageAgregarEditar.Controls.Add(label5);
@@ -175,12 +212,12 @@
             tabPageAgregarEditar.Text = "Agregar/Editar";
             tabPageAgregarEditar.UseVisualStyleBackColor = true;
             // 
-            // textBox4
+            // TxtDir
             // 
-            textBox4.Location = new Point(198, 186);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(207, 23);
-            textBox4.TabIndex = 9;
+            TxtDir.Location = new Point(198, 186);
+            TxtDir.Name = "TxtDir";
+            TxtDir.Size = new Size(207, 23);
+            TxtDir.TabIndex = 9;
             // 
             // label6
             // 
@@ -191,26 +228,26 @@
             label6.TabIndex = 8;
             label6.Text = "Dirección:";
             // 
-            // textBox3
+            // TxtTel
             // 
-            textBox3.Location = new Point(198, 142);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(207, 23);
-            textBox3.TabIndex = 7;
+            TxtTel.Location = new Point(198, 142);
+            TxtTel.Name = "TxtTel";
+            TxtTel.Size = new Size(207, 23);
+            TxtTel.TabIndex = 7;
             // 
-            // textBox2
+            // TxtApellido
             // 
-            textBox2.Location = new Point(198, 98);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(207, 23);
-            textBox2.TabIndex = 6;
+            TxtApellido.Location = new Point(198, 98);
+            TxtApellido.Name = "TxtApellido";
+            TxtApellido.Size = new Size(207, 23);
+            TxtApellido.TabIndex = 6;
             // 
-            // textBox1
+            // TxtNombre
             // 
-            textBox1.Location = new Point(198, 52);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(207, 23);
-            textBox1.TabIndex = 5;
+            TxtNombre.Location = new Point(198, 52);
+            TxtNombre.Name = "TxtNombre";
+            TxtNombre.Size = new Size(207, 23);
+            TxtNombre.TabIndex = 5;
             // 
             // btnCancelar
             // 
@@ -220,6 +257,7 @@
             btnCancelar.TabIndex = 4;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // btnGuardar
             // 
@@ -229,6 +267,7 @@
             btnGuardar.TabIndex = 3;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = true;
+            btnGuardar.Click += btnGuardar_Click;
             // 
             // label5
             // 
@@ -267,11 +306,26 @@
             label2.TabIndex = 1;
             label2.Text = "Agenda de Clientes";
             // 
+            // statusBar
+            // 
+            statusBar.Items.AddRange(new ToolStripItem[] { LabelStatusMessage });
+            statusBar.Location = new Point(0, 468);
+            statusBar.Name = "statusBar";
+            statusBar.Size = new Size(524, 22);
+            statusBar.TabIndex = 2;
+            statusBar.Text = "statusStrip1";
+            // 
+            // LabelStatusMessage
+            // 
+            LabelStatusMessage.Name = "LabelStatusMessage";
+            LabelStatusMessage.Size = new Size(0, 17);
+            // 
             // ClientesView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(517, 468);
+            ClientSize = new Size(524, 490);
+            Controls.Add(statusBar);
             Controls.Add(label2);
             Controls.Add(tabControlClientes);
             Name = "ClientesView";
@@ -279,9 +333,11 @@
             tabControlClientes.ResumeLayout(false);
             tabPageLista.ResumeLayout(false);
             tabPageLista.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridClientes).EndInit();
+            ((System.ComponentModel.ISupportInitialize)GridClientes).EndInit();
             tabPageAgregarEditar.ResumeLayout(false);
             tabPageAgregarEditar.PerformLayout();
+            statusBar.ResumeLayout(false);
+            statusBar.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -294,21 +350,26 @@
         private Button btnEliminar;
         private Button btnModificar;
         private Button btnAgregar;
-        private TextBox txtClientes;
+        private TextBox txtBuscar;
         private Button btnBuscar;
         private Label label1;
-        private DataGridView dataGridClientes;
+        private DataGridView GridClientes;
         private TabPage tabPageAgregarEditar;
         private Label label2;
-        private TextBox textBox3;
-        private TextBox textBox2;
-        private TextBox textBox1;
+        private TextBox TxtTel;
+        private TextBox TxtApellido;
+        private TextBox TxtNombre;
         private Button btnCancelar;
         private Button btnGuardar;
         private Label label5;
         private Label label4;
         private Label label3;
-        private TextBox textBox4;
+        private TextBox TxtDir;
         private Label label6;
+        private Button btnRestore;
+        private CheckBox checkVerEliminados;
+        private System.Windows.Forms.Timer TimerStatusBar;
+        private StatusStrip statusBar;
+        private ToolStripStatusLabel LabelStatusMessage;
     }
 }

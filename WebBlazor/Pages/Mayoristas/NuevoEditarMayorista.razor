@@ -1,0 +1,90 @@
+﻿@page "/NuevoEditarCliente"
+@inject IGenericService<Mayorista> _mayoristaService
+@inject NavigationManager _navigationManager
+
+@if (mayorista == null)
+{
+    <p><em>Cargando...</em></p>
+}
+else
+{
+    <h3>@tituloPagina</h3>
+    <div style="background-color: @(isEditing ? "lightyellow" : "white")">
+        <EditForm Model="mayorista" OnValidSubmit="Guardar">
+            <DataAnnotationsValidator />
+            <div class="container">
+                <div class="col-md-5">
+
+                    <div class="form-group">
+                        <label class="form-label">Nombre:</label>
+                        <InputText class="form-control mb-2" type="Text" @bind-Value="mayorista.Nombre" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Telefono:</label>
+                        <InputNumber class="form-control mb-2" type="Text" @bind-Value="mayorista.Telefono" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email:</label>
+                        <InputNumber class="form-control mb-2" type="Text" @bind-Value="mayorista.Email" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Dirección:</label>
+                        <InputSelect class="form-control mb-2" @bind-Value="mayorista.Direccion">
+                            @foreach (var cliente in Enum.GetValues<TipoUsuarioEnum>())
+                            {
+                                <option value="@cliente">@cliente</option>
+                            }
+                        </InputSelect>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">TipoProducto:</label>
+                        <InputNumber class="form-control mb-2" type="Text" @bind-Value="mayorista.TipoProducto" />
+                    </div>
+                </div>
+                <ValidationSummary />
+                <button class="btn btn-primary" type="submit">@guardarButtonText</button>
+                <button class="btn btn-danger" @onclick="Cancelar">Cancelar</button>
+            </div>
+        </EditForm>
+    </div>
+}
+
+
+@code {
+    [SupplyParameterFromQuery]
+    [Parameter]
+    public int idMayorista { get; set; }
+    private Mayorista? mayorista;
+
+    private bool isEditing => idMayorista != 0;
+    private string guardarButtonText => isEditing ? "Actualizar" : "Agregar";
+    private string tituloPagina => isEditing ? "Editando Mayorista" : "Agregando nuevo mayorista";
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (idMayorista != 0)
+        {
+            mayorista = await _mayoristaService.GetByIdAsync(idMayorista);
+        }
+        else
+        {
+            mayorista = new Mayorista();
+        }
+    }
+
+    private async Task Guardar()
+    {
+        //logger.LogInformation(capacitacion.PropertiesToString());
+        if (idMayorista != 0)
+            await _mayoristaService.UpdateAsync(mayorista);
+        else
+            await _mayoristaService.AddAsync(mayorista);
+        _navigationManager.NavigateTo($"mayorista");
+    }
+
+    private async Task Cancelar()
+    {
+        _navigationManager.NavigateTo($"mayorista");
+    }
+}
+

@@ -23,9 +23,10 @@ namespace Backend.Controllers
 
         // GET: api/Clientes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Cliente>>> GetClientes()
+        public async Task<ActionResult<IEnumerable<Cliente>>> GetClientes([FromQuery] string? filter="")
         {
-            return await _context.Clientes.ToListAsync();
+            return await _context.Clientes.Where(c => c.Nombre.Contains(filter) || c.Apellido.Contains(filter) || c.Telefono.Contains(filter) 
+            || c.Direccion.Contains(filter)).ToListAsync(); // los dos palitos significan la letra o
         }
 
         // GET: api/Clientes/5

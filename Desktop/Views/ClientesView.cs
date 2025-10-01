@@ -48,7 +48,7 @@ namespace Desktop.Views
                 _clientes = await _clienteService.GetAllAsync();
             }
             GridClientes.DataSource = _clientes;
-            GridClientes.Columns["Id"].Visible = false; // Ocultar la columna Capacitaciones
+            GridClientes.Columns["Id"].Visible = false; // Ocultar la columna Clientes
             GridClientes.Columns["IsDeleted"].Visible = false; // Ocultar la columna Eliminado
 
         }

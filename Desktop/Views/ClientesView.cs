@@ -142,7 +142,7 @@ namespace Desktop.Views
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
-            //btnBuscar.PerformClick();
+            //btnBuscar.PerformClick(); //busca a medida que se escribe
         }
 
         private async void btnEliminar_Click(object sender, EventArgs e)

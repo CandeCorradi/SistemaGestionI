@@ -22,8 +22,8 @@
     </div>
 
     <div id="blazor-error-ui">
-        An unhandled error has occurred.
-        <a href="" class="reload">Reload</a>
+       Un error ha ocurrido al procesar la página.
+        <a href="" class="reload">Refrescar</a>
         <a class="dismiss">🗙</a>
     </div>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
@@ -47,7 +47,7 @@
                 try {
                     const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
                     console.log(userCredential);
-                    return userCredential.user.uid;
+                    return userCredential.user;
                 } catch (error) {
                     console.error("Error en autenticación:", error.message);
                     return null;

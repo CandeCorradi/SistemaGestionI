@@ -63,6 +63,11 @@ else
     string email = string.Empty;
     string password = string.Empty;
 
+    protected override async Task OnInitializedAsync()
+    {
+        isAuthenticated = await firebaseAuthService.IsUserAuthenticated();
+    }
+
     private async Task Loguear()
     {
         // Aquí iría la lógica de autenticación real

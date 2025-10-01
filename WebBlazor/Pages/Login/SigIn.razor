@@ -67,7 +67,7 @@
             await sweetAlert.FireAsync("Error", "Las contraseñas no coinciden.", SweetAlertIcon.Error);
             return;
         }
-        var result = await firebaseAuthService.createUserWithEmailAndPassword(email, password, name);
+        var result = await firebaseAuthService.CreateUserWithEmailAndPassword(email, password, name);
         if (result != null)
         {
             await sweetAlert.FireAsync("Éxito", "Usuario registrado correctamente.", SweetAlertIcon.Success);

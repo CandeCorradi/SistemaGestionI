@@ -1,9 +1,20 @@
+using MovilApp.ViewModels;
+using MovilApp.Views.Login;
+
 namespace MovilApp.Views;
 
-public partial class SistemaDeGestionShell : ContentPage
+public partial class SistemaDeGestionShell : Shell
 {
-	public SistemaDeGestionShell()
-	{
-		InitializeComponent();
-	}
+    public SistemaDeGestionShellViewModel ViewModel => (SistemaDeGestionShellViewModel)BindingContext;
+
+    public SistemaDeGestionShell()
+    {
+        InitializeComponent();
+    }
+
+    public void SetLoginState(bool isLoggedIn)
+    {
+        ViewModel.SetLoginState(isLoggedIn);
+    }
+
 }

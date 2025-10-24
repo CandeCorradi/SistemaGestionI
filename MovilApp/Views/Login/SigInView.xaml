@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    x:Class="MovilApp.Views.Login.SigInView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:login="clr-namespace:MovilApp.ViewModels.Login"
+    BackgroundColor="Pink">
+    <ContentPage.BindingContext>
+        <login:SigInViewModel />
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <VerticalStackLayout VerticalOptions="Start" Padding="10">
+            <!-- Botón volver -->
+            <Button Text="←"
+                 Command="{Binding VolverCommand}"
+                 BackgroundColor="Transparent"
+                 BorderColor="DeepPink"
+                 BorderWidth="2"
+                 CornerRadius="8"   
+                 TextColor="White"
+                 FontSize="24"
+                 HorizontalOptions="Start"
+                 VerticalOptions="Center"
+                 WidthRequest="50"
+                 HeightRequest="50"
+                 Margin="0,0,0,20"
+                 Padding="0,0,0,10"/>
+
+            <Grid RowDefinitions="2*,2*,2*,2*,2*,2*,*" ColumnDefinitions="*,*">
+                <Label Grid.Row="0" Grid.Column="0" 
+                    HorizontalTextAlignment="End"
+                    VerticalTextAlignment="Center"
+                       TextColor="DeepPink"
+                    Margin="0,0,10,0">Nombre:</Label>
+                <Entry Grid.Row="0" Grid.Column="1" 
+                    Text="{Binding Name}" BackgroundColor="Transparent" TextColor="Black"
+                       Margin="0,0,0,10"></Entry>
+
+                <Label Grid.Row="1" Grid.Column="0" 
+                    HorizontalTextAlignment="End"
+                    VerticalTextAlignment="Center"
+                       TextColor="DeepPink"
+                    Margin="0,0,10,0">Apellido:</Label>
+                <Entry Grid.Row="1" Grid.Column="1" BackgroundColor="Transparent" TextColor="Black"
+                    Text="{Binding Lastname}"
+                       Margin="0,0,0,10"></Entry>
+
+                <Label Grid.Row="2" Grid.Column="0" 
+                    HorizontalTextAlignment="End"
+                    VerticalTextAlignment="Center"
+                       TextColor="DeepPink"
+                    Margin="0,0,10,0">DNI:</Label>
+                <Entry Grid.Row="2" Grid.Column="1" 
+                    Text="{Binding Dni}" BackgroundColor="Transparent" TextColor="Black"
+                       Margin="0,0,0,10"></Entry>
+
+                <Label Grid.Row="3" Grid.Column="0" 
+                    HorizontalTextAlignment="End"
+                    VerticalTextAlignment="Center"
+                       TextColor="DeepPink"
+                    Margin="0,0,10,0">Email:</Label>
+                <Entry Grid.Row="3" Grid.Column="1" 
+                    Text="{Binding Email}" BackgroundColor="Transparent" TextColor="Black"
+                       Margin="0,0,0,10"></Entry>
+
+                <Label Grid.Row="4" Grid.Column="0" 
+                    HorizontalTextAlignment="End"
+                    VerticalTextAlignment="Center"
+                       TextColor="DeepPink"
+                    Margin="0,0,10,0">Contraseña:</Label>
+                <Entry Grid.Row="4" Grid.Column="1" 
+                    Text="{Binding Password}"
+                    IsPassword="True" BackgroundColor="Transparent" TextColor="Black"
+                       Margin="0,0,0,10"></Entry>
+
+                <Label Grid.Row="5" Grid.Column="0" 
+                    HorizontalTextAlignment="End"
+                    VerticalTextAlignment="Center" TextColor="Black"
+                    Margin="0,0,10,0">Verificar Contraseña:</Label>
+                <Entry Grid.Row="5" Grid.Column="1" 
+                    Text="{Binding VerifyPassword}"
+                    IsPassword="True" BackgroundColor="Transparent"
+                       Margin="0,0,0,10"></Entry>
+
+                <Button Text="Registrarse"
+                     Command="{Binding RegistrarseCommand}"
+                     Grid.Row="6" Grid.Column="0"
+                     Grid.ColumnSpan="2"
+                     Margin="20,15,20,0" 
+                        BackgroundColor="Transparent" 
+                        TextColor="DeepPink" 
+                        FontAttributes="Bold"
+                        BorderColor="DeepPink"
+                        BorderWidth="2"
+                        CornerRadius="8"
+                    ></Button>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,7 +1,7 @@
 ﻿@page "/mayoristas"
 @inject IGenericService<Mayorista> _serviceMayoristas
 @inject NavigationManager _navigationManager
-@inject SweetAlertService _swall
+@inject SweetAlertService _sweetAlertService
 <PageTitle>Mayoristas</PageTitle>
 
 <h1>Mayoristas</h1>
@@ -18,6 +18,9 @@ else if (!mayoristas.Any())
 }
 else
 {
+    <NavLink class="btn btn-primary mb-3" href=@($"NuevoEditarMayorista")>
+        Nuevo Mayorista
+    </NavLink>
     <table class="table">
         <thead>
             <tr>
@@ -55,7 +58,7 @@ else
     }
     private async Task DeleteMayorista(Mayorista mayorista)
     {
-        var response = await _swall.FireAsync(new SweetAlertOptions
+        var response = await _sweetAlertService.FireAsync(new SweetAlertOptions
         {
             Title = "¿Estás seguro?",
             Text = $"¿Realmente deseas eliminar al mayorista {mayorista.Nombre}?",
@@ -68,11 +71,10 @@ else
         {
             if (await _serviceMayoristas.DeleteAsync(mayorista.Id))
             {
-                mayoristas?.Remove(mayorista);
-                StateHasChanged();
+                await _sweetAlertService.FireAsync("Eliminado", "El cliente ha sido eliminado.", SweetAlertIcon.Success);
             } else
             {
-                await _swall.FireAsync("Error", "No se pudo eliminar el mayorista.", SweetAlertIcon.Error);
+                await _sweetAlertService.FireAsync("Error", "No se pudo eliminar el mayorista.", SweetAlertIcon.Error);
             }           
         }
     }

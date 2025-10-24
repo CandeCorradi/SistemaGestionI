@@ -1,4 +1,4 @@
-﻿@page "/NuevoEditarCliente"
+﻿@page "/NuevoEditarMayorista"
 @inject IGenericService<Mayorista> _mayoristaService
 @inject NavigationManager _navigationManager
 
@@ -56,13 +56,13 @@ else
     public int idMayorista { get; set; }
     private Mayorista? mayorista;
 
-    private bool isEditing => idMayorista != 0;
+    private bool isEditing => idMayorista != null;
     private string guardarButtonText => isEditing ? "Actualizar" : "Agregar";
     private string tituloPagina => isEditing ? "Editando Mayorista" : "Agregando nuevo mayorista";
 
     protected override async Task OnInitializedAsync()
     {
-        if (idMayorista != 0)
+        if (idMayorista != null)
         {
             mayorista = await _mayoristaService.GetByIdAsync(idMayorista);
         }
@@ -75,7 +75,7 @@ else
     private async Task Guardar()
     {
         //logger.LogInformation(capacitacion.PropertiesToString());
-        if (idMayorista != 0)
+        if (idMayorista != null)
             await _mayoristaService.UpdateAsync(mayorista);
         else
             await _mayoristaService.AddAsync(mayorista);

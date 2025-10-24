@@ -16,11 +16,11 @@ namespace Backend.DataContext
         public DbSet<Presupuesto> Presupuestos { get; set; }
         public DbSet<ProductoPresupuesto> ProductoPresupuestos { get; set; }
         public DbSet<DetallePresupuesto> DetallesPresupuestos { get; set; }
-        public SistemaGestionContext(){ }
+        public SistemaGestionContext() { }
 
         public SistemaGestionContext(DbContextOptions<SistemaGestionContext> options) : base(options)
         {
-            
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -124,6 +124,7 @@ namespace Backend.DataContext
                 {
                     Id = 1,
                     Nombre = "admin",
+                    Apellido = "istrador",
                     Email = "administrador123@gmail.com",
                     Password = "admin123",
                     TipoUsuario = Service.Enums.TipoUsuarioEnum.Administrador,
@@ -133,6 +134,7 @@ namespace Backend.DataContext
                 {
                     Id = 2,
                     Nombre = "sergio cliente",
+                    Apellido = "massa",
                     Email = "sergio2024@gmail.com",
                     Password = "cliente123",
                     TipoUsuario = Service.Enums.TipoUsuarioEnum.Cliente,
@@ -142,6 +144,7 @@ namespace Backend.DataContext
                 {
                     Id = 3,
                     Nombre = "franco cliente",
+                    Apellido = "gomez",
                     Email = "franquito59@gmail.com",
                     Password = "cliente124",
                     TipoUsuario = Service.Enums.TipoUsuarioEnum.Cliente,
@@ -233,7 +236,7 @@ namespace Backend.DataContext
                     IsDeleted = false
                 }
             );
-            
+
             //Cargamos los datos iniciales de los presupuestos
             modelBuilder.Entity<Presupuesto>().HasData(
                 new Presupuesto

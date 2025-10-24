@@ -1,12 +1,71 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MovilApp.Views.SistemaDeGestionShell"
-             Title="SistemaDeGestionShell">
-    <VerticalStackLayout>
-        <Label 
-            Text="Sistema de Gestión"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
-</ContentPage>
+<Shell
+    x:Class="MovilApp.Views.SistemaDeGestionShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MovilApp"
+    xmlns:login="clr-namespace:MovilApp.Views.Login"
+    xmlns:contentviews="clr-namespace:MovilApp.ContentViews"
+    xmlns:views="clr-namespace:MovilApp.Views"
+    xmlns:admin="clr-namespace:MovilApp.Views.Admin"
+    xmlns:viewmodels="clr-namespace:MovilApp.ViewModels"
+    FlyoutBehavior="Disabled"
+    Title="SistemaDeGestiónApp">
+
+    <Shell.BindingContext>
+        <viewmodels:SistemaDeGestionShellViewModel />
+    </Shell.BindingContext>
+
+    <Shell.FlyoutHeader>
+        <contentviews:FlyoutHeader />
+    </Shell.FlyoutHeader>
+
+    <Shell.FlyoutFooter>
+        <contentviews:FlyoutFooter />
+    </Shell.FlyoutFooter>
+
+    <ShellContent
+        Title="Iniciar sesión"
+        ContentTemplate="{DataTemplate login:LoginView}"
+        Route="Login"
+        FlyoutItemIsVisible="False"/>
+    <ShellContent
+        Title="Crear cuenta"
+        ContentTemplate="{DataTemplate login:SigInView}"
+        Route="Registrarse"
+        FlyoutItemIsVisible="False"/>
+
+    <FlyoutItem Route="my_app" 
+        FlyoutDisplayOptions="AsMultipleItems" >
+        <ShellContent
+            Title="Inicio"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="MainPage" />
+
+        <Tab Title="Lista Clientes"
+         Route="clientes"
+         Icon="paw.png">
+            <ShellContent
+                Title="Lista"
+                Icon="cat.png"
+                ContentTemplate="{DataTemplate admin:AdminClientesView}"
+                Route="AdminClientes" />
+            <ShellContent
+                Title="Agregar cliente"
+                Icon="dog.png"
+                ContentTemplate="{DataTemplate admin:AddEditClienteView}"
+                Route="AddEditCliente" />
+        </Tab>
+    </FlyoutItem>
+    <FlyoutItem Title="Buscar Cliente" Icon="search.png" >
+        <ShellContent
+            Title="Buscar Cliente"
+            ContentTemplate="{DataTemplate views:ClientesView}"
+            Route="BuscarCliente" />
+    </FlyoutItem>
+    <MenuItem Text="Cerrar sesión"
+      Command="{Binding LogoutCommand}"
+      IconImageSource="random.png"/>
+
+
+
+</Shell>

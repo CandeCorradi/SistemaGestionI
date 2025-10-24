@@ -17,7 +17,7 @@ namespace WebBlazor.Services
         public async Task<FirebaseUser?> SignInWithEmailPassword(string email, string password)
         {
             var user = await _jsRuntime.InvokeAsync<FirebaseUser?>("firebaseAuth.signInWithEmailPassword", email, password);
-            if (user != null)
+            if (user != null) //&& user.EmailVerified
             {
                 await _jsRuntime.InvokeVoidAsync("localStorageHelper.setItem", UserIdKey, user.Uid);
                 OnChangeLogin?.Invoke(); //llamada a evento para decir que ese evento acaba de ocurrir

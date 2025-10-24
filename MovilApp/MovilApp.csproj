@@ -57,12 +57,48 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+		<PackageReference Include="FirebaseAuthentication.net" Version="4.1.0" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\Service\Service.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Views\Admin\AddEditClienteView.xaml.cs">
+	    <DependentUpon>AddEditClienteView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Login\LoginView.xaml.cs">
+	    <DependentUpon>LoginView.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="ContentViews\FlyoutFooter.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="ContentViews\FlyoutHeader.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Admin\AddEditClienteView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Admin\AdminClientesView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Clientes\ClientesView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Login\LoginView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Login\SigInView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\SistemaDeGestionShell.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

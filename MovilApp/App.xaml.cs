@@ -1,4 +1,5 @@
 ﻿using MovilApp.Views;
+
 namespace MovilApp
 {
     public partial class App : Application

@@ -24,10 +24,17 @@ namespace Desktop.Views
         }
         private async Task GetAllData()
         {
-            _mayoristas = await _mayoristaService.GetAllAsync(null);
-            dataGridMayoristas.DataSource = _mayoristas;
-            dataGridMayoristas.Columns["Id"].Visible = false; // Ocultar la columna MayoristasId
-            dataGridMayoristas.Columns["IsDeleted"].Visible = false; // Ocultar la columna Eliminado
+            try
+            {
+                _mayoristas = await _mayoristaService.GetAllAsync(null);
+                dataGridMayoristas.DataSource = _mayoristas;
+                dataGridMayoristas.Columns["Id"].Visible = false; // Ocultar la columna MayoristasId
+                dataGridMayoristas.Columns["IsDeleted"].Visible = false; // Ocultar la columna Eliminado
+            }
+            catch (Exception ex)
+            {                 
+                MessageBox.Show($"Error al obtener los datos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void dataGridClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)

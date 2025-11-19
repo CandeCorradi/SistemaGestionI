@@ -88,7 +88,7 @@ namespace Service.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a https://localhost:7000/api/.
+        ///   Busca una cadena traducida similar a https://localhost:7015/api/.
         /// </summary>
         public static string UrlApiLocal {
             get {

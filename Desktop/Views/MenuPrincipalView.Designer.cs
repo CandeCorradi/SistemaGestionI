@@ -53,7 +53,7 @@
             MenuPrincipal.Items.AddRange(new ToolStripItem[] { SubMenuPrincipal, SubMenuSalir });
             MenuPrincipal.Location = new Point(0, 0);
             MenuPrincipal.Name = "MenuPrincipal";
-            MenuPrincipal.Size = new Size(635, 24);
+            MenuPrincipal.Size = new Size(637, 24);
             MenuPrincipal.TabIndex = 1;
             MenuPrincipal.Text = "menuStrip1";
             // 
@@ -149,7 +149,7 @@
             toolStrip.Items.AddRange(new ToolStripItem[] { iconToolStripButton1 });
             toolStrip.Location = new Point(0, 24);
             toolStrip.Name = "toolStrip";
-            toolStrip.Size = new Size(635, 25);
+            toolStrip.Size = new Size(637, 25);
             toolStrip.TabIndex = 3;
             toolStrip.Text = "toolStrip1";
             // 
@@ -168,7 +168,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(635, 392);
+            ClientSize = new Size(637, 388);
             Controls.Add(toolStrip);
             Controls.Add(MenuPrincipal);
             IsMdiContainer = true;

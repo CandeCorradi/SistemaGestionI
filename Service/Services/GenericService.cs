@@ -7,7 +7,7 @@ namespace Service.Services
 {
     public class GenericService<T> : IGenericService<T> where T : class
     {
-        private readonly HttpClient _httpClient;
+        protected readonly HttpClient _httpClient;
         protected readonly JsonSerializerOptions _options;
         protected readonly string _endpoint;
 
@@ -16,8 +16,8 @@ namespace Service.Services
         {
             _httpClient = new HttpClient();
             _options = new JsonSerializerOptions() { PropertyNameCaseInsensitive = true };
-            _endpoint = Properties.Resources.UrlApiAzure + ApiEndPoints.GetEndpoint(typeof(T).Name);
-            //_endpoint = Properties.Resources.UrlApiLocal + ApiEndPoints.GetEndpoint(typeof(T).Name);
+            _endpoint = Properties.Resources.UrlApi + ApiEndpoints.GetEndpoint(typeof(T).Name);
+            //_endpoint = Properties.Resources.UrlApiLocal + ApiEndpoints.GetEndpoint(typeof(T).Name);
 
         }
         public async Task<T?> AddAsync(T? entity)
@@ -44,55 +44,17 @@ namespace Service.Services
 
         public async Task<List<T>?> GetAllAsync(string? filtro = "")
         {
-            var url = string.IsNullOrEmpty(filtro)
-                ? _endpoint
-                : $"{_endpoint}?filter={Uri.EscapeDataString(filtro)}";
-
-            var response = await _httpClient.GetAsync(url);
+            var response = await _httpClient.GetAsync($"{_endpoint}?filter={filtro}");
             var content = await response.Content.ReadAsStringAsync();
-
-            if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
-                return new List<T>();
-
             if (!response.IsSuccessStatusCode)
-                throw new Exception($"Error al obtener los datos: {response.StatusCode} - {content}");
-
-            if (string.IsNullOrWhiteSpace(content))
-                return new List<T>();
-
-            try
             {
-                // Intentar deserializar como lista directa
-                var lista = JsonSerializer.Deserialize<List<T>>(content, _options);
-                if (lista != null) return lista;
-
-                // Intentar algunos wrappers comunes: { data: [...] }, { items: [...] }, { result: [...] }
-                using var doc = JsonDocument.Parse(content);
-                if (doc.RootElement.ValueKind == JsonValueKind.Object)
-                {
-                    foreach (var prop in new[] { "data", "items", "result", "value" })
-                    {
-                        if (doc.RootElement.TryGetProperty(prop, out var arr) && arr.ValueKind == JsonValueKind.Array)
-                        {
-                            return JsonSerializer.Deserialize<List<T>>(arr.GetRawText(), _options);
-                        }
-                    }
-                }
-                if (doc.RootElement.ValueKind == JsonValueKind.Array)
-                {
-                    return JsonSerializer.Deserialize<List<T>>(content, _options);
-                }
-
-                // Fallback: usar GetFromJsonAsync (puede repetir la petición)
-                return await _httpClient.GetFromJsonAsync<List<T>>(url, _options);
+                throw new Exception($"Error al obtener los datos: {response.StatusCode}");
             }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error al deserializar la respuesta: {ex.Message}. Contenido: {content}");
-            }
+            return JsonSerializer.Deserialize<List<T>>(content, _options);
+
         }
 
-        public async Task<List<T>?> GetAllDeletedsAsync(string? filtro)
+        public async Task<List<T>?> GetAllDeletedsAsync(string? filtro = "")
         {
             var response = await _httpClient.GetAsync($"{_endpoint}/deleteds");
             var content = await response.Content.ReadAsStringAsync();
@@ -140,4 +102,3 @@ namespace Service.Services
         }
     }
 }
-

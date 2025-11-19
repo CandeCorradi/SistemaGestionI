@@ -61,7 +61,6 @@ namespace MovilApp.ViewModels.Clientes
         }
 
 
-
         private void OnLimpiar()
         {
             TextoBusqueda = string.Empty;

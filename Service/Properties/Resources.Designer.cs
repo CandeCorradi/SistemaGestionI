@@ -79,7 +79,7 @@ namespace Service.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a https://sistemadegestion.azurewebsites.net/api/.
+        ///   Busca una cadena traducida similar a https://sistemadegestioni.azurewebsites.net.
         /// </summary>
         public static string UrlApiAzure {
             get {

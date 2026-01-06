@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage 
-    x:Class="MovilApp.Views.Login.SigInView"
+    x:Class="MovilApp.Views.Login.SignInView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:login="clr-namespace:MovilApp.ViewModels.Login"
-    BackgroundColor="Pink">
+    BackgroundColor="Blue">
     <ContentPage.BindingContext>
-        <login:SigInViewModel />
+        <login:SignInViewModel />
     </ContentPage.BindingContext>
     <ScrollView>
         <VerticalStackLayout VerticalOptions="Start" Padding="10">
@@ -14,7 +14,7 @@
             <Button Text="←"
                  Command="{Binding VolverCommand}"
                  BackgroundColor="Transparent"
-                 BorderColor="DeepPink"
+                 BorderColor="Blue"
                  BorderWidth="2"
                  CornerRadius="8"   
                  TextColor="White"
@@ -30,52 +30,52 @@
                 <Label Grid.Row="0" Grid.Column="0" 
                     HorizontalTextAlignment="End"
                     VerticalTextAlignment="Center"
-                       TextColor="DeepPink"
+                       TextColor="White"
                     Margin="0,0,10,0">Nombre:</Label>
                 <Entry Grid.Row="0" Grid.Column="1" 
-                    Text="{Binding Name}" BackgroundColor="Transparent" TextColor="Black"
+                    Text="{Binding Name}" BackgroundColor="Transparent" TextColor="White"
                        Margin="0,0,0,10"></Entry>
 
                 <Label Grid.Row="1" Grid.Column="0" 
                     HorizontalTextAlignment="End"
                     VerticalTextAlignment="Center"
-                       TextColor="DeepPink"
+                       TextColor="White"
                     Margin="0,0,10,0">Apellido:</Label>
-                <Entry Grid.Row="1" Grid.Column="1" BackgroundColor="Transparent" TextColor="Black"
+                <Entry Grid.Row="1" Grid.Column="1" BackgroundColor="Transparent" TextColor="White"
                     Text="{Binding Lastname}"
                        Margin="0,0,0,10"></Entry>
 
                 <Label Grid.Row="2" Grid.Column="0" 
                     HorizontalTextAlignment="End"
                     VerticalTextAlignment="Center"
-                       TextColor="DeepPink"
+                       TextColor="White"
                     Margin="0,0,10,0">DNI:</Label>
                 <Entry Grid.Row="2" Grid.Column="1" 
-                    Text="{Binding Dni}" BackgroundColor="Transparent" TextColor="Black"
+                    Text="{Binding Dni}" BackgroundColor="Transparent" TextColor="White"
                        Margin="0,0,0,10"></Entry>
 
                 <Label Grid.Row="3" Grid.Column="0" 
                     HorizontalTextAlignment="End"
                     VerticalTextAlignment="Center"
-                       TextColor="DeepPink"
+                       TextColor="White"
                     Margin="0,0,10,0">Email:</Label>
                 <Entry Grid.Row="3" Grid.Column="1" 
-                    Text="{Binding Email}" BackgroundColor="Transparent" TextColor="Black"
+                    Text="{Binding Email}" BackgroundColor="Transparent" TextColor="White"
                        Margin="0,0,0,10"></Entry>
 
                 <Label Grid.Row="4" Grid.Column="0" 
                     HorizontalTextAlignment="End"
                     VerticalTextAlignment="Center"
-                       TextColor="DeepPink"
+                       TextColor="White"
                     Margin="0,0,10,0">Contraseña:</Label>
                 <Entry Grid.Row="4" Grid.Column="1" 
                     Text="{Binding Password}"
-                    IsPassword="True" BackgroundColor="Transparent" TextColor="Black"
+                    IsPassword="True" BackgroundColor="Transparent" TextColor="White"
                        Margin="0,0,0,10"></Entry>
 
                 <Label Grid.Row="5" Grid.Column="0" 
                     HorizontalTextAlignment="End"
-                    VerticalTextAlignment="Center" TextColor="Black"
+                    VerticalTextAlignment="Center" TextColor="White"
                     Margin="0,0,10,0">Verificar Contraseña:</Label>
                 <Entry Grid.Row="5" Grid.Column="1" 
                     Text="{Binding VerifyPassword}"
@@ -88,9 +88,9 @@
                      Grid.ColumnSpan="2"
                      Margin="20,15,20,0" 
                         BackgroundColor="Transparent" 
-                        TextColor="DeepPink" 
+                        TextColor="Blue" 
                         FontAttributes="Bold"
-                        BorderColor="DeepPink"
+                        BorderColor="Blue"
                         BorderWidth="2"
                         CornerRadius="8"
                     ></Button>

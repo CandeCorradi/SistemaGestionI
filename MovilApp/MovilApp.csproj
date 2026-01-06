@@ -75,6 +75,9 @@
 	  <Compile Update="Views\Login\LoginView.xaml.cs">
 	    <DependentUpon>LoginView.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\Login\SignInView.xaml.cs">
+	    <DependentUpon>SignInView.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -96,7 +99,7 @@
 	  <MauiXaml Update="Views\Login\LoginView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Login\SigInView.xaml">
+	  <MauiXaml Update="Views\Login\SignInView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\SistemaDeGestionShell.xaml">

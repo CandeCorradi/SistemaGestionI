@@ -1,15 +1,15 @@
 using MovilApp.ViewModels.Login;
 namespace MovilApp.Views.Login;
 
-public partial class SigInView : ContentPage
+public partial class SignInView : ContentPage
 {
-	public SigInView()
+	public SignInView()
 	{
-		InitializeComponent();
+        InitializeComponent();
 	}
     protected override bool OnBackButtonPressed()
     {
-        if (BindingContext is SigInViewModel vm && vm.VolverCommand.CanExecute(null))
+        if (BindingContext is SignInViewModel vm && vm.VolverCommand.CanExecute(null))
         {
             vm.VolverCommand.Execute(null);
             return true; // Indica que ya manejaste el evento

@@ -16,8 +16,8 @@ namespace MovilApp.ViewModels.Login
         private UserInfo _userInfo;
         private FirebaseCredential _firebaseCredential;
 
-        [ObservableProperty]
-        [NotifyCanExecuteChangedFor(nameof(IniciarSesionCommand))] //avisarle al inicial que recalcule si puede ser ejecutado o no
+        [ObservableProperty] //observable property crea propiedades que notifican cambios en la interfaz de usuario
+        [NotifyCanExecuteChangedFor(nameof(IniciarSesionCommand))] 
         private string email;
 
         [ObservableProperty]
@@ -62,8 +62,8 @@ namespace MovilApp.ViewModels.Login
 
         private async void ChequearSiHayUsuarioAlmacenado()
         {
-            //_userRepository.DeleteUser(); // Descomentar para probar el login siempre
-            //if la aplicación se ejecuta en android o iOS chequea si hay un usuario almacenado
+            //_userRepository.DeleteUser(); // Descomentarear para probar el login siempre
+            //si la aplicación se ejecuta en android o iOS, chequea si hay un usuario almacenado
             if (DeviceInfo.Platform == DevicePlatform.Android || DeviceInfo.Platform == DevicePlatform.iOS)
                 try
                 {

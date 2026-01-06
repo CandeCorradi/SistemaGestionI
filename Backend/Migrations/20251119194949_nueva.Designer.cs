@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(SistemaGestionContext))]
-    [Migration("20250826234240_actualizacion")]
-    partial class actualizacion
+    [Migration("20251119194949_nueva")]
+    partial class nueva
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,10 +41,6 @@ namespace Backend.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("tinyint(1)");
 
@@ -66,7 +62,6 @@ namespace Backend.Migrations
                             Id = 1,
                             Apellido = "Perez",
                             Direccion = "Praderas 4590",
-                            Email = "juanpe@gmail.com",
                             IsDeleted = false,
                             Nombre = "Juan",
                             Telefono = "3498657842"
@@ -76,7 +71,6 @@ namespace Backend.Migrations
                             Id = 2,
                             Apellido = "Borges",
                             Direccion = "Rivadavia 3486",
-                            Email = "marito@gmail.com",
                             IsDeleted = false,
                             Nombre = "Mario",
                             Telefono = "3498412987"
@@ -86,7 +80,6 @@ namespace Backend.Migrations
                             Id = 3,
                             Apellido = "Morales",
                             Direccion = "Santa Fe 3961",
-                            Email = "animo@gmail.com",
                             IsDeleted = false,
                             Nombre = "Analia",
                             Telefono = "3498475986"
@@ -104,6 +97,9 @@ namespace Backend.Migrations
                     b.Property<int>("Cantidad")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<int>("PedidoId")
                         .HasColumnType("int");
 
@@ -119,6 +115,7 @@ namespace Backend.Migrations
                         {
                             Id = 9,
                             Cantidad = 2500,
+                            IsDeleted = false,
                             PedidoId = 10,
                             ProductoId = 2500
                         },
@@ -126,6 +123,7 @@ namespace Backend.Migrations
                         {
                             Id = 8,
                             Cantidad = 2548,
+                            IsDeleted = false,
                             PedidoId = 11,
                             ProductoId = 365
                         },
@@ -133,8 +131,60 @@ namespace Backend.Migrations
                         {
                             Id = 7,
                             Cantidad = 4532,
+                            IsDeleted = false,
                             PedidoId = 12,
                             ProductoId = 123
+                        });
+                });
+
+            modelBuilder.Entity("Service.Models.DetallePresupuesto", b =>
+                {
+                    b.Property<int>("IdDetalle")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("IdDetalle"));
+
+                    b.Property<int>("Cantidad")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int>("PresupuestoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductoId")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdDetalle");
+
+                    b.ToTable("DetallesPresupuestos");
+
+                    b.HasData(
+                        new
+                        {
+                            IdDetalle = 1,
+                            Cantidad = 10,
+                            IsDeleted = false,
+                            PresupuestoId = 1,
+                            ProductoId = 1
+                        },
+                        new
+                        {
+                            IdDetalle = 2,
+                            Cantidad = 5,
+                            IsDeleted = false,
+                            PresupuestoId = 2,
+                            ProductoId = 2
+                        },
+                        new
+                        {
+                            IdDetalle = 3,
+                            Cantidad = 8,
+                            IsDeleted = false,
+                            PresupuestoId = 3,
+                            ProductoId = 3
                         });
                 });
 
@@ -217,6 +267,9 @@ namespace Backend.Migrations
                     b.Property<DateTime>("FechaPago")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<decimal>("Monto")
                         .HasColumnType("decimal(65,30)");
 
@@ -235,7 +288,8 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 1,
-                            FechaPago = new DateTime(2025, 8, 26, 20, 42, 31, 641, DateTimeKind.Local).AddTicks(8322),
+                            FechaPago = new DateTime(2025, 11, 19, 16, 49, 44, 686, DateTimeKind.Local).AddTicks(5065),
+                            IsDeleted = false,
                             Monto = 15000m,
                             PedidoId = 10,
                             TipoPago = "Tarjeta de Credito"
@@ -243,7 +297,8 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 2,
-                            FechaPago = new DateTime(2025, 8, 26, 20, 42, 31, 641, DateTimeKind.Local).AddTicks(8346),
+                            FechaPago = new DateTime(2025, 11, 19, 16, 49, 44, 686, DateTimeKind.Local).AddTicks(5092),
+                            IsDeleted = false,
                             Monto = 250000m,
                             PedidoId = 11,
                             TipoPago = "Efectivo"
@@ -251,7 +306,8 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 3,
-                            FechaPago = new DateTime(2025, 8, 26, 20, 42, 31, 641, DateTimeKind.Local).AddTicks(8349),
+                            FechaPago = new DateTime(2025, 11, 19, 16, 49, 44, 686, DateTimeKind.Local).AddTicks(5095),
+                            IsDeleted = false,
                             Monto = 305000m,
                             PedidoId = 12,
                             TipoPago = "Tarjeta de Débito"
@@ -276,6 +332,9 @@ namespace Backend.Migrations
                     b.Property<DateTime>("Fecha")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Pedidos");
@@ -286,21 +345,24 @@ namespace Backend.Migrations
                             Id = 10,
                             ClienteId = 1,
                             Estado = "En Proceso",
-                            Fecha = new DateTime(2025, 8, 26, 20, 42, 31, 641, DateTimeKind.Local).AddTicks(8431)
+                            Fecha = new DateTime(2025, 11, 19, 16, 49, 44, 686, DateTimeKind.Local).AddTicks(5164),
+                            IsDeleted = false
                         },
                         new
                         {
                             Id = 11,
                             ClienteId = 2,
                             Estado = "Completado",
-                            Fecha = new DateTime(2025, 8, 26, 20, 42, 31, 641, DateTimeKind.Local).AddTicks(8437)
+                            Fecha = new DateTime(2025, 11, 19, 16, 49, 44, 686, DateTimeKind.Local).AddTicks(5169),
+                            IsDeleted = false
                         },
                         new
                         {
                             Id = 12,
                             ClienteId = 3,
                             Estado = "Pendiente",
-                            Fecha = new DateTime(2025, 8, 26, 20, 42, 31, 641, DateTimeKind.Local).AddTicks(8440)
+                            Fecha = new DateTime(2025, 11, 19, 16, 49, 44, 686, DateTimeKind.Local).AddTicks(5173),
+                            IsDeleted = false
                         });
                 });
 
@@ -321,6 +383,9 @@ namespace Backend.Migrations
                     b.Property<DateTime>("FechaVencimiento")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<decimal>("MontoEstimado")
                         .HasColumnType("decimal(65,30)");
 
@@ -333,8 +398,9 @@ namespace Backend.Migrations
                         {
                             Id = 1,
                             ClientId = 1,
-                            FechaEmision = new DateTime(2025, 8, 26, 20, 42, 31, 641, DateTimeKind.Local).AddTicks(8609),
-                            FechaVencimiento = new DateTime(2025, 9, 25, 20, 42, 31, 641, DateTimeKind.Local).AddTicks(8610),
+                            FechaEmision = new DateTime(2025, 11, 19, 16, 49, 44, 686, DateTimeKind.Local).AddTicks(5242),
+                            FechaVencimiento = new DateTime(2025, 12, 19, 16, 49, 44, 686, DateTimeKind.Local).AddTicks(5244),
+                            IsDeleted = false,
                             MontoEstimado = 50000m
                         },
                         new
@@ -343,14 +409,16 @@ namespace Backend.Migrations
                             ClientId = 2,
                             FechaEmision = new DateTime(2025, 8, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FechaVencimiento = new DateTime(2025, 9, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             MontoEstimado = 30500m
                         },
                         new
                         {
                             Id = 3,
                             ClientId = 3,
-                            FechaEmision = new DateTime(2025, 8, 26, 20, 42, 31, 641, DateTimeKind.Local).AddTicks(8630),
-                            FechaVencimiento = new DateTime(2025, 9, 25, 20, 42, 31, 641, DateTimeKind.Local).AddTicks(8632),
+                            FechaEmision = new DateTime(2025, 11, 19, 16, 49, 44, 686, DateTimeKind.Local).AddTicks(5263),
+                            FechaVencimiento = new DateTime(2025, 12, 19, 16, 49, 44, 686, DateTimeKind.Local).AddTicks(5265),
+                            IsDeleted = false,
                             MontoEstimado = 20000m
                         });
                 });
@@ -381,6 +449,9 @@ namespace Backend.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<decimal>("Precio")
+                        .HasColumnType("decimal(65,30)");
+
                     b.Property<int>("Stock")
                         .HasColumnType("int");
 
@@ -397,6 +468,7 @@ namespace Backend.Migrations
                             IsDeleted = false,
                             Medida = 252,
                             Nombre = "Melamina Blanca",
+                            Precio = 0m,
                             Stock = 50
                         },
                         new
@@ -407,6 +479,7 @@ namespace Backend.Migrations
                             IsDeleted = false,
                             Medida = 252,
                             Nombre = "Melamina Caoba",
+                            Precio = 0m,
                             Stock = 15
                         },
                         new
@@ -417,11 +490,12 @@ namespace Backend.Migrations
                             IsDeleted = false,
                             Medida = 252,
                             Nombre = "Melamina Negra",
+                            Precio = 0m,
                             Stock = 43
                         });
                 });
 
-            modelBuilder.Entity("Service.Models.Turno", b =>
+            modelBuilder.Entity("Service.Models.ProductoPresupuesto", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -429,41 +503,67 @@ namespace Backend.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ClienteId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Estado")
+                    b.Property<string>("Categoria")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<DateTime>("FechaHora")
-                        .HasColumnType("datetime(6)");
+                    b.Property<string>("Descripcion")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int>("Medida")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<decimal>("Precio")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<int>("Stock")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Turnos");
+                    b.ToTable("ProductoPresupuestos");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            ClienteId = 1,
-                            Estado = "Reunión para discutir el nuevo proyecto",
-                            FechaHora = new DateTime(2025, 8, 27, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                            Categoria = "Melamina",
+                            Descripcion = "Melamina de alta calidad color blanco",
+                            IsDeleted = false,
+                            Medida = 252,
+                            Nombre = "Melamina Blanca",
+                            Precio = 2500m,
+                            Stock = 50
                         },
                         new
                         {
                             Id = 2,
-                            ClienteId = 2,
-                            Estado = "Consulta sobre productos y servicios",
-                            FechaHora = new DateTime(2025, 8, 28, 14, 0, 0, 0, DateTimeKind.Unspecified)
+                            Categoria = "Melamina",
+                            Descripcion = "Melamina de alta calidad, textura granulada",
+                            IsDeleted = false,
+                            Medida = 252,
+                            Nombre = "Melamina Caoba",
+                            Precio = 3650m,
+                            Stock = 15
                         },
                         new
                         {
                             Id = 3,
-                            ClienteId = 3,
-                            Estado = "Seguimiento de pedido y entrega",
-                            FechaHora = new DateTime(2025, 8, 29, 16, 0, 0, 0, DateTimeKind.Unspecified)
+                            Categoria = "Melamina",
+                            Descripcion = "Melamina de alta calidad, textura mate",
+                            IsDeleted = false,
+                            Medida = 252,
+                            Nombre = "Melamina Negra",
+                            Precio = 4230m,
+                            Stock = 43
                         });
                 });
 
@@ -475,8 +575,20 @@ namespace Backend.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Apellido")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<int>("ClienteId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Dni")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("tinyint(1)");
@@ -500,7 +612,10 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 1,
+                            Apellido = "istrador",
                             ClienteId = 0,
+                            Dni = "",
+                            Email = "administrador123@gmail.com",
                             IsDeleted = false,
                             Nombre = "admin",
                             Password = "admin123",
@@ -509,7 +624,10 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 2,
+                            Apellido = "massa",
                             ClienteId = 0,
+                            Dni = "",
+                            Email = "sergio2024@gmail.com",
                             IsDeleted = false,
                             Nombre = "sergio cliente",
                             Password = "cliente123",
@@ -518,7 +636,10 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 3,
+                            Apellido = "gomez",
                             ClienteId = 0,
+                            Dni = "",
+                            Email = "franquito59@gmail.com",
                             IsDeleted = false,
                             Nombre = "franco cliente",
                             Password = "cliente124",

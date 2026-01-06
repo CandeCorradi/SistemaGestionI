@@ -10,7 +10,7 @@ using System.Net.Http.Headers;
 
 namespace MovilApp.ViewModels.Login
 {
-    public partial class SigInViewModel : ObservableObject
+    public partial class SignInViewModel : ObservableObject
     {
         private readonly FirebaseAuthClient _clientAuth;
         GenericService<Usuario> _usuarioService = new();
@@ -44,7 +44,7 @@ namespace MovilApp.ViewModels.Login
         [NotifyCanExecuteChangedFor(nameof(RegistrarseCommand))]
         private string verifyPassword;
 
-        public SigInViewModel()
+        public SignInViewModel()
         {
             FirebaseApiKey = Service.Properties.Resources.ApiKeyFirebase;
             RequestUri = "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=" + FirebaseApiKey;
@@ -78,7 +78,8 @@ namespace MovilApp.ViewModels.Login
 
         private async Task Registrarse()
         {
-            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(verifyPassword))
+            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) || 
+                string.IsNullOrEmpty(password) || string.IsNullOrEmpty(verifyPassword))
             {
                 await Application.Current.MainPage.DisplayAlert("Registrarse",
                     "Por favor, complete todos los campos.", "Ok");

@@ -9,6 +9,11 @@
     </ContentPage.BindingContext>
     <ScrollView>
         <VerticalStackLayout  VerticalOptions="Start" Padding="30">
+            <Label Text="Iniciar sesión en el Sistema de Gestión"
+                   FontAttributes="Bold"
+                   FontSize="36"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,20"/>
             <Grid ColumnSpacing="10" RowSpacing="10" RowDefinitions="2*,2*,2*,*,*" ColumnDefinitions="auto,*">
                 <Label Grid.Row="0" Grid.Column="0" 
                        HorizontalOptions="End"

@@ -30,7 +30,7 @@
         FlyoutItemIsVisible="False"/>
     <ShellContent
         Title="Crear cuenta"
-        ContentTemplate="{DataTemplate login:SigInView}"
+        ContentTemplate="{DataTemplate login:SignInView}"
         Route="Registrarse"
         FlyoutItemIsVisible="False"/>
 

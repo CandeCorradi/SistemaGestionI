@@ -285,7 +285,7 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 1,
-                            FechaPago = new DateTime(2025, 11, 19, 16, 4, 48, 505, DateTimeKind.Local).AddTicks(7129),
+                            FechaPago = new DateTime(2025, 11, 19, 16, 49, 44, 686, DateTimeKind.Local).AddTicks(5065),
                             IsDeleted = false,
                             Monto = 15000m,
                             PedidoId = 10,
@@ -294,7 +294,7 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 2,
-                            FechaPago = new DateTime(2025, 11, 19, 16, 4, 48, 505, DateTimeKind.Local).AddTicks(7163),
+                            FechaPago = new DateTime(2025, 11, 19, 16, 49, 44, 686, DateTimeKind.Local).AddTicks(5092),
                             IsDeleted = false,
                             Monto = 250000m,
                             PedidoId = 11,
@@ -303,7 +303,7 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 3,
-                            FechaPago = new DateTime(2025, 11, 19, 16, 4, 48, 505, DateTimeKind.Local).AddTicks(7166),
+                            FechaPago = new DateTime(2025, 11, 19, 16, 49, 44, 686, DateTimeKind.Local).AddTicks(5095),
                             IsDeleted = false,
                             Monto = 305000m,
                             PedidoId = 12,
@@ -342,7 +342,7 @@ namespace Backend.Migrations
                             Id = 10,
                             ClienteId = 1,
                             Estado = "En Proceso",
-                            Fecha = new DateTime(2025, 11, 19, 16, 4, 48, 505, DateTimeKind.Local).AddTicks(7354),
+                            Fecha = new DateTime(2025, 11, 19, 16, 49, 44, 686, DateTimeKind.Local).AddTicks(5164),
                             IsDeleted = false
                         },
                         new
@@ -350,7 +350,7 @@ namespace Backend.Migrations
                             Id = 11,
                             ClienteId = 2,
                             Estado = "Completado",
-                            Fecha = new DateTime(2025, 11, 19, 16, 4, 48, 505, DateTimeKind.Local).AddTicks(7361),
+                            Fecha = new DateTime(2025, 11, 19, 16, 49, 44, 686, DateTimeKind.Local).AddTicks(5169),
                             IsDeleted = false
                         },
                         new
@@ -358,7 +358,7 @@ namespace Backend.Migrations
                             Id = 12,
                             ClienteId = 3,
                             Estado = "Pendiente",
-                            Fecha = new DateTime(2025, 11, 19, 16, 4, 48, 505, DateTimeKind.Local).AddTicks(7365),
+                            Fecha = new DateTime(2025, 11, 19, 16, 49, 44, 686, DateTimeKind.Local).AddTicks(5173),
                             IsDeleted = false
                         });
                 });
@@ -395,8 +395,8 @@ namespace Backend.Migrations
                         {
                             Id = 1,
                             ClientId = 1,
-                            FechaEmision = new DateTime(2025, 11, 19, 16, 4, 48, 505, DateTimeKind.Local).AddTicks(7524),
-                            FechaVencimiento = new DateTime(2025, 12, 19, 16, 4, 48, 505, DateTimeKind.Local).AddTicks(7526),
+                            FechaEmision = new DateTime(2025, 11, 19, 16, 49, 44, 686, DateTimeKind.Local).AddTicks(5242),
+                            FechaVencimiento = new DateTime(2025, 12, 19, 16, 49, 44, 686, DateTimeKind.Local).AddTicks(5244),
                             IsDeleted = false,
                             MontoEstimado = 50000m
                         },
@@ -413,8 +413,8 @@ namespace Backend.Migrations
                         {
                             Id = 3,
                             ClientId = 3,
-                            FechaEmision = new DateTime(2025, 11, 19, 16, 4, 48, 505, DateTimeKind.Local).AddTicks(7552),
-                            FechaVencimiento = new DateTime(2025, 12, 19, 16, 4, 48, 505, DateTimeKind.Local).AddTicks(7554),
+                            FechaEmision = new DateTime(2025, 11, 19, 16, 49, 44, 686, DateTimeKind.Local).AddTicks(5263),
+                            FechaVencimiento = new DateTime(2025, 12, 19, 16, 49, 44, 686, DateTimeKind.Local).AddTicks(5265),
                             IsDeleted = false,
                             MontoEstimado = 20000m
                         });

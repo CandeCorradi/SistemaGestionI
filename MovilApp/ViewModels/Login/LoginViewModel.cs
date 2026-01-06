@@ -64,6 +64,7 @@ namespace MovilApp.ViewModels.Login
         {
             //_userRepository.DeleteUser(); // Descomentarear para probar el login siempre
             //si la aplicación se ejecuta en android o iOS, chequea si hay un usuario almacenado
+
             if (DeviceInfo.Platform == DevicePlatform.Android || DeviceInfo.Platform == DevicePlatform.iOS)
                 try
                 {
@@ -92,13 +93,13 @@ namespace MovilApp.ViewModels.Login
         {
             try
             {
-                estaDescargando = true;
+                EstaDescargando = true;
 
                 var userCredential = await _clientAuth.SignInWithEmailAndPasswordAsync(email, password);
                 if (userCredential.User.Info.IsEmailVerified == false)
                 {
                     await Application.Current.MainPage.DisplayAlert("Inicio de sesión", "Debe verificar su correo electrónico", "Ok");
-                    estaDescargando = false;
+                    EstaDescargando = false;
                     return;
                 }
 

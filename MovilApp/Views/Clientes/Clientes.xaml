@@ -1,12 +1,185 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:MovilApp.ViewModels.Clientes"
              x:Class="MovilApp.Views.Clientes.Clientes"
              Title="Clientes">
-    <VerticalStackLayout>
-        <Label 
-            Text="Lista de Clientes"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ContentPage.BindingContext>
+        <vm:ClientesViewModel />
+    </ContentPage.BindingContext>
+    <ScrollView Padding="20">
+        <StackLayout Spacing="20"> <!-- Mete elementos uno debajo del otro -->
+
+            <!-- Encabezado -->
+            <Frame BackgroundColor="Green" 
+                   Padding="20" 
+                   CornerRadius="15" 
+                   HasShadow="True">
+                <StackLayout>
+                    <Label Text="🔍 Buscar Cliente" 
+                           FontSize="26" 
+                           FontAttributes="Bold"
+                           TextColor="White"
+                           HorizontalOptions="Center"/>
+                    <Label Text="Encuentra el cliente que buscas" 
+                           FontSize="14"
+                           TextColor="LightBlue"
+                           HorizontalOptions="Center"/>
+                </StackLayout>
+            </Frame>
+
+            <!-- Sección de búsqueda -->
+            <Frame BackgroundColor="White" 
+                   Padding="15" 
+                   CornerRadius="12" 
+                   HasShadow="True"
+                   BorderColor="Blue">
+                <StackLayout Spacing="15">
+                    <Label Text="¿Qué cliente estás buscando?" 
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="DarkSlateGray"/>
+
+                    <!-- SearchBar mejorado -->
+                    <Frame BackgroundColor="WhiteSmoke" 
+                           Padding="5" 
+                           CornerRadius="10"
+                           HasShadow="False"
+                           BorderColor="Blue">
+                        <SearchBar Placeholder="Buscar por nombre, apellido.." 
+                                   Text="{Binding TextoBusqueda}"
+                                   SearchCommand="{Binding BuscarCommand}"
+                                   BackgroundColor="Transparent"
+                                   PlaceholderColor="Gray"
+                                   TextColor="Black"
+                                   FontSize="16"/>
+                    </Frame>
+                    <!-- Botón para mostrar/ocultar filtros -->
+                    <Button Text="🔍 Buscar" 
+                        Command="{Binding BuscarCommand}"
+                        BackgroundColor="LightSteelBlue"
+                        TextColor="DarkBlue"
+                        CornerRadius="8"
+                        FontSize="14"/>
+
+                    <!-- Indicador de carga -->
+                    <StackLayout IsVisible="{Binding EstaDescargando}" 
+                                Orientation="Horizontal" 
+                                HorizontalOptions="Center"
+                                Spacing="10">
+                        <ActivityIndicator IsRunning="{Binding EstaDescargando}"
+                                          Color="Blue"/>
+                        <Label Text="Buscando clientes..." 
+                               TextColor="Blue"
+                               VerticalOptions="Center"
+                               FontSize="14"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <!-- Sección de resultados -->
+            <StackLayout Spacing="15">
+                <!-- Encabezado de resultados -->
+                <Frame BackgroundColor="Blue" 
+                       Padding="12" 
+                       CornerRadius="10" 
+                       HasShadow="True"
+                       BorderColor="Gold">
+                    <StackLayout>
+                        <Label Text="Resultados de búsqueda" 
+                               FontSize="18" 
+                               FontAttributes="Bold"
+                               TextColor="Blue"
+                               HorizontalOptions="Center"/>
+                        <Label Text="{Binding Clientes.Count, StringFormat='{0} clientes encontradas'}"
+                               FontSize="14"
+                               TextColor="Blue"
+                               HorizontalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+
+                <!-- Lista de clientes en cards mejoradas -->
+                <CollectionView ItemsSource="{Binding Clientes}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BackgroundColor="Blue" 
+                                   Padding="20" 
+                                   Margin="0,8"
+                                   CornerRadius="15"
+                                   HasShadow="True"
+                                   BorderColor="LightSteelBlue">
+                                <Grid ColumnDefinitions="Auto, *, Auto" 
+                                      RowDefinitions="Auto, Auto, Auto, Auto">
+
+                                    <!-- Ícono principal -->
+                                    <Label Grid.Column="0" Grid.Row="0" Grid.RowSpan="3"
+                                           Text="👥" 
+                                           FontSize="40"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Center"
+                                           Margin="0,0,15,0"/>
+
+                                    <!-- Cliente -->
+                                    <Label Grid.Column="1" Grid.Row="0"
+                                           Text="{Binding Nombre}" 
+                                           FontSize="18"
+                                           FontAttributes="Bold"
+                                           TextColor="DarkSlateGray"
+                                           LineBreakMode="WordWrap"/>
+                                    <Label Text="{Binding Apellido}" 
+                                           FontSize="18"
+                                           FontAttributes="Bold"
+                                           TextColor="DarkSlateGray"
+                                           LineBreakMode="WordWrap"/>
+                                    <Label Text="{Binding Telefono}" 
+                                           FontSize="16"
+                                           TextColor="Gray"
+                                           LineBreakMode="TailTruncation"/>
+
+
+                                    <!-- Editorial -->
+                                    <!--<StackLayout Grid.Column="1" Grid.Row="1" 
+                                                Orientation="Horizontal" 
+                                                Spacing="5"
+                                                Margin="0,5,0,0">
+                                        <Label Text="🏢" FontSize="14"/>
+                                        <Label Text="{Binding Ponente, StringFormat='Orador/a: {0}'}" 
+                                               FontSize="14"
+                                               TextColor="Gray"
+                                               LineBreakMode="TailTruncation"/>
+                                    </StackLayout>
+
+                                    --><!-- Año de publicación --><!--
+                                    <StackLayout Grid.Column="1" Grid.Row="2" 
+                                                Orientation="Horizontal" 
+                                                Spacing="5"
+                                                Margin="0,2,0,0">
+                                        <Label Text="📅" FontSize="14"/>
+                                        <Label Text="{Binding Detalle}" 
+                                               FontSize="14"
+                                               TextColor="Gray"/>
+                                    </StackLayout>
+
+                                    --><!-- Páginas --><!--
+                                    <StackLayout Grid.Column="1" Grid.Row="3" 
+                                                Orientation="Horizontal" 
+                                                Spacing="5"
+                                                Margin="0,2,0,0">
+                                        <Label Text="📄" FontSize="14"/>
+                                        <Label Text="{Binding FechaHora}" 
+                                               FontSize="14"
+                                               TextColor="Gray"/>
+                                    </StackLayout>-->                                 
+
+
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </StackLayout>
+
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

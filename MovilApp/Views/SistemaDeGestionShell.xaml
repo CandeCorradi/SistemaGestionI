@@ -7,6 +7,7 @@
     xmlns:contentviews="clr-namespace:MovilApp.ContentViews"
     xmlns:views="clr-namespace:MovilApp.Views"
     xmlns:admin="clr-namespace:MovilApp.Views.Admin"
+    xmlns:clientes="clr-namespace:MovilApp.Views.Clientes"
     xmlns:viewmodels="clr-namespace:MovilApp.ViewModels"
     FlyoutBehavior="Disabled"
     Title="SistemaDeGestiónApp">
@@ -59,13 +60,11 @@
     <FlyoutItem Title="Buscar Cliente" Icon="search.png" >
         <ShellContent
             Title="Buscar Cliente"
-            ContentTemplate="{DataTemplate views:ClientesView}"
-            Route="BuscarCliente" />
+            ContentTemplate="{DataTemplate clientes:Clientes}"
+            Route="BuscarClientes" />
     </FlyoutItem>
     <MenuItem Text="Cerrar sesión"
       Command="{Binding LogoutCommand}"
       IconImageSource="random.png"/>
-
-
 
 </Shell>

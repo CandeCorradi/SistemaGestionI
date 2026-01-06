@@ -15,7 +15,7 @@ namespace MovilApp.ViewModels
         private bool userIsLogged = false;
 
         public IRelayCommand LogoutCommand { get; }
-
+            
         public SistemaDeGestionShellViewModel()
         {
             LogoutCommand = new RelayCommand(OnLogout); //metodo que se llama igual que la clase que no devuelve valores y se ejecuta siempre que la clase se instancia

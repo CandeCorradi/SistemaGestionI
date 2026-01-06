@@ -4,7 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:login="clr-namespace:MovilApp.ViewModels.Login"
-    BackgroundColor="Blue">
+    BackgroundColor="Black">
     <ContentPage.BindingContext>
         <login:SignInViewModel />
     </ContentPage.BindingContext>

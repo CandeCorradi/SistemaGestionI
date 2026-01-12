@@ -25,7 +25,7 @@
     </Shell.FlyoutFooter>
 
     <ShellContent
-        Title="Iniciar sesión en el Sistema"
+        Title="Iniciar sesión"
         ContentTemplate="{DataTemplate login:LoginView}"
         Route="Login"
         FlyoutItemIsVisible="False"/>

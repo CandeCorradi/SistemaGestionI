@@ -7,6 +7,9 @@ using Service.Enums;
 using Service.Models;
 using Service.Services;
 using System.Net.Http.Headers;
+using System.Text;
+using System.Text.Json;
+using System.Diagnostics;
 
 namespace MovilApp.ViewModels.Login
 {
@@ -48,15 +51,17 @@ namespace MovilApp.ViewModels.Login
         {
             FirebaseApiKey = Service.Properties.Resources.ApiKeyFirebase;
             RequestUri = "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=" + FirebaseApiKey;
+
             RegistrarseCommand = new AsyncRelayCommand(Registrarse, PermitirRegistrarse);
             VolverCommand = new AsyncRelayCommand(Volver);
+
             _clientAuth = new FirebaseAuthClient(new FirebaseAuthConfig()
             {
                 ApiKey = FirebaseApiKey,
                 AuthDomain = Service.Properties.Resources.AuthDomainFirebase,
                 Providers = new Firebase.Auth.Providers.FirebaseAuthProvider[]
                 {
-                        new EmailProvider()
+                    new EmailProvider()
                 }
             });
         }
@@ -78,47 +83,51 @@ namespace MovilApp.ViewModels.Login
 
         private async Task Registrarse()
         {
-            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) || 
-                string.IsNullOrEmpty(password) || string.IsNullOrEmpty(verifyPassword))
+            if (password != verifyPassword)
             {
-                await Application.Current.MainPage.DisplayAlert("Registrarse",
-                    "Por favor, complete todos los campos.", "Ok");
+                await Application.Current.MainPage.DisplayAlert("Registrarse", "Las contraseñas ingresadas no coinciden", "Ok");
                 return;
             }
-            if (password == verifyPassword)
-            {
-                try
-                {
-                    var fullname = name + " " + lastname;
-                    var user = await _clientAuth.CreateUserWithEmailAndPasswordAsync(email, password, fullname);
-                    //guardar el usuario en la base de datos
-                    var nuevoUsuario = new Usuario
-                    {
-                        Apellido = lastname,
-                        Nombre = name,
-                        Dni = dni,
-                        Email = email,
-                        TipoUsuario = TipoUsuarioEnum.Administrador,
-                        IsDeleted = false
-                    };
-                    await SendVerificationEmailAsync(user.User.GetIdTokenAsync().Result);
-                    await Application.Current.MainPage.DisplayAlert("Registrarse", "Cuenta creada!", "Ok");
-                    if (Application.Current?.MainPage is SistemaDeGestionShell shell)
-                    {
-                        await Shell.Current.GoToAsync("//Login");
-                    }
-                }
-                catch (FirebaseAuthException error) // Use alias here 
-                {
-                    await Application.Current.MainPage.DisplayAlert("Registrarse",
-                        "Ocurrió un problema:" + error.Reason, "Ok");
 
+            try
+            {
+                // 1. Crear usuario en Firebase
+                var userCredential = await _clientAuth.CreateUserWithEmailAndPasswordAsync(email, password, name);
+
+                // 2. Guardar el usuario en tu base de datos local
+                var nuevoUsuario = new Usuario
+                {
+                    Apellido = lastname,
+                    Nombre = name,
+                    Dni = dni,
+                    Email = email,
+                    Password = password,
+                    TipoUsuario = TipoUsuarioEnum.Administrador,
+                    IsDeleted = false
+                };
+                await _usuarioService.AddAsync(nuevoUsuario);
+
+                // 3. Enviar correo de verificación (SIN .Result)
+                // Obtenemos el token de forma asíncrona correctamente
+                var token = await userCredential.User.GetIdTokenAsync();
+                await SendVerificationEmailAsync(token);
+
+                await Application.Current.MainPage.DisplayAlert("Éxito", "Cuenta creada. Por favor, revisa tu correo para verificar la cuenta (revisa Spam).", "Ok");
+
+                // 4. Navegar
+                if (Application.Current?.MainPage is SistemaDeGestionShell shell)
+                {
+                    await shell.GoToAsync("//Login");
                 }
             }
-            else
+            catch (FirebaseAuthException ex)
             {
-                await Application.Current.MainPage.DisplayAlert("Registrarse",
-                    "Las contraseñas ingresadas no coinciden", "Ok");
+                await Application.Current.MainPage.DisplayAlert("Error de Autenticación", $"No se pudo crear el usuario: {ex.Reason}", "Ok");
+            }
+            catch (Exception ex)
+            {
+                // Esto atrapará cualquier otro error (como el de red o HttpClient)
+                await Application.Current.MainPage.DisplayAlert("Error", $"Ocurrió algo inesperado: {ex.Message}", "Ok");
             }
         }
 
@@ -128,8 +137,7 @@ namespace MovilApp.ViewModels.Login
             {
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                var content = new StringContent("{\"requestType\":\"VERIFY_EMAIL\",\"idToken\":\""
-                    + idToken + "\"}");
+                var content = new StringContent("{\"requestType\":\"VERIFY_EMAIL\",\"idToken\":\"" + idToken + "\"}");
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
                 var response = await client.PostAsync(RequestUri, content);

@@ -3,79 +3,93 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:MovilApp.ViewModels.Admin"
              x:Class="MovilApp.Views.Admin.AdminClientesView"
-             BackgroundColor="Pink">
+             BackgroundColor="#1B2A3E">
     <ContentPage.BindingContext>
         <viewModels:AdminClientesViewModel />
     </ContentPage.BindingContext>
 
-    <Grid RowDefinitions="Auto, *, Auto, Auto, Auto">
-        <HorizontalStackLayout Grid.Row="0">
-            <Label Text="Buscar:"
-               TextColor="DeepPink"
-               FontAttributes="Bold"
-               HorizontalOptions="Center"
-               VerticalOptions="Center"
-               Margin="30,10,0,10"
-               Grid.Row="0"/>
-            <Entry Placeholder="Buscar clientess..."
-                TextColor="DeepPink"
-                FontAttributes="Bold"
-                Text="{Binding FilterText}"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                Margin="0,10,0,10"
-           />
-        </HorizontalStackLayout>
+    <Grid RowDefinitions="Auto, *, Auto, Auto, Auto" BackgroundColor="#1B2A3E" Padding="10">
 
-        <ScrollView Grid.Row="1">
-            <ListView 
-            ItemsSource="{Binding Clientes}"
-            SelectedItem="{Binding ClienteCurrent}"
-            SelectionMode="Single"
-            IsPullToRefreshEnabled="True"
-            RefreshCommand="{Binding RefreshCommand}"
-            Margin="20,15,20,0"
-            IsRefreshing="{Binding IsRefreshing}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextCell Text="{Binding Nombre}"/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </ScrollView>
-        <Button Text="Agregar"
+        <Frame Grid.Row="0" 
+           BackgroundColor="#2C3E50" 
+           Margin="10" 
+           Padding="0" 
+           CornerRadius="10" 
+           HasShadow="False">
+            <HorizontalStackLayout Padding="15" Spacing="10">
+                <Label Text="🔍" VerticalOptions="Center" FontSize="18"/>
+                <Entry Placeholder="Buscar cliente..."
+                   PlaceholderColor="Gray"
+                   TextColor="White"
+                   FontAttributes="Bold"
+                   Text="{Binding FilterText}"
+                   WidthRequest="250"
+                   VerticalOptions="Center"
+                   BackgroundColor="Transparent"/>
+            </HorizontalStackLayout>
+        </Frame>
+
+        <CollectionView Grid.Row="1" 
+                    ItemsSource="{Binding Clientes}"
+                    SelectedItem="{Binding ClienteCurrent}"
+                    SelectionMode="Single"
+                    Margin="10,5">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10">
+                        <Frame BackgroundColor="#2C3E50" 
+                           CornerRadius="10" 
+                           Padding="15"
+                           HasShadow="True">
+                            <HorizontalStackLayout Spacing="15">
+                                <Label Text="👤" FontSize="24" VerticalOptions="Center"/>
+                                <VerticalStackLayout VerticalOptions="Center">
+                                    <Label Text="{Binding Nombre}" 
+                                       TextColor="White" 
+                                       FontSize="18" 
+                                       FontAttributes="Bold"/>
+                                    <Label Text="Cliente Registrado" 
+                                       TextColor="#D4A373" 
+                                       FontSize="12"/>
+                                </VerticalStackLayout>
+                            </HorizontalStackLayout>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button Text="+ AGREGAR NUEVO"
             Command="{Binding AddCommand}"
-            VerticalOptions="Center"
-            Margin="20,15,20,0"
             Grid.Row="2"
-            BackgroundColor="Transparent" 
-            TextColor="DeepPink" 
+            BackgroundColor="#D4A373" 
+            TextColor="#1B2A3E" 
             FontAttributes="Bold"
-            BorderColor="DeepPink"
-            BorderWidth="2"
-            CornerRadius="8"/>
-        <Button Text="Editar"
+            HeightRequest="50"
+            Margin="10,5"
+            CornerRadius="10"/>
+
+        <Button Text="✎ EDITAR SELECCIONADO"
             Command="{Binding EditCommand}"
-            VerticalOptions="Center"
-            Margin="20,15,20,0"
             Grid.Row="3"
             BackgroundColor="Transparent" 
-            TextColor="DeepPink" 
+            TextColor="White" 
             FontAttributes="Bold"
-            BorderColor="DeepPink"
+            BorderColor="#D4A373"
             BorderWidth="2"
-            CornerRadius="8"/>
-        <Button Text="Eliminar"
+            HeightRequest="50"
+            Margin="10,5"
+            CornerRadius="10"/>
+
+        <Button Text="🗑 ELIMINAR"
             Command="{Binding DeleteCommand}"
-            VerticalOptions="Center"
-            Margin="20,15,20,0"
             Grid.Row="4"
-            BackgroundColor="Transparent" 
-            TextColor="DeepPink" 
+            BackgroundColor="#C0392B" 
+            TextColor="White" 
             FontAttributes="Bold"
-            BorderColor="DeepPink"
-            BorderWidth="2"
-            CornerRadius="8"/>
+            HeightRequest="50"
+            Margin="10,10,10,20"
+            CornerRadius="10"/>
 
     </Grid>
 </ContentPage>

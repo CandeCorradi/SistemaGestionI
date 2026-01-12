@@ -2,24 +2,21 @@
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
-
         public MainPage()
         {
             InitializeComponent();
         }
-
-        private void OnCounterClicked(object sender, EventArgs e)
+                
+        private async void OnVerClientesClicked(object sender, EventArgs e)
         {
-            count++;
-
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
+            try
+            {                
+                await Shell.Current.GoToAsync("//ListaClientes");
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", "No se pudo navegar a la lista: " + ex.Message, "Ok");
+            }
         }
     }
-
 }

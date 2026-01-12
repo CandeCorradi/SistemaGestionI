@@ -3,50 +3,78 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MovilApp.Views.Login.LoginView"
              xmlns:viewModels="clr-namespace:MovilApp.ViewModels.Login"
-             NavigationPage.HasNavigationBar="False">    
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#1B2A3E">    
     <ContentPage.BindingContext>
         <viewModels:LoginViewModel />
     </ContentPage.BindingContext>
     <ScrollView>
-        <VerticalStackLayout  VerticalOptions="Start" Padding="30">
-            <Label Text="Iniciar sesión en el Sistema de Gestión"
+        <VerticalStackLayout VerticalOptions="Center" Padding="30" Spacing="0">
+
+            <Image Source="logo_carpinteria.png" 
+                   HeightRequest="180" 
+                   Margin="0,0,0,10"
+                   HorizontalOptions="Center"/>
+
+            <Label Text="SISTEMA DE GESTIÓN"
+                   TextColor="#D4A373"
+                   FontSize="12"
+                   CharacterSpacing="3"
                    FontAttributes="Bold"
-                   FontSize="36"
                    HorizontalOptions="Center"
-                   Margin="0,0,0,20"/>
-            <Grid ColumnSpacing="10" RowSpacing="10" RowDefinitions="2*,2*,2*,*,*" ColumnDefinitions="auto,*">
-                <Label Grid.Row="0" Grid.Column="0" 
-                       HorizontalOptions="End"
-                       VerticalOptions="Center">Email:</Label>
-                <Entry Grid.Row="0" Grid.Column="1" 
-                       Text="{Binding Email}"></Entry>
+                   Margin="0,0,0,40"/>
 
-                <Label Grid.Row="1" Grid.Column="0" 
-                       HorizontalOptions="End"
-                       VerticalOptions="Center">Contraseña:</Label>
-                <Entry Grid.Row="1" Grid.Column="1" 
-                       Text="{Binding Password}"
-                        IsPassword="True"></Entry>
-                <CheckBox IsChecked="{Binding RecordarContraseña}"
-                          Grid.Row="2" Grid.Column="0"
-                          HorizontalOptions="End"></CheckBox>
-                <Label Grid.Row="2" Grid.Column="1"
-                       VerticalOptions="Center"
-                       >Recordar contraseña</Label>
+            <VerticalStackLayout Spacing="20">
 
-                <Button Text="Iniciar sesión"
-                        x:Name="btnIniciarSesion"
-                        Grid.Row="3" Grid.Column="0"
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="Email" TextColor="White" FontSize="16" FontAttributes="Bold"/>
+                    <Entry Text="{Binding Email}" 
+                           Placeholder="correo@ejemplo.com"
+                           PlaceholderColor="Gray"
+                           TextColor="White" 
+                           BackgroundColor="#2C3E50"
+                           HeightRequest="50"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="5">
+                    <Label Text="Contraseña" TextColor="White" FontSize="16" FontAttributes="Bold"/>
+                    <Entry Text="{Binding Password}" 
+                           IsPassword="True"
+                           Placeholder="••••••••"
+                           PlaceholderColor="Gray"
+                           TextColor="White"
+                           BackgroundColor="#2C3E50"
+                           HeightRequest="50"/>
+                </VerticalStackLayout>
+
+                <HorizontalStackLayout Spacing="10">
+                    <CheckBox IsChecked="{Binding RecordarContraseña}" Color="#D4A373" />
+                    <Label Text="Recordar contraseña" VerticalOptions="Center" TextColor="White" />
+                </HorizontalStackLayout>
+
+                <Button Text="INICIAR SESIÓN"
                         Command="{Binding IniciarSesionCommand}"
-                        Grid.ColumnSpan="2"></Button>
+                        BackgroundColor="#34495E"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        HeightRequest="55"
+                        CornerRadius="10" />
 
-                <Button Text="Registrarse"
-                        x:Name="btnRegistrarse"
-                        Grid.Row="4" Grid.Column="0"
+                <Button Text="REGISTRARSE"
                         Command="{Binding RegistrarseCommand}"
-                        Grid.ColumnSpan="2"></Button>
-            </Grid>
-            <ActivityIndicator IsRunning="{Binding EstaDescargando}"/>
+                        BackgroundColor="#D4A373"
+                        TextColor="#1B2A3E"
+                        FontAttributes="Bold"
+                        HeightRequest="55"
+                        CornerRadius="10" />
+
+            </VerticalStackLayout>
+
+            <ActivityIndicator IsRunning="{Binding EstaDescargando}" 
+                               Color="#D4A373" 
+                               Margin="0,20"
+                               HorizontalOptions="Center"/>
+
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

@@ -34,7 +34,7 @@ namespace MovilApp.ViewModels.Admin
         public IRelayCommand DeleteCommand { get; }
         public IRelayCommand RefreshCommand { get; }
 
-        public AdminClientesViewModel()
+        public AdminClientesViewModel() //constructor, me trae la lista de clientes
         {
             _ = LoadClientes();
             AddCommand = new AsyncRelayCommand(AddCliente);

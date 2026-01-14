@@ -38,7 +38,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.freepik__background__54410;
-            pictureBox1.Location = new Point(169, 12);
+            pictureBox1.Location = new Point(226, 12);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(187, 190);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -47,9 +47,9 @@
             // 
             // ProgressBar
             // 
-            ProgressBar.Location = new Point(29, 209);
+            ProgressBar.Location = new Point(12, 209);
             ProgressBar.Name = "ProgressBar";
-            ProgressBar.Size = new Size(465, 23);
+            ProgressBar.Size = new Size(607, 23);
             ProgressBar.TabIndex = 1;
             // 
             // Timer
@@ -62,11 +62,12 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.MidnightBlue;
-            ClientSize = new Size(516, 244);
+            ClientSize = new Size(631, 251);
             Controls.Add(ProgressBar);
             Controls.Add(pictureBox1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "SplashView";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "SplashView";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

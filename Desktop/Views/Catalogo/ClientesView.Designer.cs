@@ -31,6 +31,7 @@
             components = new System.ComponentModel.Container();
             tabControlClientes = new TabControl();
             tabPageLista = new TabPage();
+            btnImprimir = new Button();
             btnRestore = new Button();
             checkVerEliminados = new CheckBox();
             btnSalir = new Button();
@@ -67,14 +68,15 @@
             // 
             tabControlClientes.Controls.Add(tabPageLista);
             tabControlClientes.Controls.Add(tabPageAgregarEditar);
-            tabControlClientes.Location = new Point(12, 51);
+            tabControlClientes.Location = new Point(12, 38);
             tabControlClientes.Name = "tabControlClientes";
             tabControlClientes.SelectedIndex = 0;
-            tabControlClientes.Size = new Size(493, 413);
+            tabControlClientes.Size = new Size(635, 426);
             tabControlClientes.TabIndex = 0;
             // 
             // tabPageLista
             // 
+            tabPageLista.Controls.Add(btnImprimir);
             tabPageLista.Controls.Add(btnRestore);
             tabPageLista.Controls.Add(checkVerEliminados);
             tabPageLista.Controls.Add(btnSalir);
@@ -88,14 +90,23 @@
             tabPageLista.Location = new Point(4, 24);
             tabPageLista.Name = "tabPageLista";
             tabPageLista.Padding = new Padding(3);
-            tabPageLista.Size = new Size(485, 385);
+            tabPageLista.Size = new Size(627, 398);
             tabPageLista.TabIndex = 0;
             tabPageLista.Text = "Lista";
             tabPageLista.UseVisualStyleBackColor = true;
             // 
+            // btnImprimir
+            // 
+            btnImprimir.Location = new Point(388, 369);
+            btnImprimir.Name = "btnImprimir";
+            btnImprimir.Size = new Size(112, 23);
+            btnImprimir.TabIndex = 19;
+            btnImprimir.Text = "Imprimir informe";
+            btnImprimir.UseVisualStyleBackColor = true;
+            // 
             // btnRestore
             // 
-            btnRestore.Location = new Point(296, 351);
+            btnRestore.Location = new Point(296, 369);
             btnRestore.Name = "btnRestore";
             btnRestore.Size = new Size(75, 23);
             btnRestore.TabIndex = 17;
@@ -106,17 +117,17 @@
             // checkVerEliminados
             // 
             checkVerEliminados.AutoSize = true;
-            checkVerEliminados.Location = new Point(367, 18);
+            checkVerEliminados.Location = new Point(518, 18);
             checkVerEliminados.Name = "checkVerEliminados";
             checkVerEliminados.Size = new Size(103, 19);
             checkVerEliminados.TabIndex = 16;
-            checkVerEliminados.Text = "Ver aliminados";
+            checkVerEliminados.Text = "Ver eliminados";
             checkVerEliminados.UseVisualStyleBackColor = true;
             checkVerEliminados.CheckedChanged += checkVerEliminados_CheckedChanged;
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(393, 351);
+            btnSalir.Location = new Point(546, 369);
             btnSalir.Name = "btnSalir";
             btnSalir.Size = new Size(75, 23);
             btnSalir.TabIndex = 15;
@@ -126,7 +137,7 @@
             // 
             // btnEliminar
             // 
-            btnEliminar.Location = new Point(199, 351);
+            btnEliminar.Location = new Point(199, 369);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(75, 23);
             btnEliminar.TabIndex = 14;
@@ -136,7 +147,7 @@
             // 
             // btnModificar
             // 
-            btnModificar.Location = new Point(104, 351);
+            btnModificar.Location = new Point(104, 369);
             btnModificar.Name = "btnModificar";
             btnModificar.Size = new Size(75, 23);
             btnModificar.TabIndex = 13;
@@ -146,7 +157,7 @@
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(10, 351);
+            btnAgregar.Location = new Point(10, 369);
             btnAgregar.Name = "btnAgregar";
             btnAgregar.Size = new Size(75, 23);
             btnAgregar.TabIndex = 12;
@@ -158,7 +169,7 @@
             // 
             txtBuscar.Location = new Point(91, 15);
             txtBuscar.Name = "txtBuscar";
-            txtBuscar.Size = new Size(270, 23);
+            txtBuscar.Size = new Size(421, 23);
             txtBuscar.TabIndex = 11;
             txtBuscar.TextChanged += txtBuscar_TextChanged;
             // 
@@ -188,7 +199,7 @@
             GridClientes.Location = new Point(10, 44);
             GridClientes.Name = "GridClientes";
             GridClientes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            GridClientes.Size = new Size(458, 301);
+            GridClientes.Size = new Size(611, 319);
             GridClientes.TabIndex = 8;
             GridClientes.CellContentClick += GridClientes_CellContentClick;
             // 
@@ -207,7 +218,7 @@
             tabPageAgregarEditar.Location = new Point(4, 24);
             tabPageAgregarEditar.Name = "tabPageAgregarEditar";
             tabPageAgregarEditar.Padding = new Padding(3);
-            tabPageAgregarEditar.Size = new Size(485, 385);
+            tabPageAgregarEditar.Size = new Size(627, 385);
             tabPageAgregarEditar.TabIndex = 1;
             tabPageAgregarEditar.Text = "Agregar/Editar";
             tabPageAgregarEditar.UseVisualStyleBackColor = true;
@@ -300,7 +311,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Times New Roman", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(152, 15);
+            label2.Location = new Point(12, 9);
             label2.Name = "label2";
             label2.Size = new Size(209, 26);
             label2.TabIndex = 1;
@@ -311,7 +322,7 @@
             statusBar.Items.AddRange(new ToolStripItem[] { LabelStatusMessage });
             statusBar.Location = new Point(0, 468);
             statusBar.Name = "statusBar";
-            statusBar.Size = new Size(524, 22);
+            statusBar.Size = new Size(659, 22);
             statusBar.TabIndex = 2;
             statusBar.Text = "statusStrip1";
             // 
@@ -324,11 +335,12 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(524, 490);
+            ClientSize = new Size(659, 490);
             Controls.Add(statusBar);
             Controls.Add(label2);
             Controls.Add(tabControlClientes);
             Name = "ClientesView";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Agenda de Clientes";
             tabControlClientes.ResumeLayout(false);
             tabPageLista.ResumeLayout(false);
@@ -371,5 +383,6 @@
         private System.Windows.Forms.Timer TimerStatusBar;
         private StatusStrip statusBar;
         private ToolStripStatusLabel LabelStatusMessage;
+        private Button btnImprimir;
     }
 }

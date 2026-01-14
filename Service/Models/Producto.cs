@@ -15,6 +15,7 @@ namespace Service.Models
         public int Stock { get; set; }
         public string Categoria { get; set; } = string.Empty; // Melamina, Accesorio, Insumo
         public decimal Precio { get; set; }
+        public string URL { get; set; }
         public bool IsDeleted { get; set; } = false;
 
         public override string ToString()

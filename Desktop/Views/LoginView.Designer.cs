@@ -102,6 +102,7 @@
             BtnCancelar.TabIndex = 7;
             BtnCancelar.Text = "Cancelar";
             BtnCancelar.UseVisualStyleBackColor = true;
+            BtnCancelar.Click += BtnCancelar_Click;
             // 
             // BtnLogin
             // 
@@ -131,6 +132,7 @@
             ForeColor = Color.White;
             FormBorderStyle = FormBorderStyle.None;
             Name = "LoginView";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "LoginView";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

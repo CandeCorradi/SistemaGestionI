@@ -65,5 +65,10 @@ namespace Desktop.Views
         {
             TxtContrasena.PasswordChar = CheckVerContrasena.Checked ? '\0' : '*';
         }
+
+        private void BtnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

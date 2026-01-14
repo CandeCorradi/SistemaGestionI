@@ -30,7 +30,7 @@ namespace Desktop
 
         private void subMenuMayoristas_Click(object sender, EventArgs e)
         {
-            var mayoristasView = new MayoristasView();
+            var mayoristasView = new Mayoristas();
             mayoristasView.MdiParent = this;
             mayoristasView.Show();
         }

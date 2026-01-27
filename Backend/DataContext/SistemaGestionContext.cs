@@ -9,13 +9,13 @@ namespace Backend.DataContext
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Mayorista> Mayoristas { get; set; }
         public DbSet<Producto> Productos { get; set; }
-        public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<DetallePedido> DetallesPedidos { get; set; }
         public DbSet<Pago> Pagos { get; set; }
         public DbSet<Pedido> Pedidos { get; set; }
         public DbSet<Presupuesto> Presupuestos { get; set; }
         public DbSet<ProductoPresupuesto> ProductoPresupuestos { get; set; }
         public DbSet<DetallePresupuesto> DetallesPresupuestos { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
         public SistemaGestionContext() { }
 
         public SistemaGestionContext(DbContextOptions<SistemaGestionContext> options) : base(options)
@@ -92,7 +92,7 @@ namespace Backend.DataContext
                     Id = 1,
                     Nombre = "Melamina Blanca",
                     Descripcion = "Melamina de alta calidad color blanco",
-                    Medida = 21 * 12,
+                    Medida = "21 * 12",
                     Stock = 50,
                     Categoria = "Melamina",
                     IsDeleted = false
@@ -102,7 +102,7 @@ namespace Backend.DataContext
                     Id = 2,
                     Nombre = "Melamina Caoba",
                     Descripcion = "Melamina de alta calidad, textura granulada",
-                    Medida = 21 * 12,
+                    Medida = "21 * 12",
                     Stock = 15,
                     Categoria = "Melamina",
                     IsDeleted = false
@@ -112,45 +112,13 @@ namespace Backend.DataContext
                     Id = 3,
                     Nombre = "Melamina Negra",
                     Descripcion = "Melamina de alta calidad, textura mate",
-                    Medida = 21 * 12,
+                    Medida = "21 * 12",
                     Stock = 43,
                     Categoria = "Melamina",
                     IsDeleted = false
                 }
             );
-            //Cargamos los datos iniciales de los usuarios: administrador y cliente
-            modelBuilder.Entity<Usuario>().HasData(
-                new Usuario
-                {
-                    Id = 1,
-                    Nombre = "admin",
-                    Apellido = "istrador",
-                    Email = "administrador123@gmail.com",
-                    Password = "admin123",
-                    TipoUsuario = Service.Enums.TipoUsuarioEnum.Administrador,
-                    IsDeleted = false
-                },
-                new Usuario
-                {
-                    Id = 2,
-                    Nombre = "sergio cliente",
-                    Apellido = "massa",
-                    Email = "sergio2024@gmail.com",
-                    Password = "cliente123",
-                    TipoUsuario = Service.Enums.TipoUsuarioEnum.Cliente,
-                    IsDeleted = false
-                },
-                new Usuario
-                {
-                    Id = 3,
-                    Nombre = "franco cliente",
-                    Apellido = "gomez",
-                    Email = "franquito59@gmail.com",
-                    Password = "cliente124",
-                    TipoUsuario = Service.Enums.TipoUsuarioEnum.Cliente,
-                    IsDeleted = false
-                }
-            );
+            
             //Cargamos los datos iniciales de los detalles de pedidos
             modelBuilder.Entity<DetallePedido>().HasData(
                 new DetallePedido
@@ -336,7 +304,6 @@ namespace Backend.DataContext
             modelBuilder.Entity<Cliente>().HasQueryFilter(p => !p.IsDeleted);
             modelBuilder.Entity<Mayorista>().HasQueryFilter(u => !u.IsDeleted);
             modelBuilder.Entity<Producto>().HasQueryFilter(c => !c.IsDeleted);
-            modelBuilder.Entity<Usuario>().HasQueryFilter(c => !c.IsDeleted);
             modelBuilder.Entity<DetallePedido>().HasQueryFilter(c => !c.IsDeleted);
             modelBuilder.Entity<Pago>().HasQueryFilter(c => !c.IsDeleted);
             modelBuilder.Entity<Pedido>().HasQueryFilter(c => !c.IsDeleted);

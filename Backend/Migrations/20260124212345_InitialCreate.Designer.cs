@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(SistemaGestionContext))]
-    [Migration("20251119194949_nueva")]
-    partial class nueva
+    [Migration("20260124212345_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -196,6 +196,10 @@ namespace Backend.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Apellido")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Direccion")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -227,6 +231,7 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 1,
+                            Apellido = "",
                             Direccion = "Av. San Martin 1234",
                             Email = "maderaelroble@gmail.com",
                             IsDeleted = false,
@@ -237,6 +242,7 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 2,
+                            Apellido = "",
                             Direccion = "Av. Siempreviva 2458",
                             Email = "melaminas@gmail.com",
                             IsDeleted = false,
@@ -247,6 +253,7 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 3,
+                            Apellido = "",
                             Direccion = "San roque 1257",
                             Email = "antonyeche@gmail.com",
                             IsDeleted = false,
@@ -288,7 +295,7 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 1,
-                            FechaPago = new DateTime(2025, 11, 19, 16, 49, 44, 686, DateTimeKind.Local).AddTicks(5065),
+                            FechaPago = new DateTime(2026, 1, 24, 18, 23, 42, 516, DateTimeKind.Local).AddTicks(1108),
                             IsDeleted = false,
                             Monto = 15000m,
                             PedidoId = 10,
@@ -297,7 +304,7 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 2,
-                            FechaPago = new DateTime(2025, 11, 19, 16, 49, 44, 686, DateTimeKind.Local).AddTicks(5092),
+                            FechaPago = new DateTime(2026, 1, 24, 18, 23, 42, 516, DateTimeKind.Local).AddTicks(1139),
                             IsDeleted = false,
                             Monto = 250000m,
                             PedidoId = 11,
@@ -306,7 +313,7 @@ namespace Backend.Migrations
                         new
                         {
                             Id = 3,
-                            FechaPago = new DateTime(2025, 11, 19, 16, 49, 44, 686, DateTimeKind.Local).AddTicks(5095),
+                            FechaPago = new DateTime(2026, 1, 24, 18, 23, 42, 516, DateTimeKind.Local).AddTicks(1142),
                             IsDeleted = false,
                             Monto = 305000m,
                             PedidoId = 12,
@@ -345,7 +352,7 @@ namespace Backend.Migrations
                             Id = 10,
                             ClienteId = 1,
                             Estado = "En Proceso",
-                            Fecha = new DateTime(2025, 11, 19, 16, 49, 44, 686, DateTimeKind.Local).AddTicks(5164),
+                            Fecha = new DateTime(2026, 1, 24, 18, 23, 42, 516, DateTimeKind.Local).AddTicks(1221),
                             IsDeleted = false
                         },
                         new
@@ -353,7 +360,7 @@ namespace Backend.Migrations
                             Id = 11,
                             ClienteId = 2,
                             Estado = "Completado",
-                            Fecha = new DateTime(2025, 11, 19, 16, 49, 44, 686, DateTimeKind.Local).AddTicks(5169),
+                            Fecha = new DateTime(2026, 1, 24, 18, 23, 42, 516, DateTimeKind.Local).AddTicks(1227),
                             IsDeleted = false
                         },
                         new
@@ -361,7 +368,7 @@ namespace Backend.Migrations
                             Id = 12,
                             ClienteId = 3,
                             Estado = "Pendiente",
-                            Fecha = new DateTime(2025, 11, 19, 16, 49, 44, 686, DateTimeKind.Local).AddTicks(5173),
+                            Fecha = new DateTime(2026, 1, 24, 18, 23, 42, 516, DateTimeKind.Local).AddTicks(1231),
                             IsDeleted = false
                         });
                 });
@@ -398,8 +405,8 @@ namespace Backend.Migrations
                         {
                             Id = 1,
                             ClientId = 1,
-                            FechaEmision = new DateTime(2025, 11, 19, 16, 49, 44, 686, DateTimeKind.Local).AddTicks(5242),
-                            FechaVencimiento = new DateTime(2025, 12, 19, 16, 49, 44, 686, DateTimeKind.Local).AddTicks(5244),
+                            FechaEmision = new DateTime(2026, 1, 24, 18, 23, 42, 516, DateTimeKind.Local).AddTicks(1314),
+                            FechaVencimiento = new DateTime(2026, 2, 23, 18, 23, 42, 516, DateTimeKind.Local).AddTicks(1316),
                             IsDeleted = false,
                             MontoEstimado = 50000m
                         },
@@ -416,8 +423,8 @@ namespace Backend.Migrations
                         {
                             Id = 3,
                             ClientId = 3,
-                            FechaEmision = new DateTime(2025, 11, 19, 16, 49, 44, 686, DateTimeKind.Local).AddTicks(5263),
-                            FechaVencimiento = new DateTime(2025, 12, 19, 16, 49, 44, 686, DateTimeKind.Local).AddTicks(5265),
+                            FechaEmision = new DateTime(2026, 1, 24, 18, 23, 42, 516, DateTimeKind.Local).AddTicks(1338),
+                            FechaVencimiento = new DateTime(2026, 2, 23, 18, 23, 42, 516, DateTimeKind.Local).AddTicks(1339),
                             IsDeleted = false,
                             MontoEstimado = 20000m
                         });
@@ -442,8 +449,9 @@ namespace Backend.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<int>("Medida")
-                        .HasColumnType("int");
+                    b.Property<string>("Medida")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
@@ -466,7 +474,7 @@ namespace Backend.Migrations
                             Categoria = "Melamina",
                             Descripcion = "Melamina de alta calidad color blanco",
                             IsDeleted = false,
-                            Medida = 252,
+                            Medida = "21 * 12",
                             Nombre = "Melamina Blanca",
                             Precio = 0m,
                             Stock = 50
@@ -477,7 +485,7 @@ namespace Backend.Migrations
                             Categoria = "Melamina",
                             Descripcion = "Melamina de alta calidad, textura granulada",
                             IsDeleted = false,
-                            Medida = 252,
+                            Medida = "21 * 12",
                             Nombre = "Melamina Caoba",
                             Precio = 0m,
                             Stock = 15
@@ -488,7 +496,7 @@ namespace Backend.Migrations
                             Categoria = "Melamina",
                             Descripcion = "Melamina de alta calidad, textura mate",
                             IsDeleted = false,
-                            Medida = 252,
+                            Medida = "21 * 12",
                             Nombre = "Melamina Negra",
                             Precio = 0m,
                             Stock = 43
@@ -607,44 +615,6 @@ namespace Backend.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Usuarios");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Apellido = "istrador",
-                            ClienteId = 0,
-                            Dni = "",
-                            Email = "administrador123@gmail.com",
-                            IsDeleted = false,
-                            Nombre = "admin",
-                            Password = "admin123",
-                            TipoUsuario = 0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Apellido = "massa",
-                            ClienteId = 0,
-                            Dni = "",
-                            Email = "sergio2024@gmail.com",
-                            IsDeleted = false,
-                            Nombre = "sergio cliente",
-                            Password = "cliente123",
-                            TipoUsuario = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Apellido = "gomez",
-                            ClienteId = 0,
-                            Dni = "",
-                            Email = "franquito59@gmail.com",
-                            IsDeleted = false,
-                            Nombre = "franco cliente",
-                            Password = "cliente124",
-                            TipoUsuario = 1
-                        });
                 });
 #pragma warning restore 612, 618
         }

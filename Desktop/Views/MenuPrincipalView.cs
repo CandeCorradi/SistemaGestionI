@@ -1,4 +1,5 @@
 using Desktop.Views;
+using Desktop.Views.Catalogo;
 
 namespace Desktop
 {
@@ -14,13 +15,6 @@ namespace Desktop
             this.Close();
         }
 
-        private void SubMenuUsuarios_Click(object sender, EventArgs e)
-        {
-            var usuariosView = new UsuariosView();
-            usuariosView.MdiParent = this;
-            usuariosView.Show();
-        }
-
         private void subMenuClientes_Click(object sender, EventArgs e)
         {
             var clientesView = new ClientesView();
@@ -33,6 +27,13 @@ namespace Desktop
             var mayoristasView = new Mayoristas();
             mayoristasView.MdiParent = this;
             mayoristasView.Show();
+        }
+
+        private void SubMenuProductos_Click(object sender, EventArgs e)
+        {
+            var productosView = new ProductosView();
+            productosView.MdiParent = this;
+            productosView.Show();
         }
     }
 }

@@ -2,11 +2,7 @@
 using Service.Services;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data;
@@ -19,12 +15,14 @@ namespace Desktop.Views
         GenericService<Cliente> _clienteService = new GenericService<Cliente>();
         Cliente _currentCliente;
         List<Cliente>? _clientes;
+
         public ClientesView()
         {
             InitializeComponent();
             _ = GetAllData();
             checkVerEliminados.CheckedChanged += DisplayHideControlsRestoreButton;
         }
+
 
         private void DisplayHideControlsRestoreButton(object? sender, EventArgs e)
         {
@@ -57,7 +55,7 @@ namespace Desktop.Views
         {
             if (GridClientes.RowCount > 0 && GridClientes.SelectedRows.Count > 0)
             {
-                //Cliente clienteSeleccionada = (Cliente)dataGridClientes.SelectedRows[0].DataBoundItem;
+                Cliente clienteSeleccionada = (Cliente)GridClientes.SelectedRows[0].DataBoundItem;
             }
         }
 
@@ -86,7 +84,7 @@ namespace Desktop.Views
 
         private async void btnGuardar_Click(object sender, EventArgs e)
         {
-            Cliente clienteAGuardar = new Cliente
+            Cliente clienteAGuardar = new Cliente()
             {
                 Id = _currentCliente?.Id ?? 0,
                 Nombre = TxtNombre.Text,
@@ -122,7 +120,7 @@ namespace Desktop.Views
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            //checheamos que haya una capacitacion seleccionada
+            //checheamos que haya un cliente seleccionado
             if (GridClientes.RowCount > 0 && GridClientes.SelectedRows.Count > 0) //rowcount filas
             {
                 _currentCliente = (Cliente)GridClientes.SelectedRows[0].DataBoundItem; //dataBoundItem trae el cliente seleccionado
@@ -142,14 +140,14 @@ namespace Desktop.Views
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
-            //btnBuscar.PerformClick(); //busca a medida que se escribe
+            btnBuscar.PerformClick(); //busca a medida que se escribe
         }
 
         private async void btnEliminar_Click(object sender, EventArgs e)
         {
 
             {
-                //checheamos que haya peliculas seleccionadas
+                //checheamos que haya clientes seleccionados
                 if (GridClientes.RowCount > 0 && GridClientes.SelectedRows.Count > 0)
                 {
                     Cliente entitySelected = (Cliente)GridClientes.SelectedRows[0].DataBoundItem;
@@ -210,7 +208,7 @@ namespace Desktop.Views
 
         private async void btnBuscar_Click(object sender, EventArgs e)
         {
-            GridClientes.DataSource = await _clienteService.GetAllAsync(txtBuscar.Text);
+            GridClientes.DataSource = await _clienteService.GetAllAsync(txtBuscar.Text.Trim());
         }
     }
 }

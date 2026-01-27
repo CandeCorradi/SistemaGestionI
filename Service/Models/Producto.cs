@@ -11,11 +11,10 @@ namespace Service.Models
         public int Id { get; set; }
         public string Nombre { get; set; } = string.Empty;
         public string Descripcion { get; set; } = string.Empty;
-        public int Medida { get; set; }
+        public string Medida { get; set; }
         public int Stock { get; set; }
         public string Categoria { get; set; } = string.Empty; // Melamina, Accesorio, Insumo
         public decimal Precio { get; set; }
-        public string URL { get; set; }
         public bool IsDeleted { get; set; } = false;
 
         public override string ToString()

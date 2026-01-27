@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             label2 = new Label();
-            tabControlClientes = new TabControl();
+            tabControlMayoristas = new TabControl();
             tabPageLista = new TabPage();
-            btnImprimir = new Button();
             btnRestore = new Button();
             checkVerEliminados = new CheckBox();
             btnSalir = new Button();
@@ -39,7 +39,7 @@
             btnModificar = new Button();
             btnAgregar = new Button();
             txtBuscar = new TextBox();
-            btnBuscar = new Button();
+            btnBuscarMay = new Button();
             label1 = new Label();
             GridMayorista = new DataGridView();
             tabPageAgregarEditar = new TabPage();
@@ -57,10 +57,14 @@
             label5 = new Label();
             label4 = new Label();
             label3 = new Label();
-            tabControlClientes.SuspendLayout();
+            statusBarMay = new StatusStrip();
+            LabelStatusMessage = new ToolStripStatusLabel();
+            timer1 = new System.Windows.Forms.Timer(components);
+            tabControlMayoristas.SuspendLayout();
             tabPageLista.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)GridMayorista).BeginInit();
             tabPageAgregarEditar.SuspendLayout();
+            statusBarMay.SuspendLayout();
             SuspendLayout();
             // 
             // label2
@@ -73,19 +77,18 @@
             label2.TabIndex = 3;
             label2.Text = "Agenda de Mayoristas";
             // 
-            // tabControlClientes
+            // tabControlMayoristas
             // 
-            tabControlClientes.Controls.Add(tabPageLista);
-            tabControlClientes.Controls.Add(tabPageAgregarEditar);
-            tabControlClientes.Location = new Point(17, 38);
-            tabControlClientes.Name = "tabControlClientes";
-            tabControlClientes.SelectedIndex = 0;
-            tabControlClientes.Size = new Size(626, 434);
-            tabControlClientes.TabIndex = 2;
+            tabControlMayoristas.Controls.Add(tabPageLista);
+            tabControlMayoristas.Controls.Add(tabPageAgregarEditar);
+            tabControlMayoristas.Location = new Point(17, 38);
+            tabControlMayoristas.Name = "tabControlMayoristas";
+            tabControlMayoristas.SelectedIndex = 0;
+            tabControlMayoristas.Size = new Size(626, 434);
+            tabControlMayoristas.TabIndex = 2;
             // 
             // tabPageLista
             // 
-            tabPageLista.Controls.Add(btnImprimir);
             tabPageLista.Controls.Add(btnRestore);
             tabPageLista.Controls.Add(checkVerEliminados);
             tabPageLista.Controls.Add(btnSalir);
@@ -93,7 +96,7 @@
             tabPageLista.Controls.Add(btnModificar);
             tabPageLista.Controls.Add(btnAgregar);
             tabPageLista.Controls.Add(txtBuscar);
-            tabPageLista.Controls.Add(btnBuscar);
+            tabPageLista.Controls.Add(btnBuscarMay);
             tabPageLista.Controls.Add(label1);
             tabPageLista.Controls.Add(GridMayorista);
             tabPageLista.Location = new Point(4, 24);
@@ -104,15 +107,6 @@
             tabPageLista.Text = "Lista";
             tabPageLista.UseVisualStyleBackColor = true;
             // 
-            // btnImprimir
-            // 
-            btnImprimir.Location = new Point(391, 377);
-            btnImprimir.Name = "btnImprimir";
-            btnImprimir.Size = new Size(112, 23);
-            btnImprimir.TabIndex = 18;
-            btnImprimir.Text = "Imprimir informe";
-            btnImprimir.UseVisualStyleBackColor = true;
-            // 
             // btnRestore
             // 
             btnRestore.Location = new Point(296, 377);
@@ -121,6 +115,7 @@
             btnRestore.TabIndex = 17;
             btnRestore.Text = "Restaurar";
             btnRestore.UseVisualStyleBackColor = true;
+            btnRestore.Click += btnRestore_Click;
             // 
             // checkVerEliminados
             // 
@@ -131,6 +126,7 @@
             checkVerEliminados.TabIndex = 16;
             checkVerEliminados.Text = "Ver eliminados";
             checkVerEliminados.UseVisualStyleBackColor = true;
+            checkVerEliminados.CheckedChanged += checkVerEliminados_CheckedChanged;
             // 
             // btnSalir
             // 
@@ -140,6 +136,7 @@
             btnSalir.TabIndex = 15;
             btnSalir.Text = "Salir";
             btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Click += btnSalir_Click;
             // 
             // btnEliminar
             // 
@@ -149,6 +146,7 @@
             btnEliminar.TabIndex = 14;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnModificar
             // 
@@ -158,6 +156,7 @@
             btnModificar.TabIndex = 13;
             btnModificar.Text = "Modificar";
             btnModificar.UseVisualStyleBackColor = true;
+            btnModificar.Click += btnModificar_Click;
             // 
             // btnAgregar
             // 
@@ -167,6 +166,7 @@
             btnAgregar.TabIndex = 12;
             btnAgregar.Text = "Agregar";
             btnAgregar.UseVisualStyleBackColor = true;
+            btnAgregar.Click += btnAgregar_Click;
             // 
             // txtBuscar
             // 
@@ -174,15 +174,17 @@
             txtBuscar.Name = "txtBuscar";
             txtBuscar.Size = new Size(412, 23);
             txtBuscar.TabIndex = 11;
+            txtBuscar.TextChanged += txtBuscar_TextChanged;
             // 
-            // btnBuscar
+            // btnBuscarMay
             // 
-            btnBuscar.Location = new Point(10, 15);
-            btnBuscar.Name = "btnBuscar";
-            btnBuscar.Size = new Size(75, 23);
-            btnBuscar.TabIndex = 10;
-            btnBuscar.Text = "Buscar";
-            btnBuscar.UseVisualStyleBackColor = true;
+            btnBuscarMay.Location = new Point(10, 15);
+            btnBuscarMay.Name = "btnBuscarMay";
+            btnBuscarMay.Size = new Size(75, 23);
+            btnBuscarMay.TabIndex = 10;
+            btnBuscarMay.Text = "Buscar";
+            btnBuscarMay.UseVisualStyleBackColor = true;
+            btnBuscarMay.Click += btnBuscarMay_Click;
             // 
             // label1
             // 
@@ -223,7 +225,7 @@
             tabPageAgregarEditar.Location = new Point(4, 24);
             tabPageAgregarEditar.Name = "tabPageAgregarEditar";
             tabPageAgregarEditar.Padding = new Padding(3);
-            tabPageAgregarEditar.Size = new Size(618, 385);
+            tabPageAgregarEditar.Size = new Size(618, 406);
             tabPageAgregarEditar.TabIndex = 1;
             tabPageAgregarEditar.Text = "Agregar/Editar";
             tabPageAgregarEditar.UseVisualStyleBackColor = true;
@@ -305,6 +307,7 @@
             btnCancelar.TabIndex = 4;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // btnGuardar
             // 
@@ -314,6 +317,7 @@
             btnGuardar.TabIndex = 3;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = true;
+            btnGuardar.Click += btnGuardar_Click;
             // 
             // label5
             // 
@@ -342,22 +346,40 @@
             label3.TabIndex = 0;
             label3.Text = "Nombre:";
             // 
+            // statusBarMay
+            // 
+            statusBarMay.Items.AddRange(new ToolStripItem[] { LabelStatusMessage });
+            statusBarMay.Location = new Point(0, 472);
+            statusBarMay.Name = "statusBarMay";
+            statusBarMay.Size = new Size(655, 22);
+            statusBarMay.TabIndex = 4;
+            statusBarMay.Text = "statusStrip1";
+            // 
+            // LabelStatusMessage
+            // 
+            LabelStatusMessage.Name = "LabelStatusMessage";
+            LabelStatusMessage.Size = new Size(118, 17);
+            LabelStatusMessage.Text = "toolStripStatusLabel1";
+            // 
             // Mayoristas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(655, 494);
+            Controls.Add(statusBarMay);
             Controls.Add(label2);
-            Controls.Add(tabControlClientes);
+            Controls.Add(tabControlMayoristas);
             Name = "Mayoristas";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Mayoristas";
-            tabControlClientes.ResumeLayout(false);
+            tabControlMayoristas.ResumeLayout(false);
             tabPageLista.ResumeLayout(false);
             tabPageLista.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)GridMayorista).EndInit();
             tabPageAgregarEditar.ResumeLayout(false);
             tabPageAgregarEditar.PerformLayout();
+            statusBarMay.ResumeLayout(false);
+            statusBarMay.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -365,7 +387,7 @@
         #endregion
 
         private Label label2;
-        private TabControl tabControlClientes;
+        private TabControl tabControlMayoristas;
         private TabPage tabPageLista;
         private Button btnRestore;
         private CheckBox checkVerEliminados;
@@ -374,7 +396,7 @@
         private Button btnModificar;
         private Button btnAgregar;
         private TextBox txtBuscar;
-        private Button btnBuscar;
+        private Button btnBuscarMay;
         private Label label1;
         private DataGridView GridMayorista;
         private TabPage tabPageAgregarEditar;
@@ -388,10 +410,12 @@
         private Label label5;
         private Label label4;
         private Label label3;
-        private Button btnImprimir;
         private Label label8;
         private TextBox TxtEmail;
         private Label label7;
         private TextBox TxtTipoProducto;
+        private StatusStrip statusBarMay;
+        private System.Windows.Forms.Timer timer1;
+        private ToolStripStatusLabel LabelStatusMessage;
     }
 }

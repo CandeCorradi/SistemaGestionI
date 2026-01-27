@@ -31,7 +31,6 @@
             components = new System.ComponentModel.Container();
             tabControlClientes = new TabControl();
             tabPageLista = new TabPage();
-            btnImprimir = new Button();
             btnRestore = new Button();
             checkVerEliminados = new CheckBox();
             btnSalir = new Button();
@@ -76,7 +75,6 @@
             // 
             // tabPageLista
             // 
-            tabPageLista.Controls.Add(btnImprimir);
             tabPageLista.Controls.Add(btnRestore);
             tabPageLista.Controls.Add(checkVerEliminados);
             tabPageLista.Controls.Add(btnSalir);
@@ -94,15 +92,6 @@
             tabPageLista.TabIndex = 0;
             tabPageLista.Text = "Lista";
             tabPageLista.UseVisualStyleBackColor = true;
-            // 
-            // btnImprimir
-            // 
-            btnImprimir.Location = new Point(388, 369);
-            btnImprimir.Name = "btnImprimir";
-            btnImprimir.Size = new Size(112, 23);
-            btnImprimir.TabIndex = 19;
-            btnImprimir.Text = "Imprimir informe";
-            btnImprimir.UseVisualStyleBackColor = true;
             // 
             // btnRestore
             // 
@@ -218,7 +207,7 @@
             tabPageAgregarEditar.Location = new Point(4, 24);
             tabPageAgregarEditar.Name = "tabPageAgregarEditar";
             tabPageAgregarEditar.Padding = new Padding(3);
-            tabPageAgregarEditar.Size = new Size(627, 385);
+            tabPageAgregarEditar.Size = new Size(627, 398);
             tabPageAgregarEditar.TabIndex = 1;
             tabPageAgregarEditar.Text = "Agregar/Editar";
             tabPageAgregarEditar.UseVisualStyleBackColor = true;
@@ -383,6 +372,5 @@
         private System.Windows.Forms.Timer TimerStatusBar;
         private StatusStrip statusBar;
         private ToolStripStatusLabel LabelStatusMessage;
-        private Button btnImprimir;
     }
 }

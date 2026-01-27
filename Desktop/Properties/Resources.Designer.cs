@@ -69,5 +69,14 @@ namespace Desktop.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a https://localhost:7015/api/.
+        /// </summary>
+        internal static string UrlApiLocal {
+            get {
+                return ResourceManager.GetString("UrlApiLocal", resourceCulture);
+            }
+        }
     }
 }

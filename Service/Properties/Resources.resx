@@ -124,7 +124,7 @@
     <value>sistema-de-gestion-ba1e7.firebaseapp.com</value>
   </data>
   <data name="UrlApiAzure" xml:space="preserve">
-    <value>https://sistemadegestioni.azurewebsites.net/api/</value>
+    <value>https://sistemadegestioni.azurewebsites.net</value>
   </data>
   <data name="UrlApiLocal" xml:space="preserve">
     <value>https://localhost:7015/api/</value>

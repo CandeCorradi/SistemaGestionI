@@ -24,10 +24,10 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Build with dotnet
-        run: dotnet build Backend/Backend.csproj --configuration Release
+        run: dotnet build --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish Backend/Backend.csproj -c Release -o "${{env.DOTNET_ROOT}}/myapp"
+        run: dotnet publish -c Release -o "${{env.DOTNET_ROOT}}/myapp"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -51,9 +51,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_2AA8ACC531E64348989B6DA72FB56649 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_C2442E7075D0424687A8D9303EF924AC }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_0944AFA05CEE44C0883B0B7329055276 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_FC98C51D1FD746EC9FF3E137B777B205 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_2A3F41546C0C454F85D989DA8ECF0FF3 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_89F1255506F34F31A73B06F6303ECE43 }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
@@ -62,5 +62,4 @@ jobs:
           app-name: 'SistemaDeGestionI'
           slot-name: 'Production'
           package: .
-
           

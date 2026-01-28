@@ -51,7 +51,7 @@
             label7 = new Label();
             label6 = new Label();
             TxtMedida = new TextBox();
-            TxtDescripcionPedido = new TextBox();
+            TxtDescripcionProducto = new TextBox();
             TxtNombre = new TextBox();
             btnCancelar = new Button();
             btnGuardar = new Button();
@@ -227,7 +227,7 @@
             tabPageAgregarEditar.Controls.Add(label7);
             tabPageAgregarEditar.Controls.Add(label6);
             tabPageAgregarEditar.Controls.Add(TxtMedida);
-            tabPageAgregarEditar.Controls.Add(TxtDescripcionPedido);
+            tabPageAgregarEditar.Controls.Add(TxtDescripcionProducto);
             tabPageAgregarEditar.Controls.Add(TxtNombre);
             tabPageAgregarEditar.Controls.Add(btnCancelar);
             tabPageAgregarEditar.Controls.Add(btnGuardar);
@@ -245,10 +245,12 @@
             // CmbCategoria
             // 
             CmbCategoria.FormattingEnabled = true;
+            CmbCategoria.Items.AddRange(new object[] { "Melamina", "Accesorio" });
             CmbCategoria.Location = new Point(261, 169);
             CmbCategoria.Name = "CmbCategoria";
             CmbCategoria.Size = new Size(207, 23);
             CmbCategoria.TabIndex = 17;
+            CmbCategoria.SelectedIndexChanged += CmbCategoria_SelectedIndexChanged;
             // 
             // TxtPrecio
             // 
@@ -298,12 +300,12 @@
             TxtMedida.Size = new Size(207, 23);
             TxtMedida.TabIndex = 7;
             // 
-            // TxtDescripcionPedido
+            // TxtDescripcionProducto
             // 
-            TxtDescripcionPedido.Location = new Point(261, 82);
-            TxtDescripcionPedido.Name = "TxtDescripcionPedido";
-            TxtDescripcionPedido.Size = new Size(207, 23);
-            TxtDescripcionPedido.TabIndex = 6;
+            TxtDescripcionProducto.Location = new Point(261, 82);
+            TxtDescripcionProducto.Name = "TxtDescripcionProducto";
+            TxtDescripcionProducto.Size = new Size(207, 23);
+            TxtDescripcionProducto.TabIndex = 6;
             // 
             // TxtNombre
             // 
@@ -418,7 +420,7 @@
         private Label label7;
         private Label label6;
         private TextBox TxtMedida;
-        private TextBox TxtDescripcionPedido;
+        private TextBox TxtDescripcionProducto;
         private TextBox TxtNombre;
         private Button btnCancelar;
         private Button btnGuardar;

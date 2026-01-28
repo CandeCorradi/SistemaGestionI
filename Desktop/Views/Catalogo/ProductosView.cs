@@ -72,7 +72,7 @@ namespace Desktop.Views.Catalogo
         private void LimpiarControlesAgregarEditar()
         {
             TxtNombre.Clear();
-            TxtDescripcionPedido.Clear();
+            TxtDescripcionProducto.Clear();
             TxtMedida.Clear();
             TxtStock.Clear();
             CmbCategoria.SelectedIndex = -1;
@@ -89,7 +89,7 @@ namespace Desktop.Views.Catalogo
             Producto productoAGuardar = new Producto()
             {
                 Nombre = TxtNombre.Text,
-                Descripcion = TxtDescripcionPedido.Text,
+                Descripcion = TxtDescripcionProducto.Text,
                 Medida = TxtMedida.Text,
                 Stock = int.Parse(TxtStock.Text),
                 Categoria = CmbCategoria.SelectedItem.ToString(),
@@ -126,7 +126,7 @@ namespace Desktop.Views.Catalogo
             {
                 _currentProducto = (Producto)GridProductos.SelectedRows[0].DataBoundItem; //dataBoundItem trae el producto seleccionado
                 TxtNombre.Text = _currentProducto.Nombre;
-                TxtDescripcionPedido.Text = _currentProducto.Descripcion;
+                TxtDescripcionProducto.Text = _currentProducto.Descripcion;
                 TxtMedida.Text = _currentProducto.Medida;
                 TxtStock.Text = _currentProducto.Stock.ToString();
                 CmbCategoria.SelectedItem = _currentProducto.Categoria;
@@ -218,8 +218,8 @@ namespace Desktop.Views.Catalogo
             if (_productos == null || !_productos.Any())
             {
                 MessageBox.Show(
-                    "Por favor, espera a que los productos se carguen.", 
-                    "Información", 
+                    "Por favor, espera a que los productos se carguen.",
+                    "Información",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
@@ -231,8 +231,8 @@ namespace Desktop.Views.Catalogo
             if (!productosEnStock.Any())
             {
                 MessageBox.Show(
-                    "No hay productos en stock para imprimir.", 
-                    "Información", 
+                    "No hay productos en stock para imprimir.",
+                    "Información",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
@@ -241,6 +241,23 @@ namespace Desktop.Views.Catalogo
             reporteProductos.MdiParent = this.MdiParent; //hace referencia a la ventana principal
             reporteProductos.Show();
 
+        }
+
+        private void CmbCategoria_SelectedIndexChanged(object sender, EventArgs e)
+        {            
+            string seleccion = CmbCategoria.SelectedItem.ToString();
+            
+            if (seleccion == "Melamina")
+            {
+                
+                TxtDescripcionProducto.PlaceholderText = "Ej: Faplac Roble Natural 18mm";
+                TxtMedida.Text = "Espesor (mm):";
+            }
+            else if (seleccion == "Accesorio")
+            {
+                TxtDescripcionProducto.PlaceholderText = "Ej: Bisagra cazoleta 35mm";
+                TxtMedida.Text = "Unidad de medida:";
+            }
         }
     }
 }

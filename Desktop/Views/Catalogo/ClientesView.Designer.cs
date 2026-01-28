@@ -214,7 +214,7 @@
             // 
             // TxtDir
             // 
-            TxtDir.Location = new Point(198, 186);
+            TxtDir.Location = new Point(284, 186);
             TxtDir.Name = "TxtDir";
             TxtDir.Size = new Size(207, 23);
             TxtDir.TabIndex = 9;
@@ -222,7 +222,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(36, 186);
+            label6.Location = new Point(122, 186);
             label6.Name = "label6";
             label6.Size = new Size(60, 15);
             label6.TabIndex = 8;
@@ -230,28 +230,28 @@
             // 
             // TxtTel
             // 
-            TxtTel.Location = new Point(198, 142);
+            TxtTel.Location = new Point(284, 142);
             TxtTel.Name = "TxtTel";
             TxtTel.Size = new Size(207, 23);
             TxtTel.TabIndex = 7;
             // 
             // TxtApellido
             // 
-            TxtApellido.Location = new Point(198, 98);
+            TxtApellido.Location = new Point(284, 98);
             TxtApellido.Name = "TxtApellido";
             TxtApellido.Size = new Size(207, 23);
             TxtApellido.TabIndex = 6;
             // 
             // TxtNombre
             // 
-            TxtNombre.Location = new Point(198, 52);
+            TxtNombre.Location = new Point(284, 52);
             TxtNombre.Name = "TxtNombre";
             TxtNombre.Size = new Size(207, 23);
             TxtNombre.TabIndex = 5;
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(270, 280);
+            btnCancelar.Location = new Point(346, 270);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(75, 23);
             btnCancelar.TabIndex = 4;
@@ -261,7 +261,7 @@
             // 
             // btnGuardar
             // 
-            btnGuardar.Location = new Point(114, 280);
+            btnGuardar.Location = new Point(190, 270);
             btnGuardar.Name = "btnGuardar";
             btnGuardar.Size = new Size(75, 23);
             btnGuardar.TabIndex = 3;
@@ -272,7 +272,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(36, 142);
+            label5.Location = new Point(122, 142);
             label5.Name = "label5";
             label5.Size = new Size(55, 15);
             label5.TabIndex = 2;
@@ -281,7 +281,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(36, 98);
+            label4.Location = new Point(122, 98);
             label4.Name = "label4";
             label4.Size = new Size(54, 15);
             label4.TabIndex = 1;
@@ -290,7 +290,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(36, 55);
+            label3.Location = new Point(122, 55);
             label3.Name = "label3";
             label3.Size = new Size(54, 15);
             label3.TabIndex = 0;

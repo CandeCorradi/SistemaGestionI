@@ -244,19 +244,21 @@ namespace Desktop.Views.Catalogo
         }
 
         private void CmbCategoria_SelectedIndexChanged(object sender, EventArgs e)
-        {            
+        {
+            if (CmbCategoria.SelectedItem == null) return;
+
             string seleccion = CmbCategoria.SelectedItem.ToString();
-            
+
             if (seleccion == "Melamina")
             {
                 
                 TxtDescripcionProducto.PlaceholderText = "Ej: Faplac Roble Natural 18mm";
-                TxtMedida.Text = "Espesor (mm):";
+                TxtMedida.Text = "Espesor (mm): ";
             }
             else if (seleccion == "Accesorio")
             {
                 TxtDescripcionProducto.PlaceholderText = "Ej: Bisagra cazoleta 35mm";
-                TxtMedida.Text = "Unidad de medida:";
+                TxtMedida.Text = "Unidad de medida: ";
             }
         }
     }

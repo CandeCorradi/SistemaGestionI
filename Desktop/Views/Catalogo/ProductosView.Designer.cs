@@ -246,7 +246,7 @@
             // 
             CmbCategoria.FormattingEnabled = true;
             CmbCategoria.Items.AddRange(new object[] { "Melamina", "Accesorio" });
-            CmbCategoria.Location = new Point(261, 169);
+            CmbCategoria.Location = new Point(261, 53);
             CmbCategoria.Name = "CmbCategoria";
             CmbCategoria.Size = new Size(207, 23);
             CmbCategoria.TabIndex = 17;
@@ -270,7 +270,7 @@
             // 
             // TxtStock
             // 
-            TxtStock.Location = new Point(261, 140);
+            TxtStock.Location = new Point(261, 169);
             TxtStock.Name = "TxtStock";
             TxtStock.Size = new Size(207, 23);
             TxtStock.TabIndex = 11;
@@ -278,7 +278,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(176, 148);
+            label7.Location = new Point(176, 177);
             label7.Name = "label7";
             label7.Size = new Size(39, 15);
             label7.TabIndex = 10;
@@ -287,7 +287,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(176, 177);
+            label6.Location = new Point(176, 61);
             label6.Name = "label6";
             label6.Size = new Size(61, 15);
             label6.TabIndex = 8;
@@ -295,21 +295,21 @@
             // 
             // TxtMedida
             // 
-            TxtMedida.Location = new Point(261, 111);
+            TxtMedida.Location = new Point(261, 140);
             TxtMedida.Name = "TxtMedida";
             TxtMedida.Size = new Size(207, 23);
             TxtMedida.TabIndex = 7;
             // 
             // TxtDescripcionProducto
             // 
-            TxtDescripcionProducto.Location = new Point(261, 82);
+            TxtDescripcionProducto.Location = new Point(261, 111);
             TxtDescripcionProducto.Name = "TxtDescripcionProducto";
             TxtDescripcionProducto.Size = new Size(207, 23);
             TxtDescripcionProducto.TabIndex = 6;
             // 
             // TxtNombre
             // 
-            TxtNombre.Location = new Point(261, 53);
+            TxtNombre.Location = new Point(261, 82);
             TxtNombre.Name = "TxtNombre";
             TxtNombre.Size = new Size(207, 23);
             TxtNombre.TabIndex = 5;
@@ -337,7 +337,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(176, 119);
+            label5.Location = new Point(176, 148);
             label5.Name = "label5";
             label5.Size = new Size(50, 15);
             label5.TabIndex = 2;
@@ -346,7 +346,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(176, 90);
+            label4.Location = new Point(176, 119);
             label4.Name = "label4";
             label4.Size = new Size(72, 15);
             label4.TabIndex = 1;
@@ -355,7 +355,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(176, 64);
+            label3.Location = new Point(176, 93);
             label3.Name = "label3";
             label3.Size = new Size(54, 15);
             label3.TabIndex = 0;

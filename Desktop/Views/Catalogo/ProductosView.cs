@@ -1,4 +1,5 @@
-﻿using Service.Models;
+﻿using Desktop.ViewReports;
+using Service.Models;
 using Service.Services;
 using System;
 using System.Collections.Generic;
@@ -215,31 +216,9 @@ namespace Desktop.Views.Catalogo
 
         private void btnImprimirProductos_Click(object sender, EventArgs e)
         {
-            if (_productos == null || !_productos.Any())
-            {
-                MessageBox.Show(
-                    "Por favor, espera a que los productos se carguen.",
-                    "Información",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            var productosEnStock = _productos
-                .Where(p => p.Stock > 0)
-                .OrderByDescending(p => p.Stock)
-                .ToList();
-            if (!productosEnStock.Any())
-            {
-                MessageBox.Show(
-                    "No hay productos en stock para imprimir.",
-                    "Información",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            var reporteProductos = new ViewReports.ProductosView(productosEnStock);
-            reporteProductos.MdiParent = this.MdiParent; //hace referencia a la ventana principal
-            reporteProductos.Show();
+            var productosReport = new ProductosViewReports();
+            productosReport.MdiParent = this.MdiParent;
+            productosReport.Show();
 
         }
 

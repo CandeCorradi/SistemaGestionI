@@ -1,6 +1,6 @@
 ﻿namespace Desktop.ViewReports
 {
-    partial class ProductosView
+    partial class ProductosViewReports
     {
         /// <summary>
         /// Required designer variable.
@@ -30,14 +30,15 @@
         {
             SuspendLayout();
             // 
-            // ProductosView
+            // ProductosViewReports
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Name = "ProductosView";
-            Text = "ProductosView";
-            Load += ProductosView_Load_1;
+            Name = "ProductosViewReports";
+            Text = "ProductosViewReports";
+            WindowState = FormWindowState.Maximized;
+            Load += ProductosViewReports_Load;
             ResumeLayout(false);
         }
 

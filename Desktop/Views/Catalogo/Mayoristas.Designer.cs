@@ -43,7 +43,7 @@
             label1 = new Label();
             GridMayorista = new DataGridView();
             tabPageAgregarEditar = new TabPage();
-            TxtTipoProducto = new TextBox();
+            CmbProducto = new ComboBox();
             label8 = new Label();
             TxtEmail = new TextBox();
             label7 = new Label();
@@ -71,11 +71,11 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Times New Roman", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(17, 9);
+            label2.Location = new Point(180, 9);
             label2.Name = "label2";
-            label2.Size = new Size(241, 26);
+            label2.Size = new Size(285, 26);
             label2.TabIndex = 3;
-            label2.Text = "Agenda de Mayoristas";
+            label2.Text = "✦ Agenda de Mayoristas ✦";
             // 
             // tabControlMayoristas
             // 
@@ -208,7 +208,7 @@
             // 
             // tabPageAgregarEditar
             // 
-            tabPageAgregarEditar.Controls.Add(TxtTipoProducto);
+            tabPageAgregarEditar.Controls.Add(CmbProducto);
             tabPageAgregarEditar.Controls.Add(label8);
             tabPageAgregarEditar.Controls.Add(TxtEmail);
             tabPageAgregarEditar.Controls.Add(label7);
@@ -230,21 +230,23 @@
             tabPageAgregarEditar.Text = "Agregar/Editar";
             tabPageAgregarEditar.UseVisualStyleBackColor = true;
             // 
-            // TxtTipoProducto
+            // CmbProducto
             // 
-            TxtTipoProducto.Location = new Point(215, 187);
-            TxtTipoProducto.Name = "TxtTipoProducto";
-            TxtTipoProducto.Size = new Size(207, 23);
-            TxtTipoProducto.TabIndex = 13;
+            CmbProducto.FormattingEnabled = true;
+            CmbProducto.Items.AddRange(new object[] { "Melamina", "Accesorio" });
+            CmbProducto.Location = new Point(215, 187);
+            CmbProducto.Name = "CmbProducto";
+            CmbProducto.Size = new Size(207, 23);
+            CmbProducto.TabIndex = 13;
             // 
             // label8
             // 
             label8.AutoSize = true;
             label8.Location = new Point(56, 190);
             label8.Name = "label8";
-            label8.Size = new Size(59, 15);
+            label8.Size = new Size(101, 15);
             label8.TabIndex = 12;
-            label8.Text = "Producto:";
+            label8.Text = "Tipo de producto:";
             // 
             // TxtEmail
             // 
@@ -353,13 +355,11 @@
             statusBarMay.Name = "statusBarMay";
             statusBarMay.Size = new Size(655, 22);
             statusBarMay.TabIndex = 4;
-            statusBarMay.Text = "statusStrip1";
             // 
             // LabelStatusMessage
             // 
             LabelStatusMessage.Name = "LabelStatusMessage";
-            LabelStatusMessage.Size = new Size(118, 17);
-            LabelStatusMessage.Text = "toolStripStatusLabel1";
+            LabelStatusMessage.Size = new Size(0, 17);
             // 
             // Mayoristas
             // 
@@ -413,9 +413,9 @@
         private Label label8;
         private TextBox TxtEmail;
         private Label label7;
-        private TextBox TxtTipoProducto;
         private StatusStrip statusBarMay;
         private System.Windows.Forms.Timer timer1;
         private ToolStripStatusLabel LabelStatusMessage;
+        private ComboBox CmbProducto;
     }
 }

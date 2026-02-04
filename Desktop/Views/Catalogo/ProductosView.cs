@@ -96,24 +96,34 @@ namespace Desktop.Views.Catalogo
                 Categoria = CmbCategoria.SelectedItem.ToString(),
                 Precio = decimal.Parse(TxtPrecio.Text)
             };
+
             bool response = false;
+
+            // 2. Si _currentProducto NO es null, significa que estamos EDITANDO
             if (_currentProducto != null)
             {
+                // ASIGNAMOS EL ID ORIGINAL (Esta es la solución al error 404)
+                productoAGuardar.Id = _currentProducto.Id;
+
                 response = await _productoService.UpdateAsync(productoAGuardar);
             }
             else
             {
-                var nuevoCliente = await _productoService.AddAsync(productoAGuardar);
-                response = nuevoCliente != null; //si es distinto de null es porque se guardo correctamente
+                // Si es null, es un producto NUEVO
+                var nuevoProducto = await _productoService.AddAsync(productoAGuardar);
+                response = nuevoProducto != null;
             }
+
+            // 3. Procesamos la respuesta
             if (response)
             {
-                _currentProducto = null; // Reset the modified movie after saving
+                _currentProducto = null; // Limpiamos la variable de edición
                 TimerStatusBar.Text = $"Producto {productoAGuardar.Nombre} guardado correctamente";
-                timer2.Start(); // Iniciar el temporizador para mostrar el mensaje en la barra de estado
-                await GetAllData();
+                timer2.Start();
+
+                await GetAllData(); // Refrescamos la grilla
                 LimpiarControlesAgregarEditar();
-                tabControlProductos.SelectedTab = tabPageLista;
+                tabControlProductos.SelectedTab = tabPageLista; // Volvemos a la lista
             }
             else
             {
@@ -216,7 +226,15 @@ namespace Desktop.Views.Catalogo
 
         private void btnImprimirProductos_Click(object sender, EventArgs e)
         {
-            var productosReport = new ProductosViewReports();
+            // Usamos _productos que es tu variable global
+            if (_productos == null || _productos.Count == 0)
+            {
+                MessageBox.Show("No hay productos cargados para imprimir.", "Aviso");
+                return;
+            }
+
+            // Pasamos la lista completa; los nombres de las propiedades dentro del reporte deben coincidir exactamente
+            var productosReport = new ProductosViewReports(_productos);
             productosReport.MdiParent = this.MdiParent;
             productosReport.Show();
 

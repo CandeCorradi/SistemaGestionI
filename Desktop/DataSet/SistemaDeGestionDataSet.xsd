@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="SistemaDeGestionDataSet" targetNamespace="http://tempuri.org/SistemaDeGestionDataSet.xsd" xmlns:mstns="http://tempuri.org/SistemaDeGestionDataSet.xsd" xmlns="http://tempuri.org/SistemaDeGestionDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="SistemaDeGestionDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="SistemaDeGestionDataSet" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="SistemaDeGestionDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DSProductosMelamina" msprop:Generator_RowEvHandlerName="DSProductosMelaminaRowChangeEventHandler" msprop:Generator_RowDeletedName="DSProductosMelaminaRowDeleted" msprop:Generator_RowDeletingName="DSProductosMelaminaRowDeleting" msprop:Generator_RowEvArgName="DSProductosMelaminaRowChangeEvent" msprop:Generator_TablePropName="DSProductosMelamina" msprop:Generator_RowChangedName="DSProductosMelaminaRowChanged" msprop:Generator_UserTableName="DSProductosMelamina" msprop:Generator_RowChangingName="DSProductosMelaminaRowChanging" msprop:Generator_RowClassName="DSProductosMelaminaRow" msprop:Generator_TableClassName="DSProductosMelaminaDataTable" msprop:Generator_TableVarName="tableDSProductosMelamina">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Melamina" msprop:Generator_ColumnPropNameInTable="MelaminaColumn" msprop:Generator_ColumnPropNameInRow="Melamina" msprop:Generator_UserColumnName="Melamina" msprop:Generator_ColumnVarNameInTable="columnMelamina" type="xs:string" minOccurs="0" />
+              <xs:element name="Stock" msprop:Generator_ColumnPropNameInTable="StockColumn" msprop:Generator_ColumnPropNameInRow="Stock" msprop:Generator_UserColumnName="Stock" msprop:Generator_ColumnVarNameInTable="columnStock" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Precio" msprop:Generator_ColumnPropNameInTable="PrecioColumn" msprop:Generator_ColumnPropNameInRow="Precio" msprop:Generator_UserColumnName="Precio" msprop:Generator_ColumnVarNameInTable="columnPrecio" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DSProductosAccesorios" msprop:Generator_RowEvHandlerName="DSProductosAccesoriosRowChangeEventHandler" msprop:Generator_RowDeletedName="DSProductosAccesoriosRowDeleted" msprop:Generator_RowDeletingName="DSProductosAccesoriosRowDeleting" msprop:Generator_RowEvArgName="DSProductosAccesoriosRowChangeEvent" msprop:Generator_TablePropName="DSProductosAccesorios" msprop:Generator_RowChangedName="DSProductosAccesoriosRowChanged" msprop:Generator_UserTableName="DSProductosAccesorios" msprop:Generator_RowChangingName="DSProductosAccesoriosRowChanging" msprop:Generator_RowClassName="DSProductosAccesoriosRow" msprop:Generator_TableClassName="DSProductosAccesoriosDataTable" msprop:Generator_TableVarName="tableDSProductosAccesorios">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Accesorio" msdata:Caption="Melaminas" msprop:Generator_ColumnPropNameInTable="AccesorioColumn" msprop:Generator_ColumnPropNameInRow="Accesorio" msprop:Generator_UserColumnName="Accesorio" msprop:Generator_ColumnVarNameInTable="columnAccesorio" type="xs:string" minOccurs="0" />
+              <xs:element name="Stock" msprop:Generator_ColumnPropNameInTable="StockColumn" msprop:Generator_ColumnPropNameInRow="Stock" msprop:Generator_UserColumnName="Stock" msprop:Generator_ColumnVarNameInTable="columnStock" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Precio" msprop:Generator_ColumnPropNameInTable="PrecioColumn" msprop:Generator_ColumnPropNameInRow="Precio" msprop:Generator_UserColumnName="Precio" msprop:Generator_ColumnVarNameInTable="columnPrecio" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

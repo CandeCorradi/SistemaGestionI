@@ -300,11 +300,11 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Times New Roman", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(12, 9);
+            label2.Location = new Point(192, 9);
             label2.Name = "label2";
-            label2.Size = new Size(209, 26);
+            label2.Size = new Size(253, 26);
             label2.TabIndex = 1;
-            label2.Text = "Agenda de Clientes";
+            label2.Text = "✦ Agenda de Clientes ✦";
             // 
             // statusBar
             // 

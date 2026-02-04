@@ -28,19 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
+            label2 = new Label();
             SuspendLayout();
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Times New Roman", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(226, 9);
+            label2.Name = "label2";
+            label2.Size = new Size(220, 26);
+            label2.TabIndex = 4;
+            label2.Text = "✦ Tipo de Usuario ✦";
             // 
             // UsuariosView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(662, 450);
+            Controls.Add(label2);
             Name = "UsuariosView";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "UsuariosView";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Label label2;
     }
 }

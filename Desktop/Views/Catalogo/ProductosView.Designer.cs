@@ -72,11 +72,11 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Times New Roman", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(8, 10);
+            label2.Location = new Point(223, 10);
             label2.Name = "label2";
-            label2.Size = new Size(116, 26);
+            label2.Size = new Size(160, 26);
             label2.TabIndex = 5;
-            label2.Text = "Productos";
+            label2.Text = "✦ Productos ✦";
             // 
             // tabControlProductos
             // 

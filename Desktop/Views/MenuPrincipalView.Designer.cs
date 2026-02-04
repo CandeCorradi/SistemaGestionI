@@ -59,6 +59,7 @@
             // 
             // SubMenuPrincipal
             // 
+            SubMenuPrincipal.BackColor = Color.White;
             SubMenuPrincipal.DropDownItems.AddRange(new ToolStripItem[] { subMenuClientes, subMenuMayoristas, SubMenuProductos, SubMenuUsuarios, detalleDePedidosToolStripMenuItem, detalleDePresupuestosToolStripMenuItem, pagosToolStripMenuItem, pedidosToolStripMenuItem, presupuestosToolStripMenuItem, presupuestoDeProductosToolStripMenuItem });
             SubMenuPrincipal.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             SubMenuPrincipal.IconChar = FontAwesome.Sharp.IconChar.House;
@@ -98,54 +99,61 @@
             // 
             // detalleDePedidosToolStripMenuItem
             // 
+            detalleDePedidosToolStripMenuItem.ForeColor = SystemColors.ControlDark;
             detalleDePedidosToolStripMenuItem.Name = "detalleDePedidosToolStripMenuItem";
             detalleDePedidosToolStripMenuItem.Size = new Size(247, 22);
             detalleDePedidosToolStripMenuItem.Text = "Detalle de pedidos";
             // 
             // detalleDePresupuestosToolStripMenuItem
             // 
+            detalleDePresupuestosToolStripMenuItem.ForeColor = SystemColors.ControlDark;
             detalleDePresupuestosToolStripMenuItem.Name = "detalleDePresupuestosToolStripMenuItem";
             detalleDePresupuestosToolStripMenuItem.Size = new Size(247, 22);
             detalleDePresupuestosToolStripMenuItem.Text = "Detalle de presupuestos";
             // 
             // pagosToolStripMenuItem
             // 
+            pagosToolStripMenuItem.ForeColor = SystemColors.ControlDark;
             pagosToolStripMenuItem.Name = "pagosToolStripMenuItem";
             pagosToolStripMenuItem.Size = new Size(247, 22);
             pagosToolStripMenuItem.Text = "Pagos";
             // 
             // pedidosToolStripMenuItem
             // 
+            pedidosToolStripMenuItem.ForeColor = SystemColors.ControlDark;
             pedidosToolStripMenuItem.Name = "pedidosToolStripMenuItem";
             pedidosToolStripMenuItem.Size = new Size(247, 22);
             pedidosToolStripMenuItem.Text = "Pedidos";
             // 
             // presupuestosToolStripMenuItem
             // 
+            presupuestosToolStripMenuItem.ForeColor = SystemColors.ControlDark;
             presupuestosToolStripMenuItem.Name = "presupuestosToolStripMenuItem";
             presupuestosToolStripMenuItem.Size = new Size(247, 22);
             presupuestosToolStripMenuItem.Text = "Presupuestos";
             // 
             // presupuestoDeProductosToolStripMenuItem
             // 
+            presupuestoDeProductosToolStripMenuItem.ForeColor = SystemColors.ControlDark;
             presupuestoDeProductosToolStripMenuItem.Name = "presupuestoDeProductosToolStripMenuItem";
             presupuestoDeProductosToolStripMenuItem.Size = new Size(247, 22);
             presupuestoDeProductosToolStripMenuItem.Text = "Presupuesto de productos";
             // 
             // SubMenuSalir
             // 
+            SubMenuSalir.BackColor = Color.White;
             SubMenuSalir.DropDownItems.AddRange(new ToolStripItem[] { SubMenuSalirDelSistema });
             SubMenuSalir.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             SubMenuSalir.Name = "SubMenuSalir";
-            SubMenuSalir.Size = new Size(49, 21);
-            SubMenuSalir.Text = "Salir";
-            SubMenuSalir.Click += SubMenuSalir_Click;
+            SubMenuSalir.Size = new Size(64, 21);
+            SubMenuSalir.Text = "▶ Salir";
             // 
             // SubMenuSalirDelSistema
             // 
             SubMenuSalirDelSistema.Name = "SubMenuSalirDelSistema";
             SubMenuSalirDelSistema.Size = new Size(183, 22);
             SubMenuSalirDelSistema.Text = "Salir del sistema";
+            SubMenuSalirDelSistema.Click += SubMenuSalirDelSistema_Click;
             // 
             // toolStrip
             // 

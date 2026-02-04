@@ -1,4 +1,5 @@
-﻿using Service.Models;
+﻿using FontAwesome.Sharp;
+using Service.Models;
 using Service.Services;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,11 @@ namespace Desktop.Views
             InitializeComponent();
             _ = GetAllData();
             checkVerEliminados.CheckedChanged += DisplayHideControlsRestoreButton;
+
+            CmbProducto.Items.Clear();
+            CmbProducto.Items.Add("Melamina");
+            CmbProducto.Items.Add("Accesorio");
+            CmbProducto.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void DisplayHideControlsRestoreButton(object? sender, EventArgs e)
@@ -75,7 +81,7 @@ namespace Desktop.Views
             TxtDir.Clear();
             TxtEmail.Clear();
             TxtTel.Clear();
-            TxtTipoProducto.Clear();
+            CmbProducto.SelectedIndex = -1;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -85,57 +91,60 @@ namespace Desktop.Views
 
         private async void btnGuardar_Click(object sender, EventArgs e)
         {
-            Mayorista mayoristaAGuardar = new Mayorista()
-            {
-                Nombre = TxtNombre.Text,
-                Apellido = TxtApellido.Text,
-                Telefono = TxtTel.Text,
-                Direccion = TxtDir.Text,
-                Email = TxtEmail.Text,
-                TipoProducto = TxtTipoProducto.Text
-            };
+            // Creamos el objeto con los datos de los campos
+    Mayorista mayoristaAGuardar = new Mayorista()
+    {
+        Nombre = TxtNombre.Text,
+        Apellido = TxtApellido.Text,
+        Telefono = TxtTel.Text,
+        Direccion = TxtDir.Text,
+        Email = TxtEmail.Text,
+        TipoProducto = CmbProducto.Text // Captura lo que seleccionaste en el combo
+    };
+
             bool response = false;
-            if (_currentMayorista == null)
+
+            // SI _currentMayorista NO ES NULL, estamos MODIFICANDO
+            if (_currentMayorista != null)
             {
+                mayoristaAGuardar.Id = _currentMayorista.Id; // PASAMOS EL ID (Clave para Azure)
                 response = await _mayoristaService.UpdateAsync(mayoristaAGuardar);
             }
+            // SI ES NULL, estamos AGREGANDO uno nuevo
             else
             {
-                var nuevoMAyorista = await _mayoristaService.AddAsync(mayoristaAGuardar);
-                response = nuevoMAyorista != null;
+                var nuevoMayorista = await _mayoristaService.AddAsync(mayoristaAGuardar);
+                response = nuevoMayorista != null;
             }
+
             if (response)
             {
                 _currentMayorista = null;
-                LabelStatusMessage.Text = $"Cliente {mayoristaAGuardar.Nombre} guardado correctamente";
-                timer1.Start(); // Iniciar el temporizador para mostrar el mensaje en la barra de estado
+                LabelStatusMessage.Text = $"Mayorista {mayoristaAGuardar.Nombre} guardado correctamente";
+                timer1.Start();
                 await GetAllData();
                 LimpiarControlesAgregarEditar();
                 tabControlMayoristas.SelectedTab = tabPageLista;
             }
             else
             {
-                MessageBox.Show("Ocurrió un error al guardar el mayorista. Por favor, intente nuevamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Ocurrió un error al guardar el mayorista. Verifique la conexión.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            //checheamos que haya un mayorista seleccionado
-            if (GridMayorista.RowCount > 0 && GridMayorista.SelectedRows.Count > 0) //rowcount filas
+            if (GridMayorista.RowCount > 0 && GridMayorista.SelectedRows.Count > 0)
             {
-                _currentMayorista = (Mayorista)GridMayorista.SelectedRows[0].DataBoundItem; //dataBoundItem trae el cliente seleccionado
+                _currentMayorista = (Mayorista)GridMayorista.SelectedRows[0].DataBoundItem;
                 TxtNombre.Text = _currentMayorista.Nombre;
                 TxtApellido.Text = _currentMayorista.Apellido;
                 TxtTel.Text = _currentMayorista.Telefono;
                 TxtDir.Text = _currentMayorista.Direccion;
-
+                TxtEmail.Text = _currentMayorista.Email; // Faltaba este
+                CmbProducto.Text = _currentMayorista.TipoProducto; // Faltaba este
 
                 tabControlMayoristas.SelectedTab = tabPageAgregarEditar;
-            }
-            else
-            {
-                MessageBox.Show("Debe seleccionar un mayorista para modificarlo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -150,7 +159,7 @@ namespace Desktop.Views
                 //checheamos que haya mayoristas seleccionados
                 if (GridMayorista.RowCount > 0 && GridMayorista.SelectedRows.Count > 0)
                 {
-                    Cliente entitySelected = (Cliente)GridMayorista.SelectedRows[0].DataBoundItem;
+                    Mayorista entitySelected = (Mayorista)GridMayorista.SelectedRows[0].DataBoundItem;
                     var respuesta = MessageBox.Show($"¿Seguro que desea eliminar a este mayorista {entitySelected.Nombre}?", "Confirmar Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (respuesta == DialogResult.Yes)
                     {
@@ -184,13 +193,13 @@ namespace Desktop.Views
 
             if (GridMayorista.RowCount > 0 && GridMayorista.SelectedRows.Count > 0)
             {
-                Cliente entitySelected = (Cliente)GridMayorista.SelectedRows[0].DataBoundItem;
-                var respuesta = MessageBox.Show($"¿Seguro que desea restaurar a este cliente {entitySelected.Nombre}?", "Confirmar Restauración", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                Mayorista entitySelected = (Mayorista)GridMayorista.SelectedRows[0].DataBoundItem;
+                var respuesta = MessageBox.Show($"¿Seguro que desea restaurar a este mayorista {entitySelected.Nombre}?", "Confirmar Restauración", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (respuesta == DialogResult.Yes)//en lo posible poner dentro de un try/catch
                 {
                     if (await _mayoristaService.RestoreAsync(entitySelected.Id))
                     {
-                        LabelStatusMessage.Text = $"Cliente {entitySelected.Nombre} restaurado correctamente";
+                        LabelStatusMessage.Text = $"Mayorista {entitySelected.Nombre} restaurado correctamente";
                         timer1.Start(); // Iniciar el temporizador para mostrar el mensaje en la barra de estado
                         await GetAllData();
                     }

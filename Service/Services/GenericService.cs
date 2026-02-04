@@ -89,16 +89,13 @@ namespace Service.Services
         public async Task<bool> UpdateAsync(T? entity)
         {
             var idValue = entity.GetType().GetProperty("Id").GetValue(entity);
-            var response = await _httpClient.PutAsJsonAsync($"{_endpoint}/{idValue}", entity);
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new Exception("Hubo un problema al actualizar");
-            }
-            else
-            {
-                return response.IsSuccessStatusCode;
-            }
+            // Limpiamos la URL para evitar la doble barra //
+            string urlFinal = $"{_endpoint.TrimEnd('/')}/{idValue}";
 
+            System.Diagnostics.Debug.WriteLine($"LLAMANDO A AZURE: {urlFinal} ");
+
+            var response = await _httpClient.PutAsJsonAsync(urlFinal, entity);
+            return response.IsSuccessStatusCode;
         }
     }
 }

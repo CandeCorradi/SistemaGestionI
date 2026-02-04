@@ -9,11 +9,7 @@ namespace Desktop
         {
             InitializeComponent();
         }
-
-        private void SubMenuSalir_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+       
 
         private void subMenuClientes_Click(object sender, EventArgs e)
         {
@@ -35,13 +31,18 @@ namespace Desktop
             productosView.MdiParent = this;
             productosView.Show();
         }
-        
+
 
         private void SubMenuUsuarios_Click(object sender, EventArgs e)
         {
             var usuariosView = new UsuariosView();
             usuariosView.MdiParent = this;
             usuariosView.Show();
+        }
+
+        private void SubMenuSalirDelSistema_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

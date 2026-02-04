@@ -52,31 +52,33 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(242, 48);
+            label1.Font = new Font("Tahoma", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(240, 48);
             label1.Name = "label1";
-            label1.Size = new Size(39, 15);
+            label1.Size = new Size(44, 16);
             label1.TabIndex = 1;
             label1.Text = "Email:";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(242, 90);
+            label2.Font = new Font("Tahoma", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(238, 90);
             label2.Name = "label2";
-            label2.Size = new Size(70, 15);
+            label2.Size = new Size(87, 16);
             label2.TabIndex = 2;
             label2.Text = "Contraseña:";
             // 
             // TxtEmail
             // 
-            TxtEmail.Location = new Point(327, 48);
+            TxtEmail.Location = new Point(344, 48);
             TxtEmail.Name = "TxtEmail";
             TxtEmail.Size = new Size(241, 23);
             TxtEmail.TabIndex = 3;
             // 
             // TxtContrasena
             // 
-            TxtContrasena.Location = new Point(327, 87);
+            TxtContrasena.Location = new Point(344, 87);
             TxtContrasena.Name = "TxtContrasena";
             TxtContrasena.PasswordChar = '*';
             TxtContrasena.Size = new Size(241, 23);
@@ -85,9 +87,10 @@
             // CheckVerContrasena
             // 
             CheckVerContrasena.AutoSize = true;
-            CheckVerContrasena.Location = new Point(327, 136);
+            CheckVerContrasena.Font = new Font("Tahoma", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            CheckVerContrasena.Location = new Point(344, 136);
             CheckVerContrasena.Name = "CheckVerContrasena";
-            CheckVerContrasena.Size = new Size(103, 19);
+            CheckVerContrasena.Size = new Size(127, 20);
             CheckVerContrasena.TabIndex = 5;
             CheckVerContrasena.Text = "Ver contraseña";
             CheckVerContrasena.UseVisualStyleBackColor = true;
@@ -96,7 +99,7 @@
             // BtnCancelar
             // 
             BtnCancelar.ForeColor = Color.Black;
-            BtnCancelar.Location = new Point(493, 194);
+            BtnCancelar.Location = new Point(510, 194);
             BtnCancelar.Name = "BtnCancelar";
             BtnCancelar.Size = new Size(75, 23);
             BtnCancelar.TabIndex = 7;
@@ -109,7 +112,7 @@
             BtnLogin.ForeColor = Color.Black;
             BtnLogin.Location = new Point(393, 194);
             BtnLogin.Name = "BtnLogin";
-            BtnLogin.Size = new Size(75, 23);
+            BtnLogin.Size = new Size(94, 23);
             BtnLogin.TabIndex = 6;
             BtnLogin.Text = "Iniciar sesión";
             BtnLogin.UseVisualStyleBackColor = true;

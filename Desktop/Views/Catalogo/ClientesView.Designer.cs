@@ -52,15 +52,17 @@
             label5 = new Label();
             label4 = new Label();
             label3 = new Label();
-            label2 = new Label();
             TimerStatusBar = new System.Windows.Forms.Timer(components);
             statusBar = new StatusStrip();
             LabelStatusMessage = new ToolStripStatusLabel();
+            panel1 = new Panel();
+            label7 = new Label();
             tabControlClientes.SuspendLayout();
             tabPageLista.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)GridClientes).BeginInit();
             tabPageAgregarEditar.SuspendLayout();
             statusBar.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // tabControlClientes
@@ -296,16 +298,6 @@
             label3.TabIndex = 0;
             label3.Text = "Nombre:";
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Times New Roman", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(192, 9);
-            label2.Name = "label2";
-            label2.Size = new Size(253, 26);
-            label2.TabIndex = 1;
-            label2.Text = "✦ Agenda de Clientes ✦";
-            // 
             // statusBar
             // 
             statusBar.Items.AddRange(new ToolStripItem[] { LabelStatusMessage });
@@ -320,13 +312,33 @@
             LabelStatusMessage.Name = "LabelStatusMessage";
             LabelStatusMessage.Size = new Size(0, 17);
             // 
+            // panel1
+            // 
+            panel1.BackColor = Color.DarkBlue;
+            panel1.Controls.Add(label7);
+            panel1.Location = new Point(-1, 1);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(663, 31);
+            panel1.TabIndex = 9;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Times New Roman", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.ForeColor = Color.White;
+            label7.Location = new Point(203, 2);
+            label7.Name = "label7";
+            label7.Size = new Size(253, 26);
+            label7.TabIndex = 5;
+            label7.Text = "✦ Agenda de Clientes ✦";
+            // 
             // ClientesView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(659, 490);
+            Controls.Add(panel1);
             Controls.Add(statusBar);
-            Controls.Add(label2);
             Controls.Add(tabControlClientes);
             Name = "ClientesView";
             StartPosition = FormStartPosition.CenterScreen;
@@ -339,6 +351,8 @@
             tabPageAgregarEditar.PerformLayout();
             statusBar.ResumeLayout(false);
             statusBar.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -356,7 +370,6 @@
         private Label label1;
         private DataGridView GridClientes;
         private TabPage tabPageAgregarEditar;
-        private Label label2;
         private TextBox TxtTel;
         private TextBox TxtApellido;
         private TextBox TxtNombre;
@@ -372,5 +385,7 @@
         private System.Windows.Forms.Timer TimerStatusBar;
         private StatusStrip statusBar;
         private ToolStripStatusLabel LabelStatusMessage;
+        private Panel panel1;
+        private Label label7;
     }
 }

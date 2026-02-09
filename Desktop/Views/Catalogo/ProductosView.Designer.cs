@@ -61,18 +61,21 @@
             statusStrip1 = new StatusStrip();
             TimerStatusBar = new ToolStripStatusLabel();
             timer2 = new System.Windows.Forms.Timer(components);
+            panel1 = new Panel();
             tabControlProductos.SuspendLayout();
             tabPageLista.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)GridProductos).BeginInit();
             tabPageAgregarEditar.SuspendLayout();
             statusStrip1.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Times New Roman", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(223, 10);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(242, 2);
             label2.Name = "label2";
             label2.Size = new Size(160, 26);
             label2.TabIndex = 5;
@@ -375,13 +378,22 @@
             TimerStatusBar.Name = "TimerStatusBar";
             TimerStatusBar.Size = new Size(0, 17);
             // 
+            // panel1
+            // 
+            panel1.BackColor = Color.DarkBlue;
+            panel1.Controls.Add(label2);
+            panel1.Location = new Point(0, 2);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(663, 31);
+            panel1.TabIndex = 7;
+            // 
             // ProductosView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(659, 508);
+            Controls.Add(panel1);
             Controls.Add(statusStrip1);
-            Controls.Add(label2);
             Controls.Add(tabControlProductos);
             Name = "ProductosView";
             StartPosition = FormStartPosition.CenterScreen;
@@ -394,6 +406,8 @@
             tabPageAgregarEditar.PerformLayout();
             statusStrip1.ResumeLayout(false);
             statusStrip1.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -432,5 +446,6 @@
         private ToolStripStatusLabel TimerStatusBar;
         private System.Windows.Forms.Timer timer2;
         private TextBox TxtStock;
+        private Panel panel1;
     }
 }

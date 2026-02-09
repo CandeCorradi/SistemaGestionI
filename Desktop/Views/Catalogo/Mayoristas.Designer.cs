@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            label2 = new Label();
             tabControlMayoristas = new TabControl();
             tabPageLista = new TabPage();
             btnRestore = new Button();
@@ -60,22 +59,15 @@
             statusBarMay = new StatusStrip();
             LabelStatusMessage = new ToolStripStatusLabel();
             timer1 = new System.Windows.Forms.Timer(components);
+            panel1 = new Panel();
+            label9 = new Label();
             tabControlMayoristas.SuspendLayout();
             tabPageLista.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)GridMayorista).BeginInit();
             tabPageAgregarEditar.SuspendLayout();
             statusBarMay.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Times New Roman", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(180, 9);
-            label2.Name = "label2";
-            label2.Size = new Size(285, 26);
-            label2.TabIndex = 3;
-            label2.Text = "✦ Agenda de Mayoristas ✦";
             // 
             // tabControlMayoristas
             // 
@@ -361,13 +353,33 @@
             LabelStatusMessage.Name = "LabelStatusMessage";
             LabelStatusMessage.Size = new Size(0, 17);
             // 
+            // panel1
+            // 
+            panel1.BackColor = Color.DarkBlue;
+            panel1.Controls.Add(label9);
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(663, 31);
+            panel1.TabIndex = 8;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Times New Roman", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label9.ForeColor = Color.White;
+            label9.Location = new Point(183, 2);
+            label9.Name = "label9";
+            label9.Size = new Size(285, 26);
+            label9.TabIndex = 5;
+            label9.Text = "✦ Agenda de Mayoristas ✦";
+            // 
             // Mayoristas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(655, 494);
+            Controls.Add(panel1);
             Controls.Add(statusBarMay);
-            Controls.Add(label2);
             Controls.Add(tabControlMayoristas);
             Name = "Mayoristas";
             StartPosition = FormStartPosition.CenterScreen;
@@ -380,13 +392,13 @@
             tabPageAgregarEditar.PerformLayout();
             statusBarMay.ResumeLayout(false);
             statusBarMay.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Label label2;
         private TabControl tabControlMayoristas;
         private TabPage tabPageLista;
         private Button btnRestore;
@@ -417,5 +429,7 @@
         private System.Windows.Forms.Timer timer1;
         private ToolStripStatusLabel LabelStatusMessage;
         private ComboBox CmbProducto;
+        private Panel panel1;
+        private Label label9;
     }
 }

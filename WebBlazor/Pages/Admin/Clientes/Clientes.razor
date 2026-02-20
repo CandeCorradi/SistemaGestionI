@@ -2,6 +2,7 @@
 @inject IGenericService<Cliente> _serviceClientes
 @inject NavigationManager _navigationManager
 @inject SweetAlertService _sweetAlertService
+@inject FirebaseAuthService _authService
 
 
 <PageTitle>Clientes</PageTitle>
@@ -12,7 +13,7 @@
 (
     clientes == null)
 {
-    <p><em>Cargando la lista de capacitaciones...</em></p>
+    <p><em>Cargando la lista de clientes...</em></p>
 }
 else if (!clientes.Any())
 {
@@ -56,7 +57,14 @@ else
     private List<Cliente>? clientes;
     protected override async Task OnInitializedAsync()
     {
-        clientes = (await _serviceClientes.GetAllAsync(null))?.ToList(); 
+        {
+            if (!await _authService.IsUserAuthenticated())
+            {
+                _navigationManager.NavigateTo("/login");
+                return;
+            }
+            clientes = (await _serviceClientes.GetAllAsync(null))?.ToList();
+        }
     }
     private async Task DeleteCliente(Cliente cliente)
     {

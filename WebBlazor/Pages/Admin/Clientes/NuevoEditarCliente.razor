@@ -21,20 +21,15 @@ else
                     </div>
                     <div class="form-group">
                         <label class="form-label">Apellido:</label>
-                        <InputNumber class="form-control mb-2" type="Text" @bind-Value="cliente.Apellido" />
+                        <InputText class="form-control mb-2" type="Text" @bind-Value="cliente.Apellido" />
                     </div>
                     <div class="form-group">
                         <label class="form-label">Telefono:</label>
-                        <InputNumber class="form-control mb-2" type="Text" @bind-Value="cliente.Telefono" />
+                        <InputText class="form-control mb-2" type="Text" @bind-Value="cliente.Telefono" />
                     </div>
                     <div class="form-group">
                         <label class="form-label">Dirección:</label>
-                        <InputSelect class="form-control mb-2" @bind-Value="cliente.Direccion">
-                            @foreach (var cliente in Enum.GetValues<TipoUsuarioEnum>())
-                            {
-                                <option value="@cliente">@cliente</option>
-                            }
-                        </InputSelect>
+                        <InputText class="form-control mb-2" @bind-Value="cliente.Direccion" />                        
                     </div>
                </div>
                     <ValidationSummary />
@@ -49,8 +44,8 @@ else
 @code {
     [SupplyParameterFromQuery]
     [Parameter]
-    public int idCliente { get; set; }
-    private Cliente? cliente;
+    public int? idCliente { get; set; }
+    private Cliente cliente;
 
     private bool isEditing => idCliente != null;
     private string guardarButtonText => isEditing ? "Actualizar" : "Agregar";
@@ -60,7 +55,7 @@ else
     {
         if (idCliente!=null)
         {
-            cliente = await _clienteService.GetByIdAsync(idCliente);
+            cliente = await _clienteService.GetByIdAsync((int)idCliente);
         }
         else
         {
@@ -75,12 +70,12 @@ else
             await _clienteService.UpdateAsync(cliente);
         else
             await _clienteService.AddAsync(cliente);
-        _navigationManager.NavigateTo($"cliente");
+        _navigationManager.NavigateTo($"clientes");
     }
 
     private async Task Cancelar()
     {
-        _navigationManager.NavigateTo($"cliente");
+        _navigationManager.NavigateTo($"clientes");
     }
 }
 

@@ -2,6 +2,8 @@
 @inject IGenericService<Mayorista> _serviceMayoristas
 @inject NavigationManager _navigationManager
 @inject SweetAlertService _sweetAlertService
+@inject FirebaseAuthService _authService
+
 <PageTitle>Mayoristas</PageTitle>
 
 <h1>Mayoristas</h1>
@@ -25,6 +27,7 @@ else
         <thead>
             <tr>
                 <th>Nombre</th>
+                <th>Apellido</th>
                 <th>Telefono</th>
                 <th>Email</th>
                 <th>Direccion</th>
@@ -37,6 +40,7 @@ else
             {
                 <tr>
                     <td>@may.Nombre</td>
+                    <td>@may.Apellido</td>
                     <td>@may.Telefono</td>
                     <td>@may.Email</td>
                     <td>@may.Direccion</td>
@@ -54,7 +58,14 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        mayoristas = (await _serviceMayoristas.GetAllAsync(null))?.ToList();
+        {
+            if (!await _authService.IsUserAuthenticated())
+            {
+                _navigationManager.NavigateTo("/login");
+                return;
+            }
+            mayoristas = (await _serviceMayoristas.GetAllAsync(null))?.ToList();
+        }
     }
     private async Task DeleteMayorista(Mayorista mayorista)
     {

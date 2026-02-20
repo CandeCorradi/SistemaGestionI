@@ -1,0 +1,90 @@
+﻿@page "/NuevoEditarProducto"
+@inject IGenericService<Producto> _productoService
+@inject NavigationManager _navigationManager
+
+<h3>NuevoEditarProducto</h3>
+
+@if (producto == null)
+{
+    <p><em>Cargando...</em></p>
+}
+else
+{
+    <h3>@tituloPagina</h3>
+    <div style="background-color: @(isEditing ? "lightyellow" : "white")">
+        <EditForm Model="producto" OnValidSubmit="Guardar">
+            <DataAnnotationsValidator />
+            <div class="container">
+                <div class="col-md-5">
+
+                    <div class="form-group">
+                        <label class="form-label">Nombre:</label>
+                        <InputText class="form-control mb-2" type="Text" @bind-Value="producto.Nombre" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Descripcion:</label>
+                        <InputText class="form-control mb-2" type="Text" @bind-Value="producto.Descripcion" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Medida:</label>
+                        <InputText class="form-control mb-2" type="Text" @bind-Value="producto.Medida" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Stock:</label>
+                        <InputNumber class="form-control mb-2" @bind-Value="producto.Stock" />                            
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Categoria:</label>
+                        <InputText class="form-control mb-2" type="Text" @bind-Value="producto.Categoria" />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Precio:</label>
+                        <InputNumber class="form-control mb-2" type="Text" @bind-Value="producto.Precio" />
+                    </div>
+                </div>
+                <ValidationSummary />
+                <button class="btn btn-primary" type="submit">@guardarButtonText</button>
+                <button class="btn btn-danger" @onclick="Cancelar">Cancelar</button>
+            </div>
+        </EditForm>
+    </div>
+}
+
+
+@code {
+    [SupplyParameterFromQuery]
+    [Parameter]
+    public int? idProducto { get; set; }
+    private Producto producto;
+
+    private bool isEditing => idProducto != null;
+    private string guardarButtonText => isEditing ? "Actualizar" : "Agregar";
+    private string tituloPagina => isEditing ? "Editando Producto" : "Agregando nuevo producto";
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (idProducto != null)
+        {
+            producto = await _productoService.GetByIdAsync((int)idProducto);
+        }
+        else
+        {
+            producto = new Producto();
+        }
+    }
+
+    private async Task Guardar()
+    {
+        //logger.LogInformation(capacitacion.PropertiesToString());
+        if (idProducto != null)
+            await _productoService.UpdateAsync(producto);
+        else
+            await _productoService.AddAsync(producto);
+        _navigationManager.NavigateTo($"productos");
+    }
+
+    private async Task Cancelar()
+    {
+        _navigationManager.NavigateTo($"productos");
+    }
+}

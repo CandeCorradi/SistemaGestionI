@@ -53,8 +53,8 @@ else
 @code {
     [SupplyParameterFromQuery]
     [Parameter]
-    public int idMayorista { get; set; }
-    private Mayorista? mayorista;
+    public int? idMayorista { get; set; }
+    private Mayorista mayorista;
 
     private bool isEditing => idMayorista != null;
     private string guardarButtonText => isEditing ? "Actualizar" : "Agregar";
@@ -64,7 +64,7 @@ else
     {
         if (idMayorista != null)
         {
-            mayorista = await _mayoristaService.GetByIdAsync(idMayorista);
+            mayorista = await _mayoristaService.GetByIdAsync((int)idMayorista);
         }
         else
         {
@@ -79,12 +79,12 @@ else
             await _mayoristaService.UpdateAsync(mayorista);
         else
             await _mayoristaService.AddAsync(mayorista);
-        _navigationManager.NavigateTo($"mayorista");
+        _navigationManager.NavigateTo($"mayoristas");
     }
 
     private async Task Cancelar()
     {
-        _navigationManager.NavigateTo($"mayorista");
+        _navigationManager.NavigateTo($"mayoristas");
     }
 }
 

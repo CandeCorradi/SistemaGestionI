@@ -81,8 +81,11 @@ else
         {
             if (await _serviceClientes.DeleteAsync(cliente.Id))
             {
+                clientes.Remove(cliente);
                 await _sweetAlertService.FireAsync("Eliminado", "El cliente ha sido eliminado.", SweetAlertIcon.Success);
-            } else
+                StateHasChanged();
+            } 
+            else
             {
                 await _sweetAlertService.FireAsync("Error", "No se pudo eliminar el cliente.", SweetAlertIcon.Error);
             }

@@ -84,7 +84,9 @@ else
         {
             if (await _serviceProductos.DeleteAsync(producto.Id))
             {
+                productos.Remove(producto);
                 await _sweetAlertService.FireAsync("Eliminado", "El producto ha sido eliminado.", SweetAlertIcon.Success);
+                StateHasChanged();
             }
             else
             {

@@ -82,8 +82,11 @@ else
         {
             if (await _serviceMayoristas.DeleteAsync(mayorista.Id))
             {
+                mayoristas.Remove(mayorista);
                 await _sweetAlertService.FireAsync("Eliminado", "El cliente ha sido eliminado.", SweetAlertIcon.Success);
-            } else
+                StateHasChanged();
+            } 
+            else
             {
                 await _sweetAlertService.FireAsync("Error", "No se pudo eliminar el mayorista.", SweetAlertIcon.Error);
             }           

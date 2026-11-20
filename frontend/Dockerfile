@@ -58,8 +58,8 @@ FROM node:22-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production \
-    NEXT_TELEMETRY_DISABLED=1 \
-    PORT=3000
+    HOSTNAME=0.0.0.0 \
+    PORT=${PORT:-10000}
 
 # `output: "standalone"` genera un server.js mínimo que ya incluye las
 # dependencias necesarias; public/ y .next/static se copian aparte.
@@ -70,4 +70,4 @@ COPY --from=builder --chown=node:node /app/.next/static ./.next/static
 USER node
 EXPOSE 3000
 
-CMD ["node", "server.js"]
+CMD ["sh", "-c", "HOSTNAME=0.0.0.0 PORT=${PORT:-10000} node server.js"]

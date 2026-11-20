@@ -1,0 +1,94 @@
+# Blueprint de Render para el Sistema de Gestión.
+#
+# Crea dos Web Services Docker (plan free) que consumen el PostgreSQL de
+# Supabase. Los valores marcados con `sync: false` los carga el usuario en el
+# dashboard de Render y NUNCA se guardan en el repositorio (AGENTS.md §46/§47).
+#
+# Uso: Render Dashboard → New → Blueprint → seleccionar este repositorio.
+# Detalle paso a paso: docs/deployment-render.md
+
+services:
+  # ---------------------------------------------------------------
+  # Backend: ASP.NET Core 10 (SistemaGestion.API)
+  # ---------------------------------------------------------------
+  - type: web
+    name: sistema-gestion-api
+    runtime: docker
+    plan: free
+    region: virginia
+    dockerfilePath: ./src/SistemaGestion.API/Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      # Migraciones EF Core al arrancar (el plan free no tiene preDeployCommand).
+      - key: Database__MigrateOnStartup
+        value: "true"
+
+      # PostgreSQL de Supabase (usar la cadena del Session pooler, IPv4).
+      - key: ConnectionStrings__DefaultConnection
+        sync: false
+
+      # Firebase Admin (Authentication + archivos privados).
+      - key: Firebase__ProjectId
+        sync: false
+      - key: Firebase__ClientEmail
+        sync: false
+      - key: Firebase__PrivateKey
+        sync: false
+      - key: Firebase__StorageBucket
+        sync: false
+
+      # Supabase Storage (imágenes del catálogo y showroom).
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_STORAGE_BUCKET
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+
+      # Gemini (opcional; si falta, /api/gemini no responde).
+      - key: Gemini__ApiKey
+        sync: false
+
+      # Origen permitido por CORS: la URL pública del frontend en Render.
+      - key: Cors__AllowedOrigins__0
+        sync: false
+
+  # ---------------------------------------------------------------
+  # Frontend: Next.js (App Router, salida standalone)
+  # ---------------------------------------------------------------
+  - type: web
+    name: sistema-gestion-web
+    runtime: docker
+    plan: free
+    region: virginia
+    dockerfilePath: ./frontend/Dockerfile
+    dockerContext: ./frontend
+    # Las NEXT_PUBLIC_* se inlinean en el build; Render las pasa como
+    # build args automáticamente.
+    envVars:
+      # URL pública de la API (https://sistema-gestion-api.onrender.com).
+      - key: NEXT_PUBLIC_API_URL
+        sync: false
+
+      # Configuración pública del SDK web de Firebase (no son secretos).
+      - key: NEXT_PUBLIC_FIREBASE_API_KEY
+        sync: false
+      - key: NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
+        sync: false
+      - key: NEXT_PUBLIC_FIREBASE_PROJECT_ID
+        sync: false
+      - key: NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET
+        sync: false
+      - key: NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
+        sync: false
+      - key: NEXT_PUBLIC_FIREBASE_APP_ID
+        sync: false
+
+      # Opcionales (si se omiten, la app usa ARS y oculta el botón de WhatsApp).
+      - key: NEXT_PUBLIC_WHATSAPP_NUMBER
+        sync: false
+      - key: NEXT_PUBLIC_CURRENCY
+        sync: false

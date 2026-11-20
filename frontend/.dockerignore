@@ -1,0 +1,22 @@
+# Contexto de build del frontend (./frontend).
+# node_modules y .next se generan dentro de la imagen.
+
+node_modules
+.next
+out
+
+# Tests E2E (no forman parte de la imagen de producción)
+e2e
+playwright-report
+test-results
+playwright.config.ts
+
+# Configuración local y secretos
+.env
+.env.*
+.env*.local
+
+# Metadatos
+Dockerfile
+.dockerignore
+npm-debug.log*

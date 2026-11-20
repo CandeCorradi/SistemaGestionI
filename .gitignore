@@ -9,6 +9,17 @@
 *.user
 *.userosscache
 *.sln.docstates
+.env
+.env.*
+!.env.example
+
+# Firebase: solo se ignoran credenciales y la configuración legacy.
+# NO ignorar carpetas de código fuente llamadas "Firebase" (p. ej. src/.../Authentication/Firebase).
+/legacy/Backend/Firebase/
+*firebase-adminsdk*.json
+*service-account*.json
+*.pem
+*.key
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -361,3 +372,19 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# -------------------------------
+# Node / Next.js (frontend)
+# -------------------------------
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+next-env.d.ts
+
+# -------------------------------
+# Graphify knowledge graph cache
+# -------------------------------
+graphify-out/
+# Repositorio anidado independiente (no forma parte de este proyecto)
+/Inventario/

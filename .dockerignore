@@ -1,0 +1,35 @@
+# Contexto de build de la API (raíz del repositorio).
+# Mantener el contexto chico acelera el build en Render.
+
+# Control de versiones y metadatos
+.git
+.gitignore
+.gitattributes
+.github
+
+# Entornos de desarrollo
+.vs
+.vscode
+.idea
+
+# Artefactos de compilación
+**/bin
+**/obj
+**/TestResults
+**/*.user
+**/*.log
+
+# Proyectos y carpetas que la API no necesita en la imagen
+tests
+frontend
+legacy
+docs
+graphify-out
+
+# Secretos y configuración local (nunca entran a la imagen)
+.env
+.env.*
+*firebase-adminsdk*.json
+*service-account*.json
+*.pem
+*.key

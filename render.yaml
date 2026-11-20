@@ -30,7 +30,10 @@ services:
       - key: ConnectionStrings__DefaultConnection
         sync: false
 
-      # Firebase Admin (Authentication + archivos privados).
+      # Firebase Admin: JSON del service account en UNA línea (recomendado).
+      - key: Firebase__ServiceAccountJson
+        sync: false
+      # Alternativa al JSON: dejar vacías si se usa ServiceAccountJson.
       - key: Firebase__ProjectId
         sync: false
       - key: Firebase__ClientEmail
